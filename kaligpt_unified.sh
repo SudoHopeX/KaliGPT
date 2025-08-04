@@ -56,7 +56,6 @@ echo "   2) Mistral    ( Free, Offline - Min 6GB Data Required)"
 echo "   3) Llama      ( Free, Offline )"
 echo "   4) KaliGPT -web based ( OpenAI, Free, Online )"
 echo "      [Note: opttion 4 required 1 time logging & keep logged in config in chromium if not]"
-exit 0
 }
 
 # print KaliGPT Installer script uses
@@ -69,6 +68,13 @@ print_installer_usages() {
   echo "   --help                      -  print this usage info"
   echo ""
   print_models
+  echo ""
+  echo -e "\e[1;33mUsages Examples:\e[0m"
+  echo "   sudo bash kaligpt_unified.sh --model 1       # install OpenAI ChatGPT4.0 with API access"
+  echo "   sudo bash kaligpt_unified.sh --model 2       # install KaliGPT (Mistral AI locally)"
+  echo "   bash kaligpt_unified.sh --help               # print script usages"
+  echo "   sudo bash kaligpt_unified.sh --uninstall-m 1 # uninstall OpenAI installed files"
+  echo "   sudo bash kaligpt_unified.sh --uninstall     # uninstall KaliGPT (everything)"
 }
 
 
@@ -160,6 +166,7 @@ while [[ "$#" -gt 0 ]]; do
     case "$1" in
         --help)
             print_installer_usages
+            exit 0
             ;;
         --model)
             MODEL_CHOICE="$2"
@@ -177,7 +184,8 @@ while [[ "$#" -gt 0 ]]; do
             shift
             ;;
         *)
-            echo "Unknown parameter: $1"
+            echo "[!] No argument specified"
+            echo " Use bash kaligpt_unified.sh --help to see usages"
             exit 1
             ;;
     esac
@@ -188,6 +196,7 @@ done
 # Execute actions
 if [ "$SHOW_MODELS" = true ]; then
     print_models
+    exit 0
 fi
 
 if [ -n "$UNINSTALL_MODE" ]; then
@@ -539,7 +548,7 @@ case "\$MODE" in
                 python3 kaligpt_mistral.py"\$@"
                 ;;
 
-        -h)
+        -h|--help)
                 echo ""
                 echo -e "\e[1;32mKaliGPT - Use AI in Linux via CLI easily\e[0m"
                 echo -e "\e[1;32m        - by SudoHopeX | Krishna Dwivedi\e[0m"
@@ -567,7 +576,7 @@ case "\$MODE" in
 
         *) 
                 echo -e "\e[1;31mNOTE: Invalid or missing mode!\e[0m"
-                echo -e "\e[1;33mUse: kaligpt -h to see usages\e[0m"
+                echo -e "\e[1;33muse: kaligpt -h to see usages\e[0m"
                 ;;
 esac
 
