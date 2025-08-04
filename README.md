@@ -20,7 +20,7 @@ This tool ensures flexibility whether you have paid API access, want to run mode
 
 ## Requirements
 
-- Linux system ( tested on Kali, Debian )
+- Linux system ( to be finally tested on Kali, Debian )
 - Bash shell
 - Python 3.x (for API/CLI)
 - openai python module ( library )
@@ -131,5 +131,5 @@ Pull requests and issues are welcome! Please open an issue to discuss your ideas
 
 
 ## Disclaimer
-
+This script is in testing phase now...
 This script is provided with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
