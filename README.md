@@ -131,5 +131,5 @@ Pull requests and issues are welcome! Please open an issue to discuss your ideas
 
 
 ## Disclaimer
-This script is in testing phase now...
-This script is provided with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
+- This script is in testing phase now...
+- This script is provided with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
