@@ -1,4 +1,4 @@
-# KaliGPT Unified Installer
+# KaliGPT Unified Installer v1.0 ~ SudoHopeX
 
 ## Overview
 
@@ -32,19 +32,19 @@ This tool ensures flexibility whether you have paid API access, want to run mode
 ## Installation
 
 - Clone the repository and run the installer:
-```
-git clone https://github.com/SudoHopeX/KaliGPT.git
-```
+  ```
+  git clone https://github.com/SudoHopeX/KaliGPT.git
+  ```
 
 - Move to KaliGPT
-```
-cd KaliGPT
-```
+  ```
+  cd KaliGPT
+  ```
 
 - Run the installer to see usages
-```
-bash kaligpt_unified.sh --help
-```
+  ```
+  bash kaligpt_unified.sh --help
+  ```
 
 - Install a KaliGPT Model
   ```
@@ -53,7 +53,6 @@ bash kaligpt_unified.sh --help
 see kaligpt installer usages for more
 
 ## KaliGPT Installer Usages
------
 ```
 KaliGPT Installer ~ SudoHopeX | Krishna Dwivedi
 [Contact SudoHopeX](https://sudohopex.github.io/)
@@ -132,6 +131,4 @@ Pull requests and issues are welcome! Please open an issue to discuss your ideas
 
 ## Disclaimer
 
-This script is provided as-is with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
-
-```
+This script is provided with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
