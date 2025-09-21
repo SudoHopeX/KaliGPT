@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Coded by SudoHopeX | Krishna Dwivedi 
+# Linkedin => in/dkrishna0124
 # Must use it for Ethical Use only 
 
 
