@@ -1,8 +1,9 @@
 # KaliGPT v1.1 ~ SudoHopeX
 
 ## Overview
+**KaliGPT v1.1** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity in Linux Terminal Easily
 
-**KaliGPT v1.1** is a comprehensive bash script designed to automate the installation and usage of KaliGPT (ChatGPT/ChatGPT KaliGPT/Mistral/llama3) on Linux systems. It provides both CLI and GUI options for interacting with state-of-the-art AI models, including:
+## Models
 
 - ChatGPT 4.0 (via API using Python opanai latest module)
 - Gemini 2.5 Flash (via API, using python google-genai module)
