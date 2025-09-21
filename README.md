@@ -115,10 +115,10 @@ Examples:
 
 ## Changing Default Browser for KaliGPT web:
 To switch from Chromium to another browser:
-1. Open `kaligpt_unified.sh` in a text editor.
+1. Open `/usr/local/bin/kaligpt` in a text editor with sudo priviledge.
 2. Find the section referencing `chromium` and comment it
 3. Uncomment or add your preferred browser's binary (e.g., `firefox`, `brave-browser`, etc.). 
-4. Save and rerun the script.
+4. Save the script.
 
 ## License
 
