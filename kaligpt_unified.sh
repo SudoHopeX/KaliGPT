@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# Coded by SudoHopeX | Krishna Dwivedi 
+# Must use it for Ethical Use only 
+
+
 trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 TARGET_HOME=$(eval echo ~$(logname))
