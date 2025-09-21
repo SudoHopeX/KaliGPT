@@ -1,10 +1,11 @@
-# KaliGPT Unified Installer v1.0 ~ SudoHopeX
+# KaliGPT v1.1 ~ SudoHopeX
 
 ## Overview
 
-**KaliGPT Unified Installer** is a comprehensive bash script designed to automate the installation and usage of KaliGPT (ChatGPT/ChatGPT KaliGPT/Mistral/llama3) on Linux systems. It provides both CLI and GUI options for interacting with state-of-the-art AI models, including:
+**KaliGPT v1.1** is a comprehensive bash script designed to automate the installation and usage of KaliGPT (ChatGPT/ChatGPT KaliGPT/Mistral/llama3) on Linux systems. It provides both CLI and GUI options for interacting with state-of-the-art AI models, including:
 
 - ChatGPT 4.0 (via API using Python opanai latest module)
+- Gemini 2.5 Flash (via API, using python google-genai module)
 - Mistral and Llama 3 (via local installs using Ollama)
 - KaliGPT (OpenAI GPT) - Web (browser-based) if API access is unavailable
 
@@ -24,6 +25,8 @@ This tool ensures flexibility whether you have paid API access, want to run mode
 - Bash shell
 - Python 3.x (for API/CLI)
 - openai python module ( library )
+- google-genai module
+- rich module
 - requests python module ( library )
 - Ollama ( for local models )
 - Chromium or other supported browsers ( for web use )
@@ -65,10 +68,11 @@ KaliGPT Installer Available commands:
    --help                      -  print this usage info
 
 KaliGPT Available MODELs:
-   1) OpenAI ChatGPT ( OpenAI, Free, Online ) [ requires API KEY ]
+   1) OpenAI ChatGPT ( OpenAI, Free, Online ) [ Requires API KEY ]
    2) Mistral    ( Free, Offline - Min 6GB Data Required)
    3) Llama      ( Free, Offline )
    4) KaliGPT -web based ( OpenAI, Free, Online )
+   5) Google Gemini 2.5 Flash (Google, Free, Online) Required API Key ]
       [Note: opttion 4 required 1 time logging & keep logged in config in chromium if not]
 
 Usages Examples:
@@ -88,28 +92,43 @@ KaliGPT - Use AI in Linux via CLI easily
         - by SudoHopeX | Krishna Dwivedi
 
 Usages:
-  kaligpt [mode] [Prompt (optional)]
+        kaligpt [MODE] [FLAG(Optional)] [Prompt (Optional)]
 
 MODES: (Must Included)
-    -c  -  use ChatGPT-4o (OpenAI, Paid, Online)
-    -cw -  use KaliGPT in chromium web browser (OpenAI, Free, Online )
-            [ requires 1 time login & keep logged in config on web ]
-    -m  -  use Mistral via Ollama (Free, Offline)
-    -l  -  use LlaMa via Ollama (Free, Offline)
-    -h  -  show this help message and exit
+
+    -c  [--chatgpt]           =  use ChatGPT-4o (Online)
+    -cw [--chatgpt-web]       =  use KaliGPT in Web Browser (Online)
+                    ( requires 1 time login & keep logged in configs on web )
+    -g  [--gemini]            =  use Gemini 2.5 Flash (Online)
+    -m  [--mistral]           =  use Mistral via Ollama (Offline)
+    -l  [--llama]             =  use LlaMa via Ollama (Offline)
+    -i  [--install]           = install a model bu using --model <model-num>
+    -lm [--list-models]       = list KaliGPT available models
+    -u  [--uninstall]         = uninstall a model or KaliGPT (everything)
+    -h  [--help]              =  show this help message and exit
+
+FLAGS:
+    --model <model-num>        = specify a model to install (with --install)
+    --uninstall-m <model-num>  =  uninstall a specific model (with --uninstall)
+    --uninstall-k              =  uninstall KaliGPT (everything) (with --uninstall)
+
 
 Examples:
-     kaligpt -m "How to Scan a website for subdomains using tools"
+     kaligpt -g "How to Scan a website for subdomains using tools"
      kaligpt -l "Help me find XXS on a target.com"
-     kaligpt -c
+     kaligpt --install --model 5
+     kaligpt -u --uninstall-m 1
      kaligpt -cw
 
  NOTE: do not pass prompt with -cw
+       Must include a MODE & use flags only with specified mode
+       Read README.md or Documentation at sudohopex.github.io for more info. 
 ```
 
 ## Switching AI Backends
 - You can choose between:
   - **ChatGPT 4.0** (API key required, paid)
+  - **Gemini 2.5 Flash** (API Key required, Free)
   - **Mistral or Llama 3** (local, free, via Ollama)
   - **Web interface** (no key required, but automates browser only for KaliGPT via OpenAI)
 
@@ -122,8 +141,7 @@ To switch from Chromium to another browser:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
+Read Licence for details [License](LICENSE).
 
 ## Contributing
 
