@@ -1,21 +1,52 @@
-MIT License
+SudoHopeX Non-Commercial Software License (2025)
 
 Copyright (c) 2025 Krishna Dwivedi | SudoHopeX
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Definitions
+1. "Software" means the source code, binaries, documentation, and other materials provided under this License.
+2. "Non-Commercial Use" means use, reproduction, modification, distribution, display or performance of the Software by you, PROVIDED THAT such use is not primarily intended for or directed toward commercial advantage or monetary compensation (including, but not limited to, selling the Software, offering it as a paid service, charging for access, or bundling it with paid products/services where a fee is charged).
+3. "Commercial Use" means any use that is intended for or results in monetary compensation, profit, or other commercial advantage.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+License Grant — Non-Commercial Rights
+Subject to the terms and conditions of this License, the copyright holder hereby grants you a worldwide, royalty-free, non-exclusive, non-sublicensable, revocable license to:
+  a) Use the Software for Non-Commercial Use;
+  b) Copy and reproduce the Software for Non-Commercial Use;
+  c) Modify, prepare derivative works of, and distribute the Software for Non-Commercial Use, provided that you comply with the Attribution and Distribution Requirements below.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Attribution and Distribution Requirements
+  1. Any redistribution, modified or unmodified, must include:
+     a) This copyright notice and license text;
+     b) Clear attribution to "Krishna Dwivedi | SudoHopeX" as original author(s);
+     c) A prominent notice that the Software is licensed for Non-Commercial Use only and that Commercial Use requires explicit written permission from the copyright holder.
+
+Prohibited Commercial Activities
+  You may NOT, without the prior express written permission of the copyright holder:
+    a) Sell, sublicense, or distribute the Software (or modified versions) in exchange for money or other consideration;
+    b) Offer the Software as part of a paid product, paid service, hosted service, subscription product, or commercial SaaS offering;
+    c) Charge for access to, or use of, the Software or derivative works;
+    d) Use the Software in a manner whose primary purpose is to generate revenue (including charging customers to access features implemented using this Software).
+
+Commercial License & Permissions
+  Requests for permission to use the Software for Commercial Use (including commercial redistribution, paid hosting/svc, or sale) must be made in writing to the copyright holder. If the copyright holder grants permission, such permission shall be documented in a separate written commercial license agreement which may include fees, royalties, or other terms as agreed.
+
+Patent Rights
+  No patent rights are granted by this License. If you assert a patent claim against the copyright holder or contributors alleging that the Software infringes a patent, your rights under this License shall terminate automatically.
+
+Termination
+  This License and the rights granted hereunder will terminate automatically upon any breach of this License by you. Upon termination you must cease all use, distribution, and reproduction of the Software and destroy or return all copies.
+
+Disclaimer of Warranty
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+
+Limitation of Liability
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Governing Law
+  This License is governed by the laws of the jurisdiction in which the copyright holder resides, without regard to conflict of law principles.
+
+Contact for Commercial Permissions
+  For all requests regarding commercial permissions or licensing, contact:
+    Krishna Dwivedi | SudoHopeX
+    Email: sud0hope.techie@gmail.com
+    Linkedin: in/dkrishna0124
+    DM: https://sudohopex.github.io/message-popup.html
