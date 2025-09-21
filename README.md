@@ -1,7 +1,6 @@
 # KaliGPT v1.1 ~ SudoHopeX
 
-## Overview
-**KaliGPT v1.1** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity in Linux Terminal Easily
+**KaliGPT** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity to use AI with ease to learn and master CyberSecurity
 
 ## Models
 
