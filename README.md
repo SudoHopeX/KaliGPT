@@ -4,9 +4,9 @@
 
 ## Models
 
-- ChatGPT 4.0 (via API using Python opanai latest module)
-- Gemini 2.5 Flash (via API, using python google-genai module)
-- Mistral and Llama 3 (via local installs using Ollama)
+- ChatGPT 4.0 ( Online )
+- Gemini 2.5 Flash ( Online )
+- Mistral and Llama 3 ( local install, heavy ) 
 - KaliGPT (OpenAI GPT) - Web (browser-based) if API access is unavailable
 
 This tool ensures flexibility whether you have paid API access, want to run models locally, or prefer using the web interface via your browser.
