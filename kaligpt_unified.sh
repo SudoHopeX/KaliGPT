@@ -1097,7 +1097,7 @@ case "$MODE" in
     			nohup ollama serve > /var/log/ollama.log 2>&1 &
     			sleep 2
 		fi
-		python3 kaligpt_mistral.py"$@"
+		python3 kaligpt_mistral.py "$@"
 		;;
 
 	-l|--llama)
@@ -1112,7 +1112,7 @@ case "$MODE" in
     			sleep 2
 		fi
 
-		python3 kaligpt_llama.py"$@"
+		python3 kaligpt_llama.py "$@"
 		;;
 
 	-h|--help)
