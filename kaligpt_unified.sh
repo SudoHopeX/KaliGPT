@@ -9,7 +9,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 TARGET_HOME=$(eval echo ~$(logname))
 
-# Spinner function
+# Spinner function 
 spin() {
 
   local msg="$1"
