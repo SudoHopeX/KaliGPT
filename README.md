@@ -1,36 +1,32 @@
-# KaliGPT v1.1 ~ SudoHopeX
+# KaliGPT v1.1
+![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png)
 
 **KaliGPT** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity to use AI with ease to learn and master CyberSecurity
 
+> NOTE: MCP Server / Client Support avail soon ( wish 2 contribute [Contact ASAP](https://sudohopex.github.io/message-popup.html) )
+
 ## Models
 
-- ChatGPT 4.0 ( Online )
-- Gemini 2.5 Flash ( Online )
-- Mistral and Llama 3 ( local install, heavy ) 
-- KaliGPT (OpenAI GPT) - Web (browser-based) if API access is unavailable
+- ChatGPT 4.0
+- Gemini 2.5 Flash
+- Mistral / Llama 3
+- OpenAI GPT's - browser-based if API access is unavailable
 
 This tool ensures flexibility whether you have paid API access, want to run models locally, or prefer using the web interface via your browser.
 
 ## Features
 
-- **Automated installation** of all dependencies for KaliGPT, including Python requirements and Ollama setup.
-- **Flexible AI backend selection**: Use ChatGPT 4.0 API, local Mistral/Llama 3 via Ollama, or web interface for OpenAI GPT.
-- **Command-line and graphical interfaces**: Interact via terminal or GUI (if available).
-- **Web automation**: If no API is available, script can launch Chromium (or other browsers, configurable via editing the binary) for web-based chat with arg `-cw`.
-- **Open source & MIT Licensed**.
+- **Automated installation** 
+- **Flexible AI backend selection**
+- **Command-line and graphical interfaces**
+- **Web automation**: If no API is available, script can launch Chromium (browser configurable) for web-based chat with arg `-cw`.
+- **Open source & MIT Licensed**
 
-## Requirements
+## Base Requirements
 
-- Linux system ( to be tested on Kali, Debian, etc. )
-- Bash shell
-- Python 3.x (for API/CLI)
-- openai python module ( library )
-- google-genai module
-- rich module
-- requests python module ( library )
-- Ollama ( for local models )
+- Linux OS ( to be tested on Kali, Debian, etc. ) with Bash Shell
+- Python 3.x 
 - Chromium or other supported browsers ( for web use )
-- Internet connection ( for API / initial setup / OpenAI GPT's usages)
 
 ## Installation
 
@@ -44,11 +40,6 @@ This tool ensures flexibility whether you have paid API access, want to run mode
   cd KaliGPT
   ```
 
-- Run the installer to see usages
-  ```
-  bash kaligpt_unified.sh --help
-  ```
-
 - Install a KaliGPT Model
   ```
   sudo bash kaligpt_unified.sh --model <model-number>
@@ -56,9 +47,10 @@ This tool ensures flexibility whether you have paid API access, want to run mode
 see kaligpt installer usages for more
 
 ## KaliGPT Installer Usages
+execute ` bash kaligpt_unified.sh --help ` to see this (below given) usages
+
 ```
 KaliGPT Installer ~ SudoHopeX | Krishna Dwivedi
-[Contact SudoHopeX](https://sudohopex.github.io/)
 
 KaliGPT Installer Available commands:
    --model <model-num>         -  install a specific model
@@ -129,7 +121,7 @@ Examples:
 - You can choose between:
   - **ChatGPT 4.0** (API key required, paid)
   - **Gemini 2.5 Flash** (API Key required, Free)
-  - **Mistral or Llama 3** (local, free, via Ollama)
+  - **Mistral or Llama 3** (local, free, via Ollama, resource intensive) [ Development going for low end systems ]
   - **Web interface** (no key required, but automates browser only for KaliGPT via OpenAI)
 
 ## Changing Default Browser for KaliGPT web:
@@ -144,8 +136,7 @@ To switch from Chromium to another browser:
 Read Licence for details [License](LICENSE).
 
 ## Contributing
-
-Pull requests and issues are welcome! Please open an issue to discuss your ideas or report bugs.
+Contributions are welcome! Please open an issue to discuss your ideas or report bugs.
 
 
 ## Disclaimer
