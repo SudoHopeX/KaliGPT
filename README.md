@@ -1,9 +1,10 @@
 # KaliGPT v1.1
+> NOTE: MCP Server / Client Support avail soon ( wish 2 contribute [Contact ASAP](https://sudohopex.github.io/message-popup.html) )
+
 ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png)
 
 **KaliGPT** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity to use AI with ease to learn and master CyberSecurity
 
-> NOTE: MCP Server / Client Support avail soon ( wish 2 contribute [Contact ASAP](https://sudohopex.github.io/message-popup.html) )
 
 ## Models
 
