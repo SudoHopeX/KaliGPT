@@ -11,7 +11,7 @@ jobs:
   update-badge:
     runs-on: ubuntu-latest
     
-    # *** FIX 1: Grant explicit write permissions to the job's default GITHUB_TOKEN ***
+    # *** Grant explicit write permissions to the job's default GITHUB_TOKEN ***
     permissions:
       contents: write 
     
@@ -19,20 +19,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # *** FIX 2: Use the default GITHUB_TOKEN that now has write access ***
+          # *** Use the default GITHUB_TOKEN that now has write access ***
           token: ${{ secrets.GITHUB_TOKEN }} 
+
+      # *** STEP: Install jq ***
+      - name: Setup jq
+        uses: dcarbone/install-jq-action@v2.1.0 # Use a reliable jq installer
+        with:
+          version: '1.6' # Specify a common version
 
       - name: Fetch Clone Count
         id: fetch_clones
-        # Use your high-permission CLONE_TOKEN ONLY for the API fetch step
         run: |
-          # Use jq if you don't have it already (add a setup-jq step if needed)
+          # Use your high-permission CLONE_TOKEN for authentication
           CLONES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/clones")
           
-          # Extract the count
-          COUNT=$(echo "$CLONES_DATA" | jq -r '.count')
-          
+          # Check if data is null/empty and if the API returned an error message
+          if echo "$CLONES_DATA" | grep -q "message"; then
+              echo "Error fetching data from GitHub API:"
+              echo "$CLONES_DATA"
+              # Write 0 or a placeholder to avoid breaking the badge
+              COUNT="0" 
+          else
+              # Extract the 'count' field from the valid JSON response
+              COUNT=$(echo "$CLONES_DATA" | jq -r '.count')
+          fi
+
+          echo "Clone Count fetched: $COUNT"
           # Write the count to a file for Shields.io
           echo "$COUNT" > clones_count.txt
 
