@@ -5,10 +5,10 @@
 
 **KaliGPT** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity to use AI with ease to learn and master CyberSecurity
 
-[![GitHub tag](https://img.shields.io/github/v/tag/SudoHopeX/KaliGPT?label=current%20version&color=informational&logo=github)](https://github.com/SudoHopeX/KaliGPT/tags)
+[![GitHub tag](https://img.shields.io/github/v/tag/SudoHopeX/KaliGPT?label=Latest%20Version&color=informational&logo=github)](https://github.com/SudoHopeX/KaliGPT/tags)
 [![GitHub stars](https://img.shields.io/github/stars/SudoHopeX/KaliGPT?style=social)](https://github.com/SudoHopeX/KaliGPT/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/SudoHopeX/KaliGPT?style=social)](https://github.com/SudoHopeX/KaliGPT/network/members)
-[![Total Clones](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SudoHopeX/KaliGPT/main/clones_count.txt&label=Total%20Clones&color=2ea44f&logo=git&style=flat)](https://github.com/SudoHopeX/KaliGPT/pulse)
+[![Last 14 Days Clones](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SudoHopeX/KaliGPT/main/clones_count.txt&label=Last%2014%20Days%20Clones&color=2ea44f&logo=git&style=flat)](https://github.com/SudoHopeX/KaliGPT/pulse)
 
 ## Models
 
