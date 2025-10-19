@@ -30,6 +30,7 @@ jobs:
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
+          token: ${{ secrets.CLONE_TOKEN }}
           commit_message: "chore: Update clone count badge data"
           # Only commit the file if it changed
           file_pattern: clones_count.txt
