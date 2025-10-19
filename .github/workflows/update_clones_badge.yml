@@ -1,0 +1,37 @@
+name: Update Clone Count Badge
+
+on:
+  # Run once a day
+  schedule:
+    - cron: '0 0 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Clone Count
+        id: fetch_clones
+        # Use the stored secret (CLONE_TOKEN) for authentication
+        run: |
+          CLONES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
+            "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/clones")
+          
+          # Extract the count and total unique count
+          COUNT=$(echo "$CLONES_DATA" | jq -r '.count')
+          
+          # Write the count to a file for Shields.io
+          echo "$COUNT" > clones_count.txt
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: Update clone count badge data"
+          # Only commit the file if it changed
+          file_pattern: clones_count.txt
+          commit_user_name: GitHub Actions Bot
+          commit_user_email: actions@github.com
