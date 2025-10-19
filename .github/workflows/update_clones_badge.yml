@@ -47,13 +47,15 @@ jobs:
           fi
 
           echo "Clone Count fetched: $COUNT"
-          # Write the count to a file for Shields.io
-          echo "$COUNT" > clones_count.txt
+          # *** Write the count as valid JSON to a .json file ***
+          # Note: The 'label' and 'color' set here override the badge URL parameters
+          JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"Last 14 Dags Clones\", \"message\": \"$COUNT\", \"color\": \"2ea44f\"}"
+          echo "$JSON_CONTENT" > clones_count.json
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: Update clone count badge data"
-          file_pattern: clones_count.txt
+          file_pattern: clones_count.json
           commit_user_name: GitHub Actions Bot
           commit_user_email: actions@github.com
