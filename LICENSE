@@ -4,8 +4,11 @@ Copyright (c) 2025 Krishna Dwivedi | SudoHopeX
 
 Definitions
 1. "Software" means the source code, binaries, documentation, and other materials provided under this License.
-2. "Non-Commercial Use" means use, reproduction, modification, distribution, display or performance of the Software by you, PROVIDED THAT such use is not primarily intended for or directed toward commercial advantage or monetary compensation (including, but not limited to, selling the Software, offering it as a paid service, charging for access, or bundling it with paid products/services where a fee is charged).
-3. "Commercial Use" means any use that is intended for or results in monetary compensation, profit, or other commercial advantage.
+2. "Non-Commercial Use" means any use, reproduction, modification, distribution, display or performance of the Software where the Software itself is not the primary source of revenue. 
+    This includes: 
+            a) Personal, educational, academic, or research use. 
+            b) Use by individuals, security professionals, or companies solely for internal security testing, ethical hacking, or vulnerability research as part of a fee-based service, provided the fee is charged for the service/expertise, not the Software itself.
+3. "Commercial Use" means any use that is intended for or results in monetary compensation, profit, or other commercial advantage by selling, licensing, bundling, or charging for the distribution or access to the Software or any derivative thereof. (Retains original strength, focuses on sale/distribution).
 
 License Grant — Non-Commercial Rights
 Subject to the terms and conditions of this License, the copyright holder hereby grants you a worldwide, royalty-free, non-exclusive, non-sublicensable, revocable license to:
@@ -20,11 +23,12 @@ Attribution and Distribution Requirements
      c) A prominent notice that the Software is licensed for Non-Commercial Use only and that Commercial Use requires explicit written permission from the copyright holder.
 
 Prohibited Commercial Activities
-  You may NOT, without the prior express written permission of the copyright holder:
-    a) Sell, sublicense, or distribute the Software (or modified versions) in exchange for money or other consideration;
-    b) Offer the Software as part of a paid product, paid service, hosted service, subscription product, or commercial SaaS offering;
-    c) Charge for access to, or use of, the Software or derivative works;
-    d) Use the Software in a manner whose primary purpose is to generate revenue (including charging customers to access features implemented using this Software).
+You may NOT, without the prior express written permission of the copyright holder: 
+    a) Sell, sublicense, or distribute the Software (or modified versions) directly or indirectly in exchange for money or other consideration; 
+    b) Integrate or bundle the Software into a commercial security product or platform offered for sale or subscription; 
+    c) Use the Software to provide a commercial, hosted, or SaaS offering where customers pay for access to the Software's functionality; 
+    d) Charge for access or use of the Software, its source code, or derivative works.    
+
 
 Commercial License & Permissions
   Requests for permission to use the Software for Commercial Use (including commercial redistribution, paid hosting/svc, or sale) must be made in writing to the copyright holder. If the copyright holder grants permission, such permission shall be documented in a separate written commercial license agreement which may include fees, royalties, or other terms as agreed.
