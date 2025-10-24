@@ -1,5 +1,6 @@
 # KaliGPT v1.1
-> NOTE: MCP Server / Client Support avail soon ( wish 2 contribute [Contact ASAP](https://sudohopex.github.io/message-popup.html) )
+> [!NOTE]
+> MCP Server / Client Support avail soon ( wish 2 contribute [Contact ASAP](https://hope.is-a.dev/message-popup.html) )
 
 ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png)
 
