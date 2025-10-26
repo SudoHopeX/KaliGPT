@@ -1,6 +1,10 @@
 # KaliGPT v1.1
 > [!NOTE]
-> MCP Server / Client Support avail soon ( wish 2 contribute [Contact ASAP](https://hope.is-a.dev/message-popup.html) )
+> New Features coming soon:)
+> 1. Tool Calling
+> 2. Online Search for local models
+> 3. More Better & reusable project structure
+> 4. GUI ( may be in later updates )
 
 ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png)
 
