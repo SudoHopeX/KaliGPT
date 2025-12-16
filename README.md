@@ -1,10 +1,8 @@
 # KaliGPT v1.1
 > [!NOTE]
-> New Features coming soon:)
-> 1. Tool Calling
-> 2. Online Search for local models
-> 3. More Better & reusable project structure
-> 4. GUI ( may be in later updates )
+> New Features coming soon:) Tool Call, Online Search, Pretty print, better management
+> Which can be found soon at [HackerX (KaliGPT v1.3)](https://github.com/SudoHopeX/tree/hackerx)
+
 
 ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png)
 
