@@ -25,12 +25,12 @@
 
 ## Installation
 
-- Clone the repository and run the installer:
+- Clone the repository's `hackerx` branch:
   ```
-  git clone https://github.com/SudoHopeX/KaliGPT.git
+  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git   
   ```
 
-- Install a KaliGPT Model
+- Install a KaliGPT ( it installs all requirements & setup tool )
   ```
   sudo bash KaliGPT/install.sh
   ```
