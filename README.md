@@ -1,4 +1,6 @@
 # HackerX ( KaliGPT v1.3 ) @ Under Development
+> [!NOTE]
+> Binaries will be availed soon...
 
 <!-- ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png) -->
 
