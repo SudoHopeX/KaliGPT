@@ -13,7 +13,7 @@
  [![Last 14 Days Clones](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SudoHopeX/KaliGPT/main/clones_count.json&label=Last%2014%20Days%20Clones&color=2ea44f&logo=git&style=flat)](https://github.com/SudoHopeX/KaliGPT/pulse) 
  -->
 
-⭐ Star this repo if you found it helpful!
+**⭐ Star this repo if you found it helpful!**
 
 
 ## Features
@@ -22,7 +22,7 @@
 ![CLI](https://img.shields.io/badge/-Command_Line_Interface-brightpink?style=flat-square&color=brightgreen&label=)
 ![Tool Call](https://img.shields.io/badge/-Tool_Call-brightgreen?style=flat-square&color=blue&label=)
 ![Online Search](https://img.shields.io/badge/-Online_Search-brightblue?style=flat-square&color=pink&label=)
-[![License MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Custom-brightgreen.svg)](LICENSE)
 [![Contributions Welcomed (Open a issue to discuss ideas & bugs)](https://img.shields.io/badge/Contributions-Welcomed_%28Open_a_issue%29-violet.svg)](https://github.com/SudoHopeX/KaliGPT/issues/new)
 
 ## Installation
@@ -46,33 +46,34 @@ use command `kaligpt -h` to see below usages after installation
                          - by SudoHopeX | Krishna Dwivedi
 
 Usages:
-        kaligpt [MODE(Optional)] [Prompt (Optional)]
+        kaligpt [MODE(Optional)] [Prompt(Optional)]
 
 MODES:
-    -g  [--gemini]            =  use Gemini 2.5 Flash (Online)
-    -c  [--chatgpt]           =  use ChatGPT-4o (Online)
-    -cw [--chatgpt-web]       =  use KaliGPT in Web Browser (Online)
-                    ( requires 1 time login & keep logged in configs on web )
+    -g  [--gemini]            =  use Gemini models (Online, tool call)
+    -c  [--chatgpt]           =  use ChatGPT (Online)
+    -cw [--chatgpt-web]       =  use KaliGPT in Web Browser (Online, requires login)
     -o  [--ollama]            =  use local models via Ollama (Offline)
-    -lm [--list-models]       = list KaliGPT available models
-    -u  [--uninstall]         = uninstall KaliGPT tool
+    -or [--openrouter]        =  use OpenRouter models (Online, tool call)
+    -lm [--list-models]       =  list KaliGPT available models
+    -u  [--uninstall]         =  uninstall KaliGPT tool
     -h  [--help]              =  show this help message and exit
 
 Examples:
-     kaligpt   ( uses default model and will ask for prompt )
+     kaligpt  ( uses default model and will ask for prompt )
+     kaligpt "Help me find XSS on target.com"
      kaligpt -g "How to Scan a website for subdomains using tools"
-     kaligpt -l "Help me find XXS on a target.com"
+     kaligpt -or "Help me find XXS on a target.com"
      kaligpt -cw
 
- NOTE: do not pass prompt with -cw
-       Read README.md or Documentation at sudohopex.github.io for more info. 
+Read README.md or Documentation at sudohopex.github.io for more info. 
 ```
 
 ## AI Backends
-![Tool Call](https://img.shields.io/badge/-Gemini-brightgreen?style=flat-square&color=blue&label=)
-![Tool Call](https://img.shields.io/badge/-ChatGPT-brightgreen?style=flat-square&color=blue&label=)
-![Tool Call](https://img.shields.io/badge/-Ollama-brightgreen?style=flat-square&color=blue&label=)
-![Tool Call](https://img.shields.io/badge/-Claude-brightgreen?style=flat-square&color=blue&label=)
+![Gemini](https://img.shields.io/badge/-Gemini-brightgreen?style=flat-square&color=blue&label=)
+![Ollama](https://img.shields.io/badge/-Ollama-brightgreen?style=flat-square&color=blue&label=)
+![OpenRouter](https://img.shields.io/badge/-OpenRouter-brightgreen?style=flat-square&color=blue&label=)
+<!-- ![ChatGPT](https://img.shields.io/badge/-ChatGPT-brightgreen?style=flat-square&color=blue&label=) -->
+<!-- ![Claude](https://img.shields.io/badge/-Claude-brightgreen?style=flat-square&color=blue&label=) -->
 
 
 ## Disclaimer
