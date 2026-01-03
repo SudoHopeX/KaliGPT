@@ -1069,7 +1069,7 @@ case "$MODE" in
 		echo ""
 		echo -e "\e[1;33mOpening KaliGPT in Web Browser...\e[0m"
 		echo ""
-		KALIGPT_LINK="https://chatgpt.com/g/g-xouSQobsE-kaligpt"
+		KALIGPT_LINK="https://chatgpt.com/g/g-xouSQobsE-kaligpt/?prompt=$(printf '%s ' "$@")"
 		# to use chromium web browser [default] [ comment or uncomment just below line only]
     chromium "$KALIGPT_LINK"
 
