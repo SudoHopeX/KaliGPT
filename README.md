@@ -34,7 +34,7 @@
 
 - Install a KaliGPT ( it installs all requirements & setup tool )
   ```
-  sudo bash KaliGPT/install.sh
+  sudo bash KaliGPT/setup.sh
   ```
 
 
@@ -50,12 +50,9 @@ Usages:
 
 MODES:
     -g  [--gemini]            =  use Gemini models (Online, tool call)
-    -c  [--chatgpt]           =  use ChatGPT (Online)
-    -cw [--chatgpt-web]       =  use KaliGPT in Web Browser (Online, requires login)
     -o  [--ollama]            =  use local models via Ollama (Offline)
     -or [--openrouter]        =  use OpenRouter models (Online, tool call)
-    -lm [--list-models]       =  list KaliGPT available models
-    -u  [--uninstall]         =  uninstall KaliGPT tool
+    -lr [--list-vendors]      =  list KaliGPT available vendor model's
     -h  [--help]              =  show this help message and exit
 
 Examples:
@@ -63,12 +60,11 @@ Examples:
      kaligpt "Help me find XSS on target.com"
      kaligpt -g "How to Scan a website for subdomains using tools"
      kaligpt -or "Help me find XXS on a target.com"
-     kaligpt -cw
 
-Read README.md or Documentation at sudohopex.github.io for more info. 
+Read README.md or Documentation at https://hope.is-a.dev/?path=kaligpt for more info. 
 ```
 
-## AI Backends
+## Available AI Backends Vendors
 ![Gemini](https://img.shields.io/badge/-Gemini-brightgreen?style=flat-square&color=blue&label=)
 ![Ollama](https://img.shields.io/badge/-Ollama-brightgreen?style=flat-square&color=blue&label=)
 ![OpenRouter](https://img.shields.io/badge/-OpenRouter-brightgreen?style=flat-square&color=blue&label=)
