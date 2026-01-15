@@ -27,16 +27,15 @@
 
 ## Installation
 
-- Clone the repository's `hackerx` branch:
+- Use curl to install kaligpt ( Recommended )
   ```
-  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git   
+  curl -sL https://hope.is-a.dev/kaligpt/install.sh | bash
   ```
-
-- Install a KaliGPT ( it installs all requirements & setup tool )
+  
+- Clone the GitHub repository's `hackerx` branch & install KaliGPT:
   ```
-  sudo bash KaliGPT/setup.sh
+  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && sudo bash KaliGPT/install.sh
   ```
-
 
 ## KaliGPT Usages
 use command `kaligpt -h` to see below usages after installation
