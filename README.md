@@ -53,6 +53,7 @@ MODES:
     -or [--openrouter]        =  use OpenRouter models (Online, tool call)
     -lr [--list-vendors]      =  list KaliGPT available vendor model's
     -h  [--help]              =  show this help message and exit
+    --update                  = check & install updates if any
 
 Examples:
      kaligpt  ( uses default model and will ask for prompt )
