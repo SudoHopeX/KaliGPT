@@ -192,3 +192,7 @@ stop_spinner "KaliGPT launcher created at $BIN_PATH"
 
 echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installation completed successfully!\e[0m"
 echo -e "\e[1;32mYou can run KaliGPT using the command:\e[0m \e[1;34mkaligpt\e[0m"
+
+
+# test command
+kaligpt --help
