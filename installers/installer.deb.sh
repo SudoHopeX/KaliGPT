@@ -195,9 +195,9 @@ case "$MODE" in
       echo -e "\e[1;33mChecking for updates...\e[0m"
       cd "/opt/KaliGPT"
       git fetch origin hackerx
-      LOCAL=\$(git rev-parse HEAD)
-      REMOTE=\$(git rev-parse origin/hackerx)
-      if [ \$LOCAL != \$REMOTE ]; then
+      LOCAL=$(git rev-parse HEAD)
+      REMOTE=$(git rev-parse origin/hackerx)
+      if [ $LOCAL != $REMOTE ]; then
           echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
           git pull origin hackerx > /dev/null 2>&1
           pip3 install -r "/opt/KaliGPT/requirements/pip-requirements.txt"
