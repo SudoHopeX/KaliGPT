@@ -68,15 +68,17 @@ install_if_missing python3-venv
 install_if_missing curl
 install_if_missing golang-go
 
+# creating KaliGPT installation directory
+mkdir -p /opt/KaliGPT/
 
 # ----- KaliGPT v1.3 (HackerX) Source Cloning -----
 start_spinner "Cloning KaliGPT repository"
-git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git /opt/ > /dev/null 2>&1
+git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git /opt/KaliGPT/ > /dev/null 2>&1
 stop_spinner "KaliGPT repository clone"
 
 # ----- Cloning and setting up OpenSerp -----
 start_spinner "Cloning OpenSerp repository"
-git clone https://github.com/karust/openserp.git /opt/KaliGPT/ > /dev/null 2>&1
+git clone https://github.com/karust/openserp.git /opt/KaliGPT/openserp/ > /dev/null 2>&1
 stop_spinner "OpenSerp repository clone"
 
 start_spinner "Building OpenSerp binary"
@@ -171,9 +173,9 @@ case "$MODE" in
 		echo -e "\e[1;33mMODES: \e[0m"
 		echo ""
 		echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
-    echo "    -o  [--ollama]            =  use Ollama Models (Offline, text & code)"
-    echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
-    echo "    --web                     =  AI's official Web-Chat Opener (Online)"
+    	echo "    -o  [--ollama]            =  use Ollama Models (Offline, text & code)"
+    	echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
+   		echo "    --web                     =  AIs official Web-Chat Opener (Online)"
 		echo "    -lr [--list-providers]    = list KaliGPT available models"
 		echo "    --setup-keys              =  setup API keys for online models"
 		echo "    -u [--update]             =  update KaliGPT to latest version"
@@ -188,6 +190,22 @@ case "$MODE" in
 		echo -e "\e[33m       Read README.md or Docs at https://hope.is-a.dev?path=kaligpt for more info.\e[0m"
 		;;
 
+ -u|--update)
+  # Check for updated
+      echo -e "\e[1;33mChecking for updates...\e[0m"
+      cd "/opt/KaliGPT"
+      git fetch origin hackerx
+      LOCAL=\$(git rev-parse HEAD)
+      REMOTE=\$(git rev-parse origin/hackerx)
+      if [ \$LOCAL != \$REMOTE ]; then
+          echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
+          git pull origin hackerx > /dev/null 2>&1
+          pip3 install -r "/opt/KaliGPT/requirements/pip-requirements.txt"
+          echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
+      else
+          echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
+      fi
+      ;;
 
   -lr|--list-providers)
     echo -e "\e[1;33mKaliGPT Provides:\e[0m
