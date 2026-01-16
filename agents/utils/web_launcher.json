@@ -1,0 +1,21 @@
+{
+    "web-browser": {
+        "default": "chromium",
+        "web-browsers": {
+            "chromium": "chromium",
+            "firefox": "firefox",
+            "safari": "safari",
+            "google chrome": "google-chrome",
+            "brave": "brave-browser"
+        }
+    },
+    "model": {
+        "default": "chatgpt",
+        "urls": {
+            "chatgpt": "https://chatgpt.com/g/g-xouSQobsE-kaligpt/?prompt=",
+            "gemini": "https://gemini.google.com/",
+            "claude": "https://claude.ai/new?q=",
+            "openrouter": "https://openrouter.ai/chat?prompt="
+        }
+    }
+}

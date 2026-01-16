@@ -1,0 +1,49 @@
+{
+    "default_model": "gemini-2.5-flash",
+    "default_provider": "gemini",
+    "gemini": {
+        "api_key": "YOUR_GEMINI_API_KEY",
+        "default_model": "gemini-2.5-flash",
+        "models": [
+            "gemini-2.5-flash",
+            "gemini-2.5-pro",
+            "gemini-1.5-flash-latest"
+        ]
+    },
+    "chatgpt": {
+        "api_key": "YOUR_CHATGPT_API_KEY",
+        "default_model": "gpt-4o",
+        "models": [
+            "gpt-4o-mini",
+            "gpt-4o",
+            "gpt-4-turbo",
+            "gpt-3.5-turbo"
+        ]
+    },
+    "ollama": {
+        "api_key": "NO_API_KEY_NEEDED",
+        "default_model": "llama3",
+        "models": [
+            "llama2",
+            "llama3",
+            "mistral"
+        ]
+    },
+    "claude": {
+        "api_key": "anthropic-new-api-key",
+        "default_model": "claude-3-haiku",
+        "models": [
+            "claude-3-haiku",
+            "claude-3-opus",
+            "claude-instant-100k"
+        ]
+    },
+    "openrouter": {
+        "api_key": "YOUT_OPENROUTER_API_KEY",
+        "default_model": "kwaipilot/kat-coder-pro:free",
+        "models": [
+            "kwaipilot/kat-coder-pro:free"
+        ]
+    }
+
+}

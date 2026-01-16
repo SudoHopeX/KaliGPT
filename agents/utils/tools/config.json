@@ -1,0 +1,41 @@
+{
+    "SERVER_NAME": "KaliGPT_Secure_Executor",
+    "LOG_FILE": "KaliGPT_server.log",
+    "COMMAND_TIMEOUT_SECONDS": 14,
+    "OS_TYPE": "debian",
+    "CURRENT_OUTPUT_DIR": "/usr/kaligpt/test",
+    "SAFE_COMMANDS": {
+        "ping": "Send ICMP ECHO_REQUEST to network hosts (limited to 4 packets and 1 target).",
+        "traceroute": "Trace network path (limited to 1 target and low max hops).",
+        "ls": "List directory contents.",
+        "whoami": "Print the effective user ID.",
+        "nmap": "Network exploration tool that identifies active hosts on a network, scan for open, closed, or filtered ports, detect the services and their versions running on those ports, and determine the OS of target devices (safe execution only).",
+        "nikto": "Web server scanner that identifies security issues on web servers, including outdated software, dangerous files, and misconfigurations (safe execution only).",
+        "dirb": "Web Content scanner that discovers hidden files and directories on web servers by performing a dictionary-based attack (safe execution only).",
+        "httpx": "Checking live hosts, probing specific ports, following redirects, and extracting server information like status codes, content length, headers, and web server details (safe execution only).",
+        "sqlmap": "Automates the detection and exploitation of SQL injection vulnerabilities in web applications. It supports multiple databases, enables data extraction, database enumeration, and even OS-level command execution on compromised servers.",
+        "xss-strike": "Advanced XSS detection and exploitation tool that uses advanced techniques like fuzzing, WAF detection, and intelligent payload generation to identify and exploit XSS vulnerabilities in web applications.",
+        "hashstorm": "Identify and Crack Hashes.",
+        "whois": "Retrieve domain registration information.",
+        "dig": "DNS lookup utility to query DNS servers for information about host addresses, mail exchanges, name servers, and related information.",
+        "curl": "Transfer data from or to a server using various protocols (HTTP, HTTPS, FTP, etc.).",
+        "cat": "Concatenate and display file contents (use execute_safe_command tool for this command).",
+        "mkdir": "Create new directories for tasks (use execute_safe_command tool for this command)."
+    },
+    "INSTALLED_TOOLS": [
+        "ls",
+        "whoami",
+        "ping",
+        "traceroute",
+        "hashstorm",
+        "nmap",
+        "nikto",
+        "dirb",
+        "httpx",
+        "sqlmap",
+        "xss-strike",
+        "mkdir",
+        "curl"
+    ],
+   "Developer": "SudoHopeX ^_^"
+}
