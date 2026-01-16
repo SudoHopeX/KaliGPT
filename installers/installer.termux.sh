@@ -12,7 +12,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # Global variables
 BIN_PATH="/data/data/com.termux/files/usr/bin/kaligpt"
-INSTALL_DIR="/data/data/com.termux/files/usr/share/"
+INSTALL_DIR="/data/data/com.termux/files/usr/share/KaliGPT"
 
 
 # Spinner function
@@ -91,7 +91,7 @@ stop_spinner "pip Requirements Installation"
 # ----- API KEY configuration setup -----  ( if N skip, else start setup )
 read -p "Do you want to set up API keys now? (Y/n): " setup_api
 if [[ "$setup_api" == "n" || "$setup_api" == "N" ]]; then
-    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using 'kaligpt --setup-keys'.\e[0m"
+    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using `kaligpt --setup-keys`.\e[0m"
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
     python3 "$INSTALL_DIR/main.py" --setup-keys
@@ -117,13 +117,13 @@ case "$MODE" in
 		;;
 
 	-o|--ollama)
-	  # To use ollama on termux, user needs to provide ollama endpoint url
-    # python3 -m agents.ollama "\$@"
-    ;;
+	  	# To use ollama on termux, user needs to provide ollama endpoint url
+    	# python3 -m agents.ollama "\$@"
+    	;;
 
   -or|--openrouter)
-    python3 -m agents.openrouter "\$@"
-    ;;
+	    python3 -m agents.openrouter "\$@"
+	    ;;
 
 	-h|--help)
 		echo ""
@@ -136,7 +136,7 @@ case "$MODE" in
 		echo -e "\e[1;33mMODES: \e[0m"
 		echo ""
 		echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
-    echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
+    	echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
 		echo "    --list-backends           = list KaliGPT available models"
 		echo "    --setup-keys              =  setup API keys for online models"
 		echo "    --update                  =  update KaliGPT to latest version"
@@ -153,7 +153,7 @@ case "$MODE" in
   -u|--update)
     # Check for updated
       echo -e "\e[1;33mChecking for updates...\e[0m"
-      cd "$INSTALL_DIR/KaliGPT"
+      cd "$INSTALL_DIR/"
       git fetch origin hackerx
       LOCAL=\$(git rev-parse HEAD)
       REMOTE=\$(git rev-parse origin/hackerx)
@@ -169,7 +169,7 @@ case "$MODE" in
 
   -v|--version)
       # printing version info from git tags
-      git -C /opt/KaliGPT describe --tags
+      git -C "$INSTALL_DIR" describe --tags
     ;;
     
   --list-backends)
