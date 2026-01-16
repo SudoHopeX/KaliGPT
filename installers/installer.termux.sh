@@ -64,6 +64,9 @@ install_if_missing golang-go
 install_if_missing git
 
 
+# creating KaliGPT installation directory
+mkdir -p "$INSTALL_DIR"
+
 # ----- KaliGPT v1.3 (HackerX) Source Cloning -----
 start_spinner "Cloning KaliGPT repository"
 git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git "$INSTALL_DIR/" > /dev/null 2>&1
@@ -72,17 +75,17 @@ stop_spinner "KaliGPT repository clone"
 
 # ----- Cloning and setting up OpenSerp -----
 start_spinner "Cloning OpenSerp repository"
-git clone https://github.com/karust/openserp.git "$INSTALL_DIR/KaliGPT/" > /dev/null 2>&1
+git clone https://github.com/karust/openserp.git "$INSTALL_DIR/openserp/" > /dev/null 2>&1
 stop_spinner "OpenSerp repository clone"
 
 start_spinner "Building OpenSerp binary"
-go build -o /opt/KaliGPT/openserp/openserp . > /dev/null 2>&1
+go build -o "$INSTALL_DIR/openserp/openserp" . > /dev/null 2>&1
 stop_spinner "OpenSerp binary build"
 
 
 # ----- Installing pip requirements -----
 start_spinner "pip requirements Installing"
-pip3 install -r "$INSTALL_DIR/KaliGPT/requirements/pip-requirements.txt" > /dev/null 2>&1
+pip3 install -r "$INSTALL_DIR/requirements/pip-requirements.txt" > /dev/null 2>&1
 stop_spinner "pip Requirements Installation"
 
 # ----- API KEY configuration setup -----  ( if N skip, else start setup )
@@ -91,7 +94,7 @@ if [[ "$setup_api" == "n" || "$setup_api" == "N" ]]; then
     echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using 'kaligpt --setup-keys'.\e[0m"
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
-    python3 "$INSTALL_DIR/KaliGPT/main.py" --setup-keys
+    python3 "$INSTALL_DIR/main.py" --setup-keys
 fi
 
 
@@ -157,13 +160,18 @@ case "$MODE" in
       if [ \$LOCAL != \$REMOTE ]; then
           echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
           git pull origin hackerx > /dev/null 2>&1
-          pip3 install -r "\$INSTALL_DIR/KaliGPT/requirements.txt"
+          pip3 install -r "$INSTALL_DIR/requirements/pip-requirements.txt"
           echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
       else
           echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
       fi
       ;;
 
+  -v|--version)
+      # printing version info from git tags
+      git -C /opt/KaliGPT describe --tags
+    ;;
+    
   --list-backends)
     echo -e "\e[1;33mKaliGPT Provides:\e[0m
     1) Google Gemini Models  ( Free/Paid, Online) [ Requires API Key ]
@@ -172,7 +180,7 @@ case "$MODE" in
     ;;
 
 	*)
-		python3 "\$INSTALL_DIR/KaliGPT/main.py" "\$@"
+		python3 "$INSTALL_DIR/main.py" "\$@"
 		;;
 esac
 
