@@ -53,7 +53,7 @@ install_if_missing() {
 
 
 start_spinner "System Updating"
-sudo pkd update && pkg upgrade -y > /dev/null 2>&1
+pkg update && pkg upgrade -y > /dev/null 2>&1
 stop_spinner "System Update"
 
 # checking and installing missing pkgs
