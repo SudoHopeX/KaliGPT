@@ -1,6 +1,4 @@
 # HackerX ( KaliGPT v1.3 ) @ Under Development
-> [!NOTE]
-> Binaries will be availed soon...
 
 <!-- ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png) -->
 
@@ -24,6 +22,7 @@
 ![Online Search](https://img.shields.io/badge/-Online_Search-brightblue?style=flat-square&color=pink&label=)
 [![License](https://img.shields.io/badge/License-Custom-brightgreen.svg)](LICENSE)
 [![Contributions Welcomed (Open a issue to discuss ideas & bugs)](https://img.shields.io/badge/Contributions-Welcomed_%28Open_a_issue%29-violet.svg)](https://github.com/SudoHopeX/KaliGPT/issues/new)
+[![Termux Support](https://img.shields.io/badge/Termux-Supported-violet.svg)](https://github.com/SudoHopeX/KaliGPT)
 
 ## Installation
 
@@ -32,10 +31,12 @@
   curl -sL https://hope.is-a.dev/kaligpt/install.sh | bash
   ```
   
-- Clone the GitHub repository's `hackerx` branch & install KaliGPT:
+- Clone the GitHub repository's `hackerx` branch & install KaliGPT for debian:
   ```
   git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && sudo bash KaliGPT/install.sh
   ```
+> [!NOTE]
+> Do not use sudo while installing in Termux   
 
 ## KaliGPT Usages
 use command `kaligpt -h` to see below usages after installation
