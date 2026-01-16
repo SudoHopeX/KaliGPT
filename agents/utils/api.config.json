@@ -21,7 +21,7 @@
         ]
     },
     "ollama": {
-        "api_key": "NO_API_KEY_NEEDED",
+        "api_key": "http://localhost:11434",
         "default_model": "llama3",
         "models": [
             "llama2",
@@ -45,5 +45,6 @@
             "kwaipilot/kat-coder-pro:free"
         ]
     }
+
 
 }
