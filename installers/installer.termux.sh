@@ -1,0 +1,186 @@
+# !/bin/bash
+trap "kill $SPIN_PID 2>/dev/null" EXIT
+
+
+# KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
+# by SudoHopeX ( SudoHopeX )
+# Last Modified: 16 Jan 2026
+
+# Installer command for termux
+# curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh | bash
+
+
+# Global variables
+BIN_PATH="/data/data/com.termux/files/usr/bin/kaligpt"
+INSTALL_DIR="/data/data/com.termux/files/usr/share/"
+
+
+# Spinner function
+spin() {
+  local msg="$1"
+  local -a marks=( '-' '\' '|' '/' )
+  while :; do
+    for mark in "${marks[@]}"; do
+      printf "\r\e[1;32m[+] $msg...\e[0m %s" "$mark"
+      sleep 0.1
+    done
+  done
+}
+
+# Spinner starter (background-safe)
+start_spinner() {
+  spin "$1" &
+  SPIN_PID=$!
+}
+
+# Spinner stopper (safe kill)
+stop_spinner() {
+  kill $SPIN_PID 2>/dev/null
+  wait $SPIN_PID 2>/dev/null
+  echo -e "\r\e[1;32m[✓] $1 complete! \e[0m"
+}
+
+install_if_missing() {
+    local pkg="$1"
+    if ! pkg list-installed "$pkg" >/dev/null 2>&1; then
+        start_spinner "$pkg Installing..."
+        pkg install "$pkg" -y > /dev/null 2>&1
+        stop_spinner "$pkg Installation"
+    else
+        echo -e "\e[33m$pkg is already installed.\e[0m"
+    fi
+}
+
+
+start_spinner "System Updating"
+sudo pkd update && pkg upgrade -y > /dev/null 2>&1
+stop_spinner "System Update"
+
+# checking and installing missing pkgs
+install_if_missing python3
+install_if_missing python3-pip
+install_if_missing curl
+install_if_missing golang-go
+install_if_missing git
+
+
+# ----- KaliGPT v1.3 (HackerX) Source Cloning -----
+start_spinner "Cloning KaliGPT repository"
+git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git "$INSTALL_DIR/" > /dev/null 2>&1
+stop_spinner "KaliGPT repository clone"
+
+
+# ----- Cloning and setting up OpenSerp -----
+start_spinner "Cloning OpenSerp repository"
+git clone https://github.com/karust/openserp.git "$INSTALL_DIR/KaliGPT/" > /dev/null 2>&1
+stop_spinner "OpenSerp repository clone"
+
+start_spinner "Building OpenSerp binary"
+go build -o /opt/KaliGPT/openserp/openserp . > /dev/null 2>&1
+stop_spinner "OpenSerp binary build"
+
+
+# ----- Installing pip requirements -----
+start_spinner "pip requirements Installing"
+pip3 install -r "$INSTALL_DIR/KaliGPT/requirements/pip-requirements.txt" > /dev/null 2>&1
+stop_spinner "pip Requirements Installation"
+
+# ----- API KEY configuration setup -----  ( if N skip, else start setup )
+read -p "Do you want to set up API keys now? (Y/n): " setup_api
+if [[ "$setup_api" == "n" || "$setup_api" == "N" ]]; then
+    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using 'kaligpt --setup-keys'.\e[0m"
+else
+    echo -e "\e[1;32mProceeding with API key setup...\e[0m"
+    python3 "$INSTALL_DIR/KaliGPT/main.py" --setup-keys
+fi
+
+
+# ----- Creating launcher -----
+echo ""
+start_spinner "Creating KaliGPT launcher at $BIN_PATH"
+cat << EOF > "$BIN_PATH"
+#!/bin/bash
+
+# KaliGPT v1.3 Launcher Script for Termux
+# by SudoHopeX ( https://github.com/SudoHopeX )
+
+MODE="$1"
+shift
+
+case "$MODE" in
+
+	-g|--gemini)
+		python3 -m agents.gemini "\$@"
+		;;
+
+	-o|--ollama)
+	  # To use ollama on termux, user needs to provide ollama endpoint url
+    # python3 -m agents.ollama "\$@"
+    ;;
+
+  -or|--openrouter)
+    python3 -m agents.openrouter "\$@"
+    ;;
+
+	-h|--help)
+		echo ""
+		echo -e "\e[1;32mKaliGPT v1.3 - Use AI in Linux via CLI easily\e[0m"
+		echo -e "\e[1;32m             - by SudoHopeX\e[0m"
+		echo ""
+		echo -e "\e[1;33mUsages:\e[0m"
+		echo " 	kaligpt [MODE(Optional)] [Prompt (optional)]"
+		echo ""
+		echo -e "\e[1;33mMODES: \e[0m"
+		echo ""
+		echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
+    echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
+		echo "    --list-backends           = list KaliGPT available models"
+		echo "    --setup-keys              =  setup API keys for online models"
+		echo "    --update                  =  update KaliGPT to latest version"
+		echo "    -v [--version]            =  show KaliGPT version and exit"
+		echo "    -h [--help]               =  show this help message and exit"
+		echo ""
+		echo -e "\e[1;33mExamples:\e[0m"
+		echo "     kaligpt \"How to Scan a website for subdomains using tools\""
+		echo "     kaligpt -or \"Write a python script to automate port scanning using nmap\""
+		echo ""
+		echo -e "\e[33m       Read README.md or Docs at https://hope.is-a.dev?path=kaligpt for more info.\e[0m"
+		;;
+
+  -u|--update)
+    # Check for updated
+      echo -e "\e[1;33mChecking for updates...\e[0m"
+      cd "$INSTALL_DIR/KaliGPT"
+      git fetch origin hackerx
+      LOCAL=\$(git rev-parse HEAD)
+      REMOTE=\$(git rev-parse origin/hackerx)
+      if [ \$LOCAL != \$REMOTE ]; then
+          echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
+          git pull origin hackerx > /dev/null 2>&1
+          pip3 install -r "\$INSTALL_DIR/KaliGPT/requirements.txt"
+          echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
+      else
+          echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
+      fi
+      ;;
+
+  --list-backends)
+    echo -e "\e[1;33mKaliGPT Provides:\e[0m
+    1) Google Gemini Models  ( Free/Paid, Online) [ Requires API Key ]
+    2) OpenRouter Models (Various, Free/Paid, Online) [ Requires API Key ]
+    "
+    ;;
+
+	*)
+		python3 "\$INSTALL_DIR/KaliGPT/main.py" "\$@"
+		;;
+esac
+
+EOF
+
+
+chmod +x "$BIN_PATH"
+stop_spinner "KaliGPT launcher created at $BIN_PATH"
+
+echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installation completed successfully!\e[0m"
+echo -e "\e[1;32mYou can run KaliGPT using the command:\e[0m \e[1;34mkaligpt\e[0m"
