@@ -107,10 +107,10 @@ cat << EOF > "$BIN_PATH"
 # KaliGPT v1.3 Launcher Script for Termux
 # by SudoHopeX ( https://github.com/SudoHopeX )
 
-MODE="$1"
+MODE="\$1"
 shift
 
-case "$MODE" in
+case "\$MODE" in
 
 	-g|--gemini)
 		python3 -m agents.gemini "\$@"
