@@ -54,7 +54,7 @@ else
     case "$linux_distro" in
         debian|kali|ubuntu|linuxmint)
             echo "🐧 Debian-based system detected ($linux_distro). Proceeding with Debian installer..."
-            curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh | bash
+            curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh | sudo bash
             exit 0
             ;;
         arch|manjaro)
