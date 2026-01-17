@@ -20,9 +20,9 @@
 ![CLI](https://img.shields.io/badge/-Command_Line_Interface-brightpink?style=flat-square&color=brightgreen&label=)
 ![Tool Call](https://img.shields.io/badge/-Tool_Call-brightgreen?style=flat-square&color=blue&label=)
 ![Online Search](https://img.shields.io/badge/-Online_Search-brightblue?style=flat-square&color=pink&label=)
-[![License](https://img.shields.io/badge/License-Custom-brightgreen.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Open_Source-brightgreen.svg)](LICENSE)
 [![Contributions Welcomed (Open a issue to discuss ideas & bugs)](https://img.shields.io/badge/Contributions-Welcomed_%28Open_a_issue%29-violet.svg)](https://github.com/SudoHopeX/KaliGPT/issues/new)
-[![Termux Support](https://img.shields.io/badge/Termux-Supported-violet.svg)](https://github.com/SudoHopeX/KaliGPT)
+[![Termux Support](https://img.shields.io/badge/Termux_Supported-violet.svg)](https://github.com/SudoHopeX/KaliGPT)
 
 ## Installation
 
