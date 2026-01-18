@@ -95,7 +95,7 @@ stop_spinner "OpenSerp binary build"
 # ----- Installing Ollama and pulling model (if user wants) -----
 echo "" # Clean line
 read -p "Wanna install Ollama (to use local AI models) ? (y/N): " install_ollama
-install_ollama=${install_ollama:-N}     # default to N (No)
+# install_ollama=${install_ollama:-N}     # default to N (No)
 if [[ "$install_ollama" =~ ^[Yy]$ ]]; then
     echo -e "\e[1;32mProceeding with Ollama installation...\e[0m"
 
@@ -130,7 +130,7 @@ echo "" # clear the line
 read -p "Do you want to set up API keys now? (Y/n): " setup_api
 setup_api=${setup_api:-Y}     # default to Y (Yes) if no input is read
 if [[ "$setup_api" =~ ^[Nn]$ ]]; then
-    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using 'kaligpt --setup-keys'.\e[0m"
+    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \e[0m\e[1;32mkaligpt --setup-keys\e[0m."
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
     python3 main.py --setup-keys
@@ -235,7 +235,7 @@ case "$MODE" in
         --setup-keys | *)
                   # ----- Handled by main.py -----
                   # This catches --setup-keys, empty inputs, and direct prompts
-                  # Passing "$MODE" first ensures the first word isn\'t lost if it was a prompt
+                  # Passing "$MODE" first ensures the first word is not lost if it was a prompt
                   python3 main.py "$MODE" "$@"
 
 esac
