@@ -3,7 +3,7 @@
 # KaliGPT v1.3 (HackerX)
 # /main.py
 # Set or Store user API keys & launch default model agent
-# Last Modified: 16 January 2026
+# Last Modified: 19 January 2026
 
 import sys
 import subprocess
@@ -41,7 +41,6 @@ def main(args):
             prompt = args[0] if args[0] else ""
             cmds = ["python", "-m", f"agents.{default_model}", prompt]
             print(f"[+] Launching KaliGPT with default model: {default_model} & prompt: {prompt}")
-            print(cmds)
 
             try:
                 # using python -m agents.agent_module_name to launch the agent
