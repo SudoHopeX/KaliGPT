@@ -213,7 +213,7 @@ case "$MODE" in
                 if [ $LOCAL != $REMOTE ]; then
                     echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
                     git pull origin hackerx > /dev/null 2>&1
-                    pip3 install -r "/opt/KaliGPT/requirements/pip-requirements.txt" > /dev/null 2>&1
+                    sudo bash installer.deb.sh > /dev/null 2>&1
                     echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
                 else
                     echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
