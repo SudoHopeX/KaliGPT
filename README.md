@@ -29,7 +29,7 @@
 
 - Use curl to install kaligpt ( Recommended )
   ```
-  curl -sL https://hope.is-a.dev/kaligpt/install.sh | bash
+  curl -sL https://hope.is-a.dev/kaligpt/install.sh | sudo bash
   ```
   
 - Clone the GitHub repository's `hackerx` branch & install KaliGPT for debian:
