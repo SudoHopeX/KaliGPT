@@ -120,6 +120,7 @@ sudo python3 -m venv /opt/KaliGPT/kaligpt_venv
 source /opt/KaliGPT/kaligpt_venv/bin/activate
 cd /opt/KaliGPT/
 
+echo ""
 start_spinner "pip requirements Installing"
 pip3 install -r requirements/pip-requirements.txt > /dev/null 2>&1
 stop_spinner "pip Requirements Installation"
@@ -248,7 +249,8 @@ stop_spinner "KaliGPT launcher creation"
 
 # Change ownership from root to the actual user who ran sudo
 ACTUAL_USER=${SUDO_USER:-$USER}
-chown -R $ACTUAL_USER:$ACTUAL_USER /opt/KaliGPT/
+sudo chown -R $ACTUAL_USER:$ACTUAL_USER /opt/KaliGPT/
+sudo chown -R $ACTUAL_USER:$ACTUAL_USER /opt/KaliGPT/kaligpt_venv
 
 # Final Message
 echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installed Successfully!\e[0m"
