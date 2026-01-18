@@ -2,10 +2,10 @@
 trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 
-# /install.sh
+# /install.sh for selecting the distribution specific installer
 # Detect the OS/env type (e.g. debian based system, termux etc.)
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 16 Jan 2026
+# Last Modified: 18 Jan 2026
 
 
 # Function to detect if running in Termux  [ 0: True, 1: False ]
@@ -45,7 +45,7 @@ echo "🔍 Detecting environment..."
 
 if is_termux; then
     echo "📱 Termux environment detected. Proceeding with Termux installer..."
-    curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh | bash
+    bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh)
     exit 0
 
 else
@@ -54,7 +54,7 @@ else
     case "$linux_distro" in
         debian|kali|ubuntu|linuxmint)
             echo "🐧 Debian-based system detected ($linux_distro). Proceeding with Debian installer..."
-            curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh | sudo bash
+            bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh)
             exit 0
             ;;
         arch|manjaro)
@@ -75,5 +75,3 @@ else
             ;;
     esac
 fi
-
-
