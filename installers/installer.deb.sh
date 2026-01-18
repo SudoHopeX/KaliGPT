@@ -95,6 +95,7 @@ stop_spinner "OpenSerp binary build"
 # ----- Installing Ollama and pulling model (if user wants) -----
 echo "" # Clean line
 read -p "Wanna install Ollama (to use local AI models) ? (y/N): " install_ollama
+install_ollama=${install_ollama:-N}     # default to N (No)
 if [[ "$install_ollama" =~ ^[Yy]$ ]]; then
     echo -e "\e[1;32mProceeding with Ollama installation...\e[0m"
 
@@ -105,7 +106,7 @@ if [[ "$install_ollama" =~ ^[Yy]$ ]]; then
     read -p "Enter Ollama model to install (default: llama3): " ollama_model
     ollama_model=${ollama_model:-llama3} # default to llama3 if no input
     
-    # FIX: Don't use start_spinner here so we can see Ollama's progress bar
+    # FIX: Do not use start_spinner here so we can see Ollama own installation progress bar
     echo -e "\e[1;32m[+] Pulling Ollama model: $ollama_model (this may take a while)...\e[0m"
     ollama pull "$ollama_model"
     echo -e "\e[1;32m[✓] Ollama model $ollama_model pull complete!\e[0m"
@@ -127,6 +128,7 @@ stop_spinner "pip Requirements Installation"
 # ----- API KEY configuration setup -----  ( if N skip, else start setup )
 echo "" # clear the line
 read -p "Do you want to set up API keys now? (Y/n): " setup_api
+setup_api=${setup_api:-Y}     # default to Y (Yes) if no input is read
 if [[ "$setup_api" =~ ^[Nn]$ ]]; then
     echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using 'kaligpt --setup-keys'.\e[0m"
 else
