@@ -1,6 +1,6 @@
 openai
 ollama
-google
+google-genai
 rich
 requests
 newspaper3k
