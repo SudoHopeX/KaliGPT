@@ -45,7 +45,8 @@ echo "🔍 Detecting environment..."
 
 if is_termux; then
     echo "📱 Termux environment detected. Proceeding with Termux installer..."
-    bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh)
+    # bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh)     # not working as expected for now ( will fix and then use it )
+    bash installers/installer.termux.sh
     exit 0
 
 else
@@ -54,7 +55,8 @@ else
     case "$linux_distro" in
         debian|kali|ubuntu|linuxmint)
             echo "🐧 Debian-based system detected ($linux_distro). Proceeding with Debian installer..."
-            bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh)
+            # sudo bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh)  
+            sudo bash installers/installer.deb.sh
             exit 0
             ;;
         arch|manjaro)
