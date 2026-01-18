@@ -15,7 +15,7 @@
 
 
 ## Features
-![Release v1.3 beta](https://img.shields.io/badge/Release-v1.3_beta-voilet?style=flat-square&color=blue&label=)
+[![Release - v1.3 beta](https://img.shields.io/badge/Release-v1.3_beta-brightgreen.svg)](https://github.com/SudoHopeX/KaliGPT/tree/hackerx)
 ![Automated Installation](https://img.shields.io/badge/-Automated_Installation-brightgreen?style=flat-square&color=blue&label=)
 ![Flexible AI Backend Selection](https://img.shields.io/badge/-Flexible_AI_backend_selection-brightblue?style=flat-square&color=pink&label=)
 ![CLI](https://img.shields.io/badge/-Command_Line_Interface-brightpink?style=flat-square&color=brightgreen&label=)
