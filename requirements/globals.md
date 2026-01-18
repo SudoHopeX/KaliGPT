@@ -24,7 +24,7 @@ This document lists all the required packages for KaliGPT, categorized by their 
 | Package           | Description                          |
 |-------------------|--------------------------------------|
 | `openai`          | accessing openai & OpenRouter models |
-| `google`          | accessing google gemini models       |
+| `google-genai`    | accessing google gemini models       |
 | `ollama`          | using ollama models                  |
 | `rich`            | for rich text output                 |
 | `requests`        | making HTTP requests                 |
