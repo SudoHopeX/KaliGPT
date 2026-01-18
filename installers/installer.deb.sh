@@ -1,6 +1,6 @@
 # !/bin/bash
 trap "kill $SPIN_PID 2>/dev/null" EXIT
-
+USER_NAME=$(logname 2>/dev/null)
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Debian-based Systems
 # by SudoHopeX ( https://github.com/SudoHopeX )
@@ -248,9 +248,7 @@ sudo chmod +x "$LAUNCHER_BIN_PATH"
 stop_spinner "KaliGPT launcher creation"
 
 # Change ownership from root to the actual user who ran sudo
-ACTUAL_USER=${SUDO_USER:-$USER}
-sudo chown -R $ACTUAL_USER:$ACTUAL_USER /opt/KaliGPT/
-sudo chown -R $ACTUAL_USER:$ACTUAL_USER /opt/KaliGPT/kaligpt_venv
+chown -R "$USER_NAME":"$USER_NAME" /opt/KaliGPT/
 
 # Final Message
 echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installed Successfully!\e[0m"
