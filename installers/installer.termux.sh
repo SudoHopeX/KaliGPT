@@ -4,7 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 18 Jan 2026
+# Last Modified: 19 Jan 2026
 
 # Installer command for termux
 # curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh | bash
