@@ -61,7 +61,7 @@ stop_spinner "System Update"
 echo ""
 install_if_missing python3
 install_if_missing python3-pip
-install_if_missing curl
+# install_if_missing curl
 install_if_missing golang-go
 install_if_missing git
 
@@ -91,16 +91,14 @@ stop_spinner "OpenSerp binary build"
 # ----- Installing pip requirements -----
 echo ""
 start_spinner "pip requirements Installing"
-pip install --upgrade pip
-# Using --break-system-packages for Termux global install
-pip3 install -r "requirements/pip-requirements.txt" --break-system-packages > /dev/null 2>&1
+pip3 install requests google-genai newspaper3k openai ollama rich lxml_html_clean > /dev/null 2>&1
 stop_spinner "pip Requirements Installation"
 
 # ----- API KEY configuration setup -----  ( if N skip, else start setup )
 echo ""
 read -p "Do you want to set up API keys now? (Y/n): " setup_api
 if [[ "$setup_api" =~ ^[Nn]$ ]]; then
-    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \"kaligpt --setup-keys\".\e[0m"
+    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \e[1;32mkaligpt --setup-keys\e[0m."
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
     python3 "$INSTALL_DIR/main.py" --setup-keys
@@ -112,7 +110,7 @@ echo ""
 start_spinner "Creating KaliGPT launcher at $BIN_PATH"
 cat << EOF > "$BIN_PATH"
 #!/bin/bash
-export PYTHONPATH="\$PYTHONPATH:$INSTALL_DIR"
+# export PYTHONPATH="\$PYTHONPATH:$INSTALL_DIR"
 INSTALL_DIR="$INSTALL_DIR"
 BIN_PATH="$BIN_PATH"
 
@@ -182,7 +180,7 @@ case "\$MODE" in
 
       -v|--version)
             # printing version info from git tags
-            gi  describe --tags
+            git describe --tags
             ;;
     
       --list-backends)
