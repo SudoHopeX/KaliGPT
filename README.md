@@ -23,7 +23,7 @@
 ![Online Search](https://img.shields.io/badge/-Online_Search-brightblue?style=flat-square&color=pink&label=)
 [![License](https://img.shields.io/badge/License-Open_Source-brightgreen.svg)](LICENSE)
 [![Contributions Welcomed (Open a issue to discuss ideas & bugs)](https://img.shields.io/badge/Contributions-Welcomed_%28Open_a_issue%29-violet.svg)](https://github.com/SudoHopeX/KaliGPT/issues/new)
-<!--[![Termux Support](https://img.shields.io/badge/Termux_Supported-violet.svg)](https://github.com/SudoHopeX/KaliGPT) -->
+[![Termux Support](https://img.shields.io/badge/Termux_Supported-violet.svg)](https://github.com/SudoHopeX/KaliGPT/tree/hackerx)
 
 ## Installation
 
@@ -36,10 +36,9 @@
   ```
   git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && sudo bash KaliGPT/install.sh
   ```
-<!--
+
 > [!NOTE]
 > Do not use sudo while installing in Termux
--->
 
 ## KaliGPT Usages
 use command `kaligpt -h` to see below usages after installation
