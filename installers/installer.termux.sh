@@ -4,10 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 19 Jan 2026
-
-# Installer command for termux
-# curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh | bash
+# Last Modified: 21 Jan 2026
 
 
 # Global variables
@@ -18,7 +15,7 @@ INSTALL_DIR="/data/data/com.termux/files/usr/share/KaliGPT"
 # Spinner function
 spin() {
   local msg="$1"
-  local -a marks=( '-' '\' '|' '/' )
+  local -a marks=( '-' '\' '|' '' )
   while :; do
     for mark in "${marks[@]}"; do
       printf "\r\e[1;32m[+] $msg...\e[0m %s" "$mark"
@@ -41,30 +38,26 @@ stop_spinner() {
 }
 
 install_if_missing() {
-    local pkg="$1"
-    if ! pkg list-installed "$pkg" >/dev/null 2>&1; then
-        start_spinner "$pkg Installing..."
-        pkg install "$pkg" -y > /dev/null 2>&1
-        stop_spinner "$pkg Installation"
-    else
-        echo -e "\r\e[1;32m[✓] $pkg is already installed.\e[0m"
-    fi
+    for pkg in "$@"; do
+      if ! pkg list-installed "$pkg" >/dev/null 2>&1; then
+          start_spinner "$pkg Installing..."
+          pkg install "$pkg" -y > /dev/null 2>&1
+          stop_spinner "$pkg Installation"
+      else
+          echo -e "\r\e[1;32m[✓] $pkg is already installed.\e[0m"
+      fi
+    done
 }
 
 # ---- Performing system update & upgrade ----
-echo "" 
+echo ""
 start_spinner "System Updating"
 pkg update && pkg upgrade -y > /dev/null 2>&1
 stop_spinner "System Update"
 
 # ---- checking and installing missing pkgs ----
 echo ""
-install_if_missing python3
-install_if_missing python3-pip
-# install_if_missing curl
-install_if_missing golang-go
-install_if_missing git
-
+install_if_missing python python-pip golang-go git lixxml2 libxslt libjpeg-turbo libpng freetype littlecms openjpeg libtiff clang make pkg-config rust
 
 # ---- creating KaliGPT installation directory ----
 mkdir -p "$INSTALL_DIR"
@@ -91,14 +84,14 @@ stop_spinner "OpenSerp binary build"
 # ----- Installing pip requirements -----
 echo ""
 start_spinner "pip requirements Installing"
-pip3 install requests google-genai newspaper3k openai ollama rich lxml_html_clean > /dev/null 2>&1
+pip3 install openai google-genai rich requests newspaper3k lxml_html_clean  > /dev/null 2>&1
 stop_spinner "pip Requirements Installation"
 
 # ----- API KEY configuration setup -----  ( if N skip, else start setup )
 echo ""
 read -p "Do you want to set up API keys now? (Y/n): " setup_api
 if [[ "$setup_api" =~ ^[Nn]$ ]]; then
-    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \e[1;32mkaligpt --setup-keys\e[0m."
+    echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \"kaligpt --setup-keys\".\e[0m"
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
     python3 "$INSTALL_DIR/main.py" --setup-keys
@@ -110,7 +103,7 @@ echo ""
 start_spinner "Creating KaliGPT launcher at $BIN_PATH"
 cat << EOF > "$BIN_PATH"
 #!/bin/bash
-# export PYTHONPATH="\$PYTHONPATH:$INSTALL_DIR"
+export PYTHONPATH="\$PYTHONPATH:$INSTALL_DIR"
 INSTALL_DIR="$INSTALL_DIR"
 BIN_PATH="$BIN_PATH"
 
@@ -128,10 +121,10 @@ case "\$MODE" in
                 python3 -m agents.gemini "\$@"
                 ;;
 
-        -o|--ollama)
-                  # To use ollama on termux, user needs to provide ollama endpoint url
+        # -o|--ollama)
+                  # To use ollama on termux, user needs to provide ollama endpoint url but will be made available later
                   # python3 -m agents.ollama "\$@"
-                  ;;
+                  # ;;
 
         -or|--openrouter)
                   python3 -m agents.openrouter "\$@"
@@ -163,7 +156,7 @@ case "\$MODE" in
                 ;;
 
         -u|--update)
-          # Check for updated
+            # Check for updates
             echo -e "\e[1;33mChecking for updates...\e[0m"
             git fetch origin hackerx
             LOCAL=\$(git rev-parse HEAD)
@@ -171,7 +164,7 @@ case "\$MODE" in
             if [ \$LOCAL != \$REMOTE ]; then
                 echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
                 git pull origin hackerx > /dev/null 2>&1
-                pip3 install -r requirements/pip-requirements.txt --break-system-packages
+                bash installers/installer.termux.sh
                 echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
             else
                 echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
@@ -180,9 +173,10 @@ case "\$MODE" in
 
       -v|--version)
             # printing version info from git tags
-            git describe --tags
+            # git describe --tags
+            echo "HackerX (KaliGPT v1.3)"
             ;;
-    
+
       --list-backends)
             echo -e "\e[1;33mKaliGPT Provides:\e[0m
             1) Google Gemini Models  ( Free/Paid, Online) [ Requires API Key ]
@@ -190,14 +184,14 @@ case "\$MODE" in
             "
             ;;
 
-        *)
-                python3 "main.py" "\$MODE" "\$@"
-                ;;
+      *)
+            python3 "main.py" "\$MODE" "\$@"
+            ;;
 esac
 EOF
 
 
-chmod +x "\$BIN_PATH"
+chmod +x "$BIN_PATH"
 stop_spinner "KaliGPT launcher created at $BIN_PATH"
 
 echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installation completed successfully!\e[0m"
