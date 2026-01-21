@@ -3,7 +3,7 @@
 # KaliGPT v1.3 (HackerX)
 # /main.py
 # Set or Store user API keys & launch default model agent
-# Last Modified: 19 January 2026
+# Last Modified: 21 January 2026
 
 import sys
 import subprocess
@@ -12,22 +12,26 @@ from agents.utils.agent_configs import update_api_key, get_available_ais, get_de
 
 # --- Set API key ---
 def set_api_keys():
-    available_ais = get_available_ais()
+    try:
+        available_ais = get_available_ais()[1:]
 
-    ais = ""
-    for ai in available_ais:
-        ais += f"{available_ais.index(ai) + 1}. {ai}\n"
-    print(f"Available AI Vendors:\n{ais}")
-    selected = int(input("Select AI Vendor by number: ")) - 1
-    if 0 <= selected < len(available_ais):
-        selected_ai = available_ais[selected]
-        new_key = input(f"Enter new API key for {selected_ai}: ")
-        if update_api_key(selected_ai, new_key):
-            print(f"[+] API key for {selected_ai} updated successfully.")
+        ais = ""
+        for ai in available_ais:
+            ais += f"{available_ais.index(ai) + 1}. {ai}\n"
+        print(f"Available AI Vendors:\n{ais}")
+        selected = int(input("Select AI Vendor by number: ")) - 1
+        if 0 <= selected < len(available_ais):
+            selected_ai = available_ais[selected]
+            new_key = input(f"Enter new API key for {selected_ai}: ")
+            if update_api_key(selected_ai, new_key):
+                print(f"[+] API key for {selected_ai} updated successfully.")
+            else:
+                print(f"[!] Failed to update API key for {selected_ai}.")
         else:
-            print(f"[!] Failed to update API key for {selected_ai}.")
-    else:
-        print("[!] Invalid selection.")
+            print("[!] Invalid selection.")
+
+    except KeyboardInterrupt:
+        print("\nSee You,\nExiting Setup - KeyBoardInterrupt")
 
 
 def main(args):
