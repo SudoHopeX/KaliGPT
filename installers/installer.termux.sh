@@ -4,7 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 21 Jan 2026
+# Last Modified: 22 Jan 2026
 
 
 # Global variables
@@ -15,7 +15,7 @@ INSTALL_DIR="/data/data/com.termux/files/usr/share/KaliGPT"
 # Spinner function
 spin() {
   local msg="$1"
-  local -a marks=( '-' '\' '|' '' )
+  local -a marks=( '-' '\' '|' '/' )
   while :; do
     for mark in "${marks[@]}"; do
       printf "\r\e[1;32m[+] $msg...\e[0m %s" "$mark"
@@ -115,18 +115,26 @@ shift
 
 cd "\$INSTALL_DIR/"
 
+# start the openserp server in background
+start_openserp() {
+    nohup ./openserp/openserp serve > /dev/null 2>&1 &
+}
+
 case "\$MODE" in
 
         -g|--gemini)
+                start_openserp
                 python3 -m agents.gemini "\$@"
                 ;;
 
         # -o|--ollama)
                   # To use ollama on termux, user needs to provide ollama endpoint url but will be made available later
+                  # start_openserp
                   # python3 -m agents.ollama "\$@"
                   # ;;
 
         -or|--openrouter)
+                  start_openserp
                   python3 -m agents.openrouter "\$@"
                   ;;
 
@@ -184,7 +192,12 @@ case "\$MODE" in
             "
             ;;
 
+      --setup-keys)
+            python3 "main.py" --setup-keys
+            ;;
+
       *)
+            start_openserp
             python3 "main.py" "\$MODE" "\$@"
             ;;
 esac
