@@ -32,13 +32,22 @@
   curl -sL https://hope.is-a.dev/kaligpt/install.sh | sudo bash
   ```
 -->
+#### Debian (e.g. Kali, Ubunti etc.)
 - Clone the GitHub repository's `hackerx` branch & install KaliGPT for debian:
   ```
   git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && sudo bash KaliGPT/install.sh
   ```
 
-> [!NOTE]
-> Do not use sudo while installing in Termux
+#### Termux
+- Install `git` and `bash` ( if not installed ):
+ ```
+ pkg install git bash
+ ```
+
+- Clone the GitHub repository's `hackerx` branch & install KaliGPT:
+  ```
+  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && bash KaliGPT/install.sh
+  ```
 
 ## KaliGPT Usages
 use command `kaligpt -h` to see below usages after installation
