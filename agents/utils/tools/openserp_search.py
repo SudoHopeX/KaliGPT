@@ -1,5 +1,8 @@
 #!/env/bin/env python3
 
+# SudoHopeX KaliGPT
+# Last updated: 22 Jan 2026
+
 from newspaper import Article, Config
 import requests
 
@@ -7,7 +10,7 @@ import requests
 # Define a realistic user agent
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
 
-DEFAULT_BASE_URL = "http" + "://" + "192.168.200.130" + ":" + "7000"
+DEFAULT_BASE_URL = "http" + "://" + "127.0.0.1" + ":" + "7000"
 
 
 def check_search_connection():
@@ -21,7 +24,8 @@ def check_search_connection():
         response = requests.get(f"{DEFAULT_BASE_URL}/duck/search?text=test", timeout=10)
         return response.status_code == 200
 
-    except requests.RequestException:
+    except requests.RequestException as re:
+        print(f"Search Connection error\nIs OpenSerp backend running?\nEndpoint used: {DEFAULT_BASE_URL}\nError details: {re}")
         return False    # any exception results as False
 
 
@@ -124,7 +128,7 @@ def keyword_search(keyword: str,
     return search_result
 
 
-def crawl_search(search_results: list[tuple[str, str]]) -> list:
+def crawl_search(search_results: list[tuple[str | None, str | None]]) -> list:
     """
     Crawls the search results into a JSON string as RAG.
     :param search_results: the search results returned by `search_online`
@@ -168,4 +172,4 @@ def search_as_RAG(list_of_keywords: list[str]) -> list:
 
 # Testing tools
 if __name__ == "__main__":
-    print(search_as_RAG(["using ai for Hacking"]))
+    print(search_as_RAG(["SudoHopeX KaliGPT ai for Hackers"]))
