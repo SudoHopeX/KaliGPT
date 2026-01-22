@@ -4,7 +4,7 @@ USER_NAME=$(logname 2>/dev/null)
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Debian-based Systems
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 19 Jan 2026
+# Last Modified: 22 Jan 2026
 
 
 # Check for root privileges
@@ -64,7 +64,7 @@ stop_spinner "System Update"
 
 
 # ---- checking and installing missing pkgs  -----
-echo "" 
+echo ""
 install_if_missing python3
 install_if_missing python3-pip
 install_if_missing python3-venv
@@ -105,12 +105,12 @@ if [[ "$install_ollama" =~ ^[Yy]$ ]]; then
 
     read -p "Enter Ollama model to install (default: llama3): " ollama_model
     ollama_model=${ollama_model:-llama3} # default to llama3 if no input
-    
+
     # FIX: Do not use start_spinner here so we can see Ollama own installation progress bar
     echo -e "\e[1;32m[+] Pulling Ollama model: $ollama_model (this may take a while)...\e[0m"
     ollama pull "$ollama_model"
     echo -e "\e[1;32m[✓] Ollama model $ollama_model pull complete!\e[0m"
-    
+
 else
     echo -e "\e[33mOllama AI models installation skipped by user.\e[0m"
 fi
@@ -155,20 +155,28 @@ sudo tee "$LAUNCHER_BIN_PATH" > /dev/null <<'EOF'
 source /opt/KaliGPT/kaligpt_venv/bin/activate
 cd /opt/KaliGPT
 
+# start the openserp server in background
+start_openserp() {
+    nohup ./openserp/openserp serve > /dev/null 2>&1 &
+}
+
 MODE="$1"
 shift
 
 case "$MODE" in
 
         -g|--gemini)
+                start_openserp
                 python3 -m agents.gemini "$@"
                 ;;
 
         -o|--ollama)
+                start_openserp
                 python3 -m agents.ollama "$@"
                 ;;
 
         -or|--openrouter)
+                start_openserp
                 python3 -m agents.openrouter "$@"
                 ;;
 
@@ -219,7 +227,7 @@ case "$MODE" in
                     echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
                 fi
                 ;;
-      
+
         -lr|--list-providers)
                 echo -e "\e[1;33mKaliGPT Provides:\e[0m
                 1) Google Gemini Models  ( Free/Paid, Online) [ Requires API Key ]
@@ -230,14 +238,19 @@ case "$MODE" in
 
         -v|--version)
                 # printing version info from git tags
-                git describe --tags
+                # git describe --tags
+                echo "HackerX (KaliGPT v1.3)"
                 ;;
-       
-        --setup-keys | *)
-                  # ----- Handled by main.py -----
-                  # This catches --setup-keys, empty inputs, and direct prompts
-                  # Passing "$MODE" first ensures the first word is not lost if it was a prompt
-                  python3 main.py "$MODE" "$@"
+
+        --setup-keys)
+                python3 main.py "$MODE"
+                ;;
+
+         *)
+                start_openserp
+                # Passing "$MODE" first ensures the first word is not lost if it was a prompt
+                python3 main.py "$MODE" "$@"
+                ;;
 
 esac
 deactivate
