@@ -5,7 +5,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 # /install.sh for selecting the distribution specific installer
 # Detect the OS/env type (e.g. debian based system, termux etc.)
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 26 Jan 2026
+# Last Modified: 18 Jan 2026
 
 
 # Function to detect if running in Termux  [ 0: True, 1: False ]
@@ -52,8 +52,7 @@ if is_termux; then
         bash installers/installer.termux.sh
         ;;
       *)
-        bash <(curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh)   
-        # curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | bash
+        bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/install.termux.sh)
         ;;
     esac
     exit 0
@@ -69,8 +68,7 @@ else
                 sudo bash installers/installer.deb.sh
                 ;;
               *)
-                bash <(curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.deb.sh)   
-                # curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.deb.sh | bash
+                bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.deb.sh)
                 ;;
             esac
             exit 0
