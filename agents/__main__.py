@@ -42,13 +42,16 @@ def main(args):
 
         case _:
             default_model = get_default_provider()
-            prompt = args[0] if args else "Are you Ready for Hacking?"
-            cmds = ["python", "-m", f"agents.{default_model}", prompt]
+            prompt: str = "Are you Ready for Hacking?"
+            if len(args) > 0 and args[0].strip():
+                prompt = args[0]
+
+            command = ["python", "-m", f"agents.{default_model}", prompt]
             print(f"[+] Launching KaliGPT with default model: {default_model} & prompt: {prompt}")
 
             try:
                 # using python -m agents.agent_module_name to launch the agent
-                subprocess.run(cmds)
+                subprocess.run(command)
             except Exception as e:
                 print(f"Exception occurred: {e}")
 
