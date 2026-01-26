@@ -4,7 +4,7 @@ USER_NAME=$(logname 2>/dev/null)
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Debian-based Systems
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 22 Jan 2026
+# Last Modified: 26 Jan 2026
 
 
 # Check for root privileges
@@ -221,7 +221,7 @@ case "$MODE" in
                 if [ $LOCAL != $REMOTE ]; then
                     echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
                     git pull origin hackerx > /dev/null 2>&1
-                    sudo bash installer.deb.sh > /dev/null 2>&1
+                    sudo bash installers/installer.deb.sh > /dev/null 2>&1
                     echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
                 else
                     echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
@@ -243,13 +243,13 @@ case "$MODE" in
                 ;;
 
         --setup-keys)
-                python3 main.py "$MODE"
+                python3 -m agents "$MODE"
                 ;;
 
          *)
                 start_openserp
                 # Passing "$MODE" first ensures the first word is not lost if it was a prompt
-                python3 main.py "$MODE" "$@"
+                python3 -m agents "$MODE" "$@"
                 ;;
 
 esac
