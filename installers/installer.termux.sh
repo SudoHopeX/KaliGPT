@@ -94,7 +94,7 @@ if [[ "$setup_api" =~ ^[Nn]$ ]]; then
     echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \"kaligpt --setup-keys\".\e[0m"
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
-    python3 "$INSTALL_DIR/main.py" --setup-keys
+    python3 -m agents --setup-keys
 fi
 
 
