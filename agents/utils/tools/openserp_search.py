@@ -1,10 +1,13 @@
 #!/env/bin/env python3
 
+# /agents/utils/tools/openserp_search.py
 # SudoHopeX KaliGPT
-# Last updated: 22 Jan 2026
+# Last updated: 26 Jan 2026
 
-from newspaper import Article, Config
+
 import requests
+from typing import Any
+from newspaper import Article, Config
 
 
 # Define a realistic user agent
@@ -118,8 +121,8 @@ def keyword_search(keyword: str,
             if any([item in response[i]["url"] for item in blacklist]):
                 i += 1
                 continue
-            search_results = response[i]
-            search_result.append((search_results["title"], search_results["url"]))
+            results = response[i]
+            search_result.append((results["title"], results["url"]))
 
         except Exception as e:
             print(f"Error: {e}")
@@ -128,23 +131,28 @@ def keyword_search(keyword: str,
     return search_result
 
 
-def crawl_search(search_results: list[tuple[str | None, str | None]]) -> list:
+def crawl_search(search_results: list[Any]) -> list[Any]:
     """
     Crawls the search results into a JSON string as RAG.
-    :param search_results: the search results returned by `search_online`
+    :param search_results: the search results returned by `keyword_search`
         the search result should be in the format of [(title, link), (title, link), ...]
-        the search result should be as [None, None] if no search results are found
+        the search result should be as [(None, None)] if no search results are found
 
     :return: a list of strings as RAG
     """
     rag = []
-    for title, link in search_results:
-        # each website info is in the format of {title: "title", link: "link", content: "content"}
-        if title is None or link is None:
+    for item in search_results:
+
+        # Check type (is a list/tuple), length(has 2 elements), and that both elements are truthy (not None or empty) of item
+        if not (isinstance(item, (list, tuple)) and len(item) >= 2 and item[0] and item[1]):
             continue
+
+        title, link = item[0], item[1]
 
         try:
             main_content = parse_url_with_newspaper(link)
+
+            # each website info is in the format of {title: "title", link: "link", content: "content"}
             rag.append({"title": title, "link": link, "content": main_content})
 
         except Exception as e:
