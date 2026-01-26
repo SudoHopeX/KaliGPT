@@ -1,0 +1,85 @@
+name: Lifetime Stats Tracker (HackerX)
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch:      # Allow manual trigger
+  push:
+    branches:
+      - hackerx         # Only triggers on this branch
+      - main
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: hackerx  # Forces action to use the hackerx branch
+
+      - name: Update Lifetime Stats
+        env:
+          GH_TOKEN: ${{ secrets.CLONE_TOKEN }} 
+        run: |
+          TODAY=$(date +%Y-%m-%dT00:00:00Z)
+
+          update_stat() {
+            DATA=$1
+            FILE=$2
+            LABEL=$3
+            COLOR=$4
+
+            TODAY_COUNT=$(echo "$DATA" | jq --arg TODAY "$TODAY" '.[] | select(.timestamp == $TODAY) | .count' | tail -n 1)
+            TODAY_COUNT=${TODAY_COUNT:-0}
+
+            if [ ! -f "$FILE" ]; then
+              echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"lifetime\": 0, \"last_day\": \"\", \"today_so_far\": 0}" > "$FILE"
+            fi
+
+            LIFETIME=$(jq '.lifetime' "$FILE")
+            LAST_DAY=$(jq -r '.last_day' "$FILE")
+            SO_FAR=$(jq '.today_so_far' "$FILE")
+
+            if [ "$TODAY" != "$LAST_DAY" ]; then
+              NEW_LIFETIME=$((LIFETIME + TODAY_COUNT))
+            else
+              DIFF=$((TODAY_COUNT - SO_FAR))
+              if [ "$DIFF" -lt 0 ]; then DIFF=0; fi
+              NEW_LIFETIME=$((LIFETIME + DIFF))
+            fi
+
+            jq -n \
+              --argjson sv 1 \
+              --arg lab "$LABEL" \
+              --arg msg "$NEW_LIFETIME" \
+              --arg col "$COLOR" \
+              --argjson lt "$NEW_LIFETIME" \
+              --arg ld "$TODAY" \
+              --argjson tsf "$TODAY_COUNT" \
+              '{schemaVersion: $sv, label: $lab, message: ($msg | tostring), color: $col, lifetime: $lt, last_day: $ld, today_so_far: $tsf, last_updated: (now | strftime("%Y-%m-%d %H:%M:%S"))}' \
+              > "$FILE"
+          }
+
+          echo "Fetching stats for SudoHopeX/KaliGPT..."
+          
+          # Fetch Views
+          VIEWS_DATA=$(curl -s -H "Authorization: token $GH_TOKEN" "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/views")
+          update_stat "$(echo "$VIEWS_DATA" | jq '.views')" "views_lifetime.json" "Total Views" "blue"
+
+          # Fetch Clones
+          CLONES_DATA=$(curl -s -H "Authorization: token $GH_TOKEN" "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/clones")
+          update_stat "$(echo "$CLONES_DATA" | jq '.clones')" "clones_lifetime.json" "Total Clones" "brightgreen"
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "stats: update hackerx lifetime badges [skip ci]"
+          branch: hackerx # Ensure it pushes back to hackerx
+          file_pattern: "views_lifetime.json clones_lifetime.json"
+          commit_user_name: GitHub Actions Bot
+          commit_user_email: actions@github.com
