@@ -157,7 +157,9 @@ cd /opt/KaliGPT
 
 # start the openserp server in background
 start_openserp() {
-    nohup ./openserp/openserp serve > /dev/null 2>&1 &
+    cd /opt/KaliGPT/openserp/
+    nohup ./openserp serve > /dev/null 2>&1 &
+    cd /opt/KaliGPT
 }
 
 MODE="$1"
