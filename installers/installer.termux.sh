@@ -4,7 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 22 Jan 2026
+# Last Modified: 26 Jan 2026
 
 
 # Global variables
@@ -117,7 +117,9 @@ cd "\$INSTALL_DIR/"
 
 # start the openserp server in background
 start_openserp() {
-    nohup ./openserp/openserp serve > /dev/null 2>&1 &
+    cd "\$INSTALL_DIR/openserp"
+    nohup ./openserp serve > /dev/null 2>&1 &
+    cd "\$INSTALL_DIR/"
 }
 
 case "\$MODE" in
@@ -193,12 +195,12 @@ case "\$MODE" in
             ;;
 
       --setup-keys)
-            python3 "main.py" --setup-keys
+            python3 -m agents --setup-keys
             ;;
 
       *)
             start_openserp
-            python3 "main.py" "\$MODE" "\$@"
+            python3 -m agents "\$MODE" "\$@"
             ;;
 esac
 EOF
