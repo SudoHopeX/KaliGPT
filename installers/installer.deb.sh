@@ -42,17 +42,15 @@ stop_spinner() {
 
 # installing dependencies if not found on system
 install_if_missing() {
-        local pkg="$1"
-
-        if ! dpkg -s $pkg >/dev/null 2>&1; then
-
-                start_spinner "$pkg Installing..."
-                sudo apt-get install $pkg -y > /dev/null 2>&1
-                stop_spinner "$pkg Installation"
-
-        else
-                echo  -e "\r\e[1;32m[✓] $pkg already installed..."
-        fi
+    for pkg in "$@"; do
+      if ! dpkg -s "$pkg" >/dev/null 2>&1; then
+          start_spinner "$pkg Installing..."
+          apt-get install "$pkg" -y > /dev/null 2>&1
+          stop_spinner "$pkg Installation"
+      else
+          echo -e "\r\e[1;32m[✓] $pkg is already installed.\e[0m"
+      fi
+    done
 }
 
 
@@ -65,11 +63,7 @@ stop_spinner "System Update"
 
 # ---- checking and installing missing pkgs  -----
 echo ""
-install_if_missing python3
-install_if_missing python3-pip
-install_if_missing python3-venv
-install_if_missing curl
-install_if_missing golang-go
+install_if_missing python3 python3-pip python3-venv golang-go
 
 
 # ---- creating KaliGPT installation directory  ----
@@ -134,7 +128,7 @@ if [[ "$setup_api" =~ ^[Nn]$ ]]; then
     echo -e "\e[33mAPI key setup skipped by user. You can set up API keys later using \e[0m\e[1;32mkaligpt --setup-keys\e[0m."
 else
     echo -e "\e[1;32mProceeding with API key setup...\e[0m"
-    python3 main.py --setup-keys
+    python3 -m agents --setup-keys
 fi
 
 deactivate  # deactivate venv
