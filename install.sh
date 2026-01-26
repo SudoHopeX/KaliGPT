@@ -68,7 +68,7 @@ else
                 sudo bash installers/installer.deb.sh
                 ;;
               *)
-                curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | sudo bash bash
+                curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | bash
                 ;;
             esac
             exit 0
