@@ -27,32 +27,48 @@
 
 ## Installation
 
-<!-- - Use curl to install kaligpt ( Recommended )   - having some issues to be fixed while installation with curl
-  ```
-  curl -sL https://hope.is-a.dev/kaligpt/install.sh | sudo bash
-  ```
--->
-#### Debian (e.g. Kali, Ubunti etc.)
-- Clone the GitHub repository's `hackerx` branch & install KaliGPT for debian:
-  ```
-  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && sudo bash KaliGPT/install.sh
-  ```
+### Automated Installation (Recommended) - detects env & installs KaliGPT
+1. switch to superuser (root) -  [ skip this step in Termux]
+    ```commandline
+    sudo su
+    ```
+    Enter the password &
+2. Use curl to install kaligpt
+    ```
+    bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/install.sh)
+    ```
+
+### Manual Installation (Required twice cloning of repo)
+#### Debian (e.g. Kali, Ubuntu etc.)
+1. Clone the GitHub repository's `hackerx` branch :
+   ```
+   git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
+   ```
+
+2. install KaliGPT for debian
+   ```commandline
+   sudo bash install.sh -m
+   ```
 
 #### Termux
-- Install `git` and `bash` ( if not installed ):
- ```
- pkg install git bash
- ```
+1. Install `git` and `bash` ( if not installed ):
+   ```commandline
+   pkg install git bash
+   ```
 
-- Clone the GitHub repository's `hackerx` branch & install KaliGPT:
-  ```
-  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && bash KaliGPT/install.sh
-  ```
+2. Clone the GitHub repository's `hackerx` branch & install KaliGPT:
+   ```
+   git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
+   ```
+3. install KaliGPT for Termux
+   ```commandline
+   bash install.sh -m
+   ```
 
 ## KaliGPT Usages
 use command `kaligpt -h` to see below usages after installation
 
-```
+```help
   HackerX (KaliGPT v1.3) - Use AI in Linux via CLI easily
                          - by SudoHopeX | Krishna Dwivedi
 
