@@ -52,7 +52,8 @@ if is_termux; then
         bash installers/installer.termux.sh
         ;;
       *)
-        curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | bash
+        bash <(curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh)   
+        # curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | bash
         ;;
     esac
     exit 0
@@ -68,7 +69,8 @@ else
                 sudo bash installers/installer.deb.sh
                 ;;
               *)
-                curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.deb.sh | bash
+                bash <(curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.deb.sh)   
+                # curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.deb.sh | bash
                 ;;
             esac
             exit 0
