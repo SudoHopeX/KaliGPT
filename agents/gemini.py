@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-# Gemini_agent
+
+# /agents/gemini.py
+# KaliGPT Gemini_agent
+# Updated: 26 Jan 2026
+
 
 from google import genai
 from google.genai import types
@@ -13,34 +17,39 @@ from .utils.tools import get_tools_info
 from .utils.agent_management import agent_management, AI_MANAGEMENT_OPTIONS
 
 # --- GLOBAL VARIABLES ---
-GEMINI_API_KEY = None
-GEMINI_MODEL = None
-TOOLS_INFO = None
+GEMINI_API_KEY: str
+GEMINI_MODEL: str
+TOOLS_INFO: list
 client = None
+TOOL_FUNCTION_MAP: dict
 
 
-try:
-    GEMINI_API_KEY = get_api_key("gemini")
-    GEMINI_MODEL = get_default_model() or get_ai_specific_default_model("gemini")
+def initialize_configs():
+    global GEMINI_API_KEY, GEMINI_MODEL, client, TOOLS_INFO, TOOL_FUNCTION_MAP
+    try:
+        GEMINI_API_KEY = get_api_key("gemini")
+        GEMINI_MODEL = get_default_model() or get_ai_specific_default_model("gemini")
 
-    if not GEMINI_API_KEY or 'AIza' not in GEMINI_API_KEY:
-        print(f"[!] GEMINI API Key not Found. exiting!")
-        sys.exit(0)
+        if not GEMINI_API_KEY or 'AIza' not in GEMINI_API_KEY:
+            print(f"[!] GEMINI API Key not Found. exiting!")
+            sys.exit(0)
 
-    # Configure the API for the entire library
-    client = genai.Client(api_key=GEMINI_API_KEY)
+        # Configure the API for the entire library
+        client = genai.Client(api_key=GEMINI_API_KEY)
 
-    # 2. LOAD TOOLS
-    TOOLS_INFO = get_tools_info()
-    if not TOOLS_INFO:
-        print("[!] No external tools loaded.")
+        # 2. LOAD TOOLS
+        TOOLS_INFO = get_tools_info()
 
-except Exception as e:
-    print(f"Failed to initialize Agent: {e}")
-    sys.exit(1)
+        # --- TOOL EXECUTION HELPER (Your Original Function) ---
+        TOOL_FUNCTION_MAP = {func.__name__: func for func in TOOLS_INFO} if TOOLS_INFO else {}
 
-# --- TOOL EXECUTION HELPER (Your Original Function) ---
-TOOL_FUNCTION_MAP = {func.__name__: func for func in TOOLS_INFO} if TOOLS_INFO else {}
+        if not TOOLS_INFO:
+            print("[!] No external tools loaded.")
+
+    except Exception as e:
+        print(f"Failed to initialize Agent: {e}")
+        sys.exit(1)
+
 
 def execute_function_calls(function_calls: list):
     response_parts = []
@@ -139,6 +148,9 @@ def get_gemini_response(history: list[types.Content], new_input: str, tools: lis
 
 def main(prompt=None):
     chat_history: list[types.Content] = []
+
+    initialize_configs()   # initialize configs for gemini
+
     # Print tool banner
     print(f"㉿ HackerX ({GEMINI_MODEL})")
     while True:
@@ -168,6 +180,7 @@ def main(prompt=None):
 
         except Exception as err:
             print(f"\n[!] An error occurred: {err}")
+            break
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
