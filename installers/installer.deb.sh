@@ -9,7 +9,7 @@ USER_NAME=$(logname 2>/dev/null)
 
 # Check for root privileges
 if [ "$EUID" -ne 0 ]; then
-  echo -e "\e[1;31mPlease run as root (use sudo)\e[0m"
+  echo -e "\e[1;31mPlease run as root (switch to superuser 'root' - use 'sudo su' or 'su root'\e[0m"
   exit 1
 fi
 
