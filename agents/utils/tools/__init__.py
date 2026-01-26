@@ -1,7 +1,10 @@
 #!/env/bin/env python3
 
-from .openserp_search import check_search_connection, search_as_RAG, crawl_search, keyword_search
+# /agents/utils/tools/__init__.py
+# Updated: 24 Jan 2026
 
+from .openserp_search import check_search_connection, search_as_RAG, crawl_search, keyword_search
+from .scraping import get_local_server_content
 
 def get_tools_info():
     """
@@ -14,7 +17,8 @@ def get_tools_info():
         check_search_connection,
         keyword_search,
         search_as_RAG,
-        crawl_search
+        crawl_search,
+        get_local_server_content,
     ]
 
 
