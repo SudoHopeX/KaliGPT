@@ -5,7 +5,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 # /install.sh for selecting the distribution specific installer
 # Detect the OS/env type (e.g. debian based system, termux etc.)
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 18 Jan 2026
+# Last Modified: 26 Jan 2026
 
 
 # Function to detect if running in Termux  [ 0: True, 1: False ]
@@ -42,11 +42,19 @@ detect_distro() {
 
 # Main logic
 echo "🔍 Detecting environment..."
+MODE="$1"
+
 
 if is_termux; then
     echo "📱 Termux environment detected. Proceeding with Termux installer..."
-    # bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.termux.sh)     # not working as expected for now ( will fix and then use it )
-    bash installers/installer.termux.sh
+    case "$MODE" in
+      -m)
+        bash installers/installer.termux.sh
+        ;;
+      *)
+        curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | bash
+        ;;
+    esac
     exit 0
 
 else
@@ -55,24 +63,34 @@ else
     case "$linux_distro" in
         debian|kali|ubuntu|linuxmint)
             echo "🐧 Debian-based system detected ($linux_distro). Proceeding with Debian installer..."
-            # sudo bash <(curl -sL https://hope.is-a.dev/kaligpt/installer.deb.sh)  
-            sudo bash installers/installer.deb.sh
+            case "$MODE" in
+              -m)
+                sudo bash installers/installer.deb.sh
+                ;;
+              *)
+                curl -sL https://github.com/SudoHopeX/KaliGPT/raw/refs/heads/hackerx/installers/installer.termux.sh | sudo bash bash
+                ;;
+            esac
             exit 0
             ;;
         arch|manjaro)
             echo "🐧 Arch-based system detected ($linux_distro). Arch installer not yet implemented."
+            echo "Contact: [SudoHopeX](https://hope.is-a.dev/Link-tree)"
             exit 1
             ;;
         rhel|fedora|centos)
             echo "🐧 RHEL-based system detected ($linux_distro). RHEL installer not yet implemented."
+            echo "Contact: [SudoHopeX](https://hope.is-a.dev/Link-tree)"
             exit 1
             ;;
         suse|opensuse)
             echo "🐧 SUSE-based system detected ($linux_distro). SUSE installer not yet implemented."
+            echo "Contact: [SudoHopeX](https://hope.is-a.dev/Link-tree)"
             exit 1
             ;;
         *)
             echo -e "\e[1;31m❌ Unsupported or undetected Linux distribution: $linux_distro\e[0m"
+            echo "Contact: [SudoHopeX](https://hope.is-a.dev/Link-tree)"
             exit 1
             ;;
     esac
