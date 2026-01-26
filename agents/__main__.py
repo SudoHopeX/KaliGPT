@@ -53,6 +53,6 @@ def main(args):
                 print(f"Exception occurred: {e}")
 
 if __name__ == "__main__":
-    print(sys.argv)
-    print(sys.argv[1:])
+    # print(sys.argv)
+    # print(sys.argv[1:])
     main(sys.argv[1:])
