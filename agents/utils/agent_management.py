@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # HackerX - Agent Management Module
 # file: agents/utils/agent_management.py
-# Updated: 15 December 2025
+# Updated: 27 January 2026
 
 from .agent_configs import get_default_model, get_available_ais, update_default_model, update_default_provider
 from .agent_configs import get_vendor_specific_all_models, update_ai_specific_default_model
@@ -148,9 +148,9 @@ def print_all_available_tools():
 def print_agent_management_options():
     help_text = f"""
     {Colors.BOLD}{Colors.CYAN}Model Management Commands:{Colors.RESET}\n
-            {Colors.YELLOW}'/change default'{Colors.RESET}                - Change the current default AI model to other available models
-            {Colors.YELLOW}'/reset to default'{Colors.RESET}              - Reset Current Model to the default Built-in AI model (gemini-2.5-flash)
-            {Colors.YELLOW}'/set vendor default'{Colors.RESET}            - Set the default model for a Specific AI vendor (e.g. Gemini(google))
+            {Colors.YELLOW}'/change model'{Colors.RESET}                  - Change the current default AI model to other available models
+            {Colors.YELLOW}'/reset to default model'{Colors.RESET}        - Reset Current Model to the default Built-in AI model (gemini-2.5-flash)
+            {Colors.YELLOW}'/set vendor default model'{Colors.RESET}      - Set the default model for a Specific AI vendor (e.g. Gemini(google))
     
     {Colors.BOLD}{Colors.CYAN}General Commands:{Colors.RESET}\n
             {Colors.YELLOW}'/list tools'{Colors.RESET}                    - List all available tools for HackerX agents
