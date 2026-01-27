@@ -12,12 +12,11 @@ def get_tools_info():
     The SDK automatically converts these into FunctionDeclarations.
     """
     # The list contains the Python function objects themselves!
-
+    # removed crawl_search due to unknow error but still can be accessed by agent via search_as_RAG
     return [
         check_search_connection,
         keyword_search,
         search_as_RAG,
-        crawl_search,
         get_local_server_content,
     ]
 
@@ -35,3 +34,4 @@ if __name__ == "__main__":
     tools = get_available_tools_data()
     for name, desc in tools.items():
         print(f"◈ {name}: {desc}")
+
