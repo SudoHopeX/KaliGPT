@@ -1,10 +1,1 @@
-{
-  "schemaVersion": 1,
-  "label": "Total Views",
-  "message": "0",
-  "color": "blue",
-  "lifetime": 0,
-  "last_day": "2026-01-27T00:00:00Z",
-  "today_so_far": 0,
-  "last_updated": "2026-01-27 11:46:00"
-}
+{"schemaVersion": 1, "label": "Total Views", "message": "0", "color": "blue", "lifetime": "0", "last_day": "2026-01-27T00:00:00Z", "today_so_far": "0", "last_updated": "2026-01-27 13:11:32"}
