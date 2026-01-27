@@ -1,7 +1,7 @@
 #!/env/bin/env python3
 
 # /agents/utils/tools/__init__.py
-# Updated: 24 Jan 2026
+# Updated: 27 Jan 2026
 
 from .openserp_search import check_search_connection, search_as_RAG, crawl_search, keyword_search
 from .scraping import get_local_server_content
@@ -34,4 +34,5 @@ if __name__ == "__main__":
     tools = get_available_tools_data()
     for name, desc in tools.items():
         print(f"◈ {name}: {desc}")
+
 
