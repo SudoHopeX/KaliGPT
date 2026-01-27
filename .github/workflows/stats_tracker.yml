@@ -68,7 +68,8 @@ jobs:
 
             JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\", \"lifetime\": \"$NEW_LIFETIME\", \"last_day\": \"$TODAY\", \"today_so_far\": \"$TODAY_COUNT\", \"last_updated\": \"$LAST_UPDATED\"}"
             echo "$JSON_CONTENT" > "$FILE"
-
+          }
+          
           echo "Fetching stats for SudoHopeX/KaliGPT..."
  
           # Fetch Views
