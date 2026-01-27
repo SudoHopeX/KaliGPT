@@ -1,3 +1,8 @@
+# This GitHub Actions workflow tracks and updates lifetime statistics for the KaliGPT repository.
+# It fetches view and clone data from the GitHub API every hour and updates JSON files accordingly.
+# The workflow runs on the 'hackerx' branch and commits changes back to the same branch.
+# /KaliGPT/.github/workflows/stats_tracker.yml
+
 name: Lifetime Stats Tracker (HackerX)
 
 on:
@@ -5,8 +10,8 @@ on:
     - cron: '0 * * * *' # Runs every hour
   workflow_dispatch:      # Allow manual trigger
   push:
-    branches:
-      - hackerx         # Only triggers on this branch
+      branches:
+        - hackerx         # Only triggers on this branch
 
 jobs:
   update-stats:
@@ -19,13 +24,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: hackerx  # Forces action to use the hackerx branch
+          ref: 'hackerx'  # Forces action to use the hackerx branch
       # INSTALL jq
       - name: Setup jq
         uses: dcarbone/install-jq-action@v2.1.0  # uses a reliable jq installer
         with:
           version: '1.6'  # specify a common version
-          
+
       - name: Update Lifetime Stats
         id: fetch_stats
         run: |
@@ -59,15 +64,16 @@ jobs:
               NEW_LIFETIME=$((LIFETIME + DIFF))
             fi
 
-            LAST_UPDATED=(now | strftime("%Y-%m-%d %H:%M:%S"))
+            LAST_UPDATED=$(date +"%Y-%m-%d %H:%M:%S")   
 
             JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\", \"lifetime\": \"$NEW_LIFETIME\", \"last_day\": \"$TODAY\", \"today_so_far\": \"$TODAY_COUNT\", \"last_updated\": \"$LAST_UPDATED\"}"
             echo "$JSON_CONTENT" > "$FILE"
-
+          }
+          
           echo "Fetching stats for SudoHopeX/KaliGPT..."
  
           # Fetch Views
-          VIEWES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
+          VIWES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/views")
           update_stat "$(echo "$VIEWS_DATA" | jq -r '.views')" "views_lifetime.json" "Total Views" "blue"
 
