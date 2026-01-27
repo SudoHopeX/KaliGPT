@@ -3,7 +3,7 @@
 # KaliGPT v1.3 (HackerX)
 # /agents/__main__.py
 # Set or Store user API keys & launch default model agent
-# Last Modified: 26 January 2026
+# Last Modified: 27 January 2026
 
 import sys
 import subprocess
@@ -51,11 +51,15 @@ def main(args):
 
             try:
                 # using python -m agents.agent_module_name to launch the agent
+                # print(f"Running command: {' '.join(command)}")
                 subprocess.run(command)
+
             except Exception as e:
                 print(f"Exception occurred: {e}")
 
+            except KeyboardInterrupt:
+                print("\n\n")   # MSG already printed by running agent module
+
 if __name__ == "__main__":
-    # print(sys.argv)
     # print(sys.argv[1:])
     main(sys.argv[1:])
