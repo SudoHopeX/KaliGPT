@@ -4,7 +4,7 @@ USER_NAME=$(logname 2>/dev/null)
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Debian-based Systems
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 26 Jan 2026
+# Last Modified: 28 Jan 2026
 
 
 # Check for root privileges
@@ -176,6 +176,11 @@ case "$MODE" in
                 python3 -m agents.openrouter "$@"
                 ;;
 
+        -c|--chatgpt)
+                start_openserp
+                python3 -m agents.chatgpt "$@"
+                ;;
+
         --web)
                 python3 -m agents.web_launcher "$@"
                 ;;
@@ -193,6 +198,7 @@ case "$MODE" in
                 echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
                 echo "    -o  [--ollama]            =  use Ollama Models (Offline, text & code)"
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
+                echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
                 echo "    --web                     =  AIs official Web-Chat Opener (Online)"
                 echo "    -lr [--list-providers]    = list KaliGPT available models"
                 echo "    --setup-keys              =  setup API keys for online models"
