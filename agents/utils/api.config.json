@@ -5,6 +5,17 @@
         "api_key": "YOUR_GEMINI_API_KEY",
         "default_model": "gemini-2.5-flash",
         "models": [
+            "gemini-3-pro-preview",
+            "gemini-3-flash-preview",
+            "gemini-2.5-flash",
+            "gemini-2.5-pro",
+            "gemini-1.5-flash-latest"
+        ]
+    },
+    "chatgpt": {
+        "api_key": "YOUR_CHATGPT_API_KEY",
+        "default_model": "gpt-4o",
+        "models": [
             "gpt-4o-mini",
             "gpt-4o",
             "gpt-4-turbo",
@@ -15,22 +26,12 @@
             "gpt-oss-120b"
         ]
     },
-    "chatgpt": {
-        "api_key": "YOUR_CHATGPT_API_KEY",
-        "default_model": "gpt-4o",
-        "models": [
-            "gpt-4o-mini",
-            "gpt-4o",
-            "gpt-4-turbo",
-            "gpt-3.5-turbo"
-        ]
-    },
     "ollama": {
         "api_key": "http://localhost:11434",
-        "default_model": "llama3",
+        "default_model": "llama3:latest",
         "models": [
             "llama2",
-            "llama3",
+            "llama3:latest",
             "mistral"
         ]
     },
