@@ -2,7 +2,7 @@
 
 # /agents/chatgpt.py
 # KaliGPT ChatGPT_agent
-# Updated: 27 Jan 2026
+# Updated: 28 Jan 2026
 
 
 from openai import OpenAI
@@ -39,10 +39,11 @@ def initialize_configs():
         client = OpenAI(api_key=OPENAI_API_KEY)
 
         # 2. LOAD TOOLS info for ChatGPT
-        TOOLS_INFO = [openai_tool_adapter(f) for f in get_tools_info()]
+        tools = get_tools_info()
+        TOOLS_INFO = [openai_tool_adapter(f) for f in tools]
 
         # --- TOOL EXECUTION HELPER (Your Original Function) ---
-        TOOL_FUNCTION_MAP = {func.__name__: func for func in TOOLS_INFO} if TOOLS_INFO else {}
+        TOOL_FUNCTION_MAP = {func.__name__: func for func in tools} if tools else {}
 
         if not TOOLS_INFO:
             print("[!] No external tools loaded.")
@@ -108,7 +109,6 @@ def get_chatgpt_response(history: list, new_input: str, tools):
     ]
 
     return final_response, new_history
-
 
 
 def main(prompt=None):
