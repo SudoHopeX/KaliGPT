@@ -1,11 +1,13 @@
 #!/env/bin/env python3
 
 # /agents/utils/tools/locals.py
-# Updated: 26 Jan 2026
+# Updated: 28 Jan 2026
 
 
 import requests
+
 from bs4 import BeautifulSoup
+from subprocess import Popen, PIPE
 
 
 def get_local_server_content(url: str, timeout: int = 5) -> dict[str, bool | None | str] | dict[
@@ -63,6 +65,36 @@ def get_local_server_content(url: str, timeout: int = 5) -> dict[str, bool | Non
     }
 
 
+def execute_generic_linux_command(command: str) -> dict:
+    """
+    Execute a generic Linux command using subprocess module.
+
+   Args:
+       command (str): The command to be executed, e.g., "ls -l", "mkdir dir", etc.
+
+   Returns:
+        dictionary of response -> {"output": output, "error": error}
+    """
+    try:
+        # Split the command into individual arguments
+        args = command.split()
+
+        # Create a subprocess and execute the command
+        process = Popen(args, stdout=PIPE, stderr=PIPE)
+
+        # Get the output and error messages                                                                        │
+        output, error = process.communicate()
+
+        response = {"output": output.decode(), "error": error.decode()}
+
+        # return the response (output and error messages)
+        # print("Output:", response)
+        return response
+
+    except Exception as e:
+        return {"output": None, "error": f"Error Executing command {command} : {e}"}
+
+
 if __name__ == "__main__":
     result = get_local_server_content("https://example.com")
 
@@ -70,3 +102,5 @@ if __name__ == "__main__":
         print(result["content"][:500])
     else:
         print(f"Error: {result['error']} (status={result['status_code']})")
+
+    print(execute_generic_linux_command("ls -ls"))
