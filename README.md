@@ -108,7 +108,7 @@ Read README.md or Documentation at https://hope.is-a.dev/?path=kaligpt for more 
 <!-- ![Claude](https://img.shields.io/badge/-Claude-brightgreen?style=flat-square&color=blue&label=) -->
 
 ## Requirements
-All Requirements can be found at [Requirements](/requirements/global.md)
+All Requirements can be found at [Requirements](/requirements/globals.md)
 
 ## Disclaimer
 - This script is provided with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
