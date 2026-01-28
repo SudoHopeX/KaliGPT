@@ -4,12 +4,11 @@
 # Updated: 28 Jan 2026
 
 from .openserp_search import check_search_connection, search_as_RAG, keyword_search
-from .locals import get_local_server_content
+from .locals import get_local_server_content, execute_generic_linux_command
 
 def get_tools_info():
     """
     Returns a list of Python functions (tools) that the AI model can use.
-    The SDK automatically converts these into FunctionDeclarations.
     """
     # The list contains the Python function objects themselves!
 
@@ -18,6 +17,7 @@ def get_tools_info():
         keyword_search,
         search_as_RAG,
         get_local_server_content,
+        execute_generic_linux_command
     ]
 
 
