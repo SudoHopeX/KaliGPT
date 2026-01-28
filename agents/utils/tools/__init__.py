@@ -1,10 +1,10 @@
 #!/env/bin/env python3
 
 # /agents/utils/tools/__init__.py
-# Updated: 27 Jan 2026
+# Updated: 28 Jan 2026
 
-from .openserp_search import check_search_connection, search_as_RAG, crawl_search, keyword_search
-from .scraping import get_local_server_content
+from .openserp_search import check_search_connection, search_as_RAG, keyword_search
+from .locals import get_local_server_content
 
 def get_tools_info():
     """
@@ -12,7 +12,7 @@ def get_tools_info():
     The SDK automatically converts these into FunctionDeclarations.
     """
     # The list contains the Python function objects themselves!
-    # removed crawl_search due to unknow error but still can be accessed by agent via search_as_RAG
+
     return [
         check_search_connection,
         keyword_search,
@@ -34,5 +34,3 @@ if __name__ == "__main__":
     tools = get_available_tools_data()
     for name, desc in tools.items():
         print(f"◈ {name}: {desc}")
-
-
