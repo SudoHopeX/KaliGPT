@@ -4,7 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 26 Jan 2026
+# Last Modified: 28 Jan 2026
 
 
 # Global variables
@@ -140,6 +140,11 @@ case "\$MODE" in
                   python3 -m agents.openrouter "\$@"
                   ;;
 
+        -c|--chatgpt)
+                start_openserp
+                python3 -m agents.chatgpt "$@"
+                ;;
+
         -h|--help)
                 echo ""
                 echo -e "\e[1;32mKaliGPT v1.3 - Use AI in Linux via CLI easily\e[0m"
@@ -152,6 +157,7 @@ case "\$MODE" in
                 echo ""
                 echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
+                echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
                 echo "    --list-backends           = list KaliGPT available models"
                 echo "    --setup-keys              =  setup API keys for online models"
                 echo "    --update                  =  update KaliGPT to latest version"
