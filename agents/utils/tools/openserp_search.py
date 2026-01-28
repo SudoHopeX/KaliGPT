@@ -2,7 +2,7 @@
 
 # /agents/utils/tools/openserp_search.py
 # SudoHopeX KaliGPT
-# Last updated: 26 Jan 2026
+# Last updated: 28 Jan 2026
 
 
 import requests
@@ -18,8 +18,7 @@ DEFAULT_BASE_URL = "http" + "://" + "127.0.0.1" + ":" + "7000"
 
 def check_search_connection():
     """
-    checks if the search backend is available.
-    Backend used is "OpenSerp".
+    checks if the search backend is available. Backend used is "OpenSerp".
     """
 
     # perform a get request to test availability
@@ -131,7 +130,7 @@ def keyword_search(keyword: str,
     return search_result
 
 
-def crawl_search(search_results: list[Any]) -> list[Any]:
+def crawl_search(search_results: list[tuple[str | None]]) -> list[tuple[str | None]]:
     """
     Crawls the search results into a JSON string as RAG.
     :param search_results: the search results returned by `keyword_search`
@@ -167,7 +166,7 @@ def crawl_search(search_results: list[Any]) -> list[Any]:
 
 def search_as_RAG(list_of_keywords: list[str]) -> list:
     """
-    Search the list of keywords and returns the search results as RAG.
+    Search the list of keywords and returns the search results as RAG (via OpenSerp API).
 
     :param list_of_keywords: a list of keywords to search (keywords can be one or more)
     """
