@@ -200,16 +200,17 @@ case "$MODE" in
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
                 echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
                 echo "    --web                     =  AIs official Web-Chat Opener (Online)"
-                echo "    -lr [--list-providers]    = list KaliGPT available models"
                 echo "    --setup-keys              =  setup API keys for online models"
                 echo "    -u [--update]             =  update KaliGPT to latest version"
                 echo "    -v [--version]            =  show KaliGPT version and exit"
+                echo "    -lr [--list-providers]    = list KaliGPT available models"
                 echo "    -h [--help]               =  show this help message and exit"
                 echo ""
                 echo -e "\e[1;33mExamples:\e[0m"
-                echo "     kaligpt -g \"How to Scan a website for subdomains using tools\""
+                echo "     kaligpt  ( uses default model and will ask for prompt )"
+                echo "     kaligpt \"Help me find XSS on target.com\""
                 echo "     kaligpt -or \"Write a python script to automate port scanning using nmap\""
-                echo "     kaligpt --web"
+                echo "     kaligpt --web  (launches default AI model's web chat)"
                 echo ""
                 echo -e "\e[33m       Read README.md or Docs at https://hope.is-a.dev?path=kaligpt for more info.\e[0m"
                 ;;
@@ -270,4 +271,5 @@ echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installed Successfully!\e[0m"
 echo -e "\e[1;33mYou can run KaliGPT using the command: \e[0m\e[1;32mkaligpt\e[0m"
 
 # test run with help flag
+echo ""
 kaligpt --help
