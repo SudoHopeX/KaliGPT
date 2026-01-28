@@ -8,7 +8,7 @@ This document lists all the requirements/dependencies for KaliGPT, categorized b
 ## Index
 - [GitHub Packages](#github-packages)
 - [PyPI (python pip) Packages](#pypi-python-pip-packages)
-- [Packages to Install](#system-packages)
+- [System Packages](#system-packages)
 - [Tools](#tools)
 - [Love 🩵](#love)
 
