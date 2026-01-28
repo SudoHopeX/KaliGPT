@@ -1,23 +1,23 @@
 [//]: # ( /requirements/global.md )
 [//]: # ( SudoHopeX: https://hope.is-a.dev, github.com/SudoHopeX )
-[//]: # ( Updated: 16 January 2026 )
+[//]: # ( Updated: 28 January 2026 )
 
 # KaliGPT Requirements
-This document lists all the required packages for KaliGPT, categorized by their source.
+This document lists all the requirements/dependencies for KaliGPT, categorized by their source.
 
 ## Index
 - [GitHub Packages](#github-packages)
 - [PyPI (python pip) Packages](#pypi-python-pip-packages)
-- [Debian Packages](#debian-packages)
+- [Packages to Install](#system-packages)
 - [Tools](#tools)
 - [Love 🩵](#love)
 
 
 ## GitHub Packages
-| Package        | Description                               |
-|----------------|-------------------------------------------|
-| **OpenSerp**   | for performing search queries freely.     |
-| **KaliGPT 😉** | for using the KaliGPT itself              |
+| Package                  | Description                               |
+|--------------------------|-------------------------------------------|
+| karust/**OpenSerp**      | for performing search queries freely.     |
+| SudoHopeX/**KaliGPT** 😉 | for using the KaliGPT itself              |
 
 
 ## PyPI (python pip) Packages
@@ -32,31 +32,29 @@ This document lists all the required packages for KaliGPT, categorized by their 
 | `lxml_html_clean` | cleaning HTML                        |
 
 
-## Debian Packages
-| Package        | Description                            |
-|----------------|----------------------------------------|
-| `curl`         | for downloading installer scripts      |
-| `python3`      | for running Python scripts             |
-| `python3-venv` | for creating virtual environments      |
-| `python3-pip`  | for installing Python packages         |
-| `git`          | for cloning repositories               |
-| `golang-go`    | for go based tools (i.e. OpenSerp)     |
-| `bash`         | for running bash scripts               |
+## System Packages
+| Package                                                                  | Description                                                                   | 
+|--------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `curl`                                                                   | Downloading KaliGPT installer scripts                                         |
+| `python3`                                                                | Running Python scripts                                                        |
+| `python3-venv`                                                           | Managing & using virtual environments                                         | 
+| `python3-pip`                                                            | Installing Python dependencies                                                | 
+| `git`                                                                    | Cloning GitHub repositories                                                   |
+| `golang-go`                                                              | Building & using go based tools (i.e. OpenSerp)                               |
+| `bash`                                                                   | Installing KaliGPT, creating & using KaliGPT launcher                         |
+| `lixxml2`, `libxslt`                                                     | for building `lxml_html_clean`                                                |
+| `libjpeg-turbo`, `libpng`, `freetype`, `littlecms`,`openjpeg`, `libtiff` | for building `Pillow`                                                         | 
+| `make`, `pkg-config`, `clang`                                            | building packages like `Pillow`, `lxml`, `lxml_html_clean`, and `newspaper3k` |
+| `rust`                                                                   | for building `newspaper3k` dependencies                                       | 
 
 
 ## Tools
-| Name                       | Description                                                               |
-|----------------------------|---------------------------------------------------------------------------|
-| `nmap`                     | network reconnaissance                                                    |
-| `subfinder`, `assetfinder` | finding subdomains passively                                              |
-| `httpx`                    | probing URLs                                                              |
-| `waybackurls`              | fetching URLs from Wayback Machine                                        |
-| `dig`, `host`              | Resolve the discovered subdomains to their IP addresses                   |
-| `gobuster`, `ffuf`         | Bruteforce common directories and files on web servers.                   |
-| `nikto`                    | find common web server misconfigurations                                  |
-| `nuclie`                   | find known vulnerabilities, misconfigurations, and sensitive information. |
-
+| Name                                                         | Description                                                               |
+|--------------------------------------------------------------|---------------------------------------------------------------------------|
+| `keyword_search`, `check_search_connection`, `search_as_RAG` | for online search & real-time info. connectivity                          |
+| `get_local_server_content`                                   | extracting content accessible via local server (e.g. localhost etc.)      |
+| `execute_generic_linux_command`                              | executing linux tools & commands                                          |
 
 
 ## Love
-Lots of ❤️, Care and stars ⭐ from the community!
+Lots of ❤️, Care and ⭐ from the community!
