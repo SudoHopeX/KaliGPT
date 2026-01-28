@@ -1,6 +1,6 @@
 #!/env/bin/env python3
 
-# /agents/utils/tools/scraping.py
+# /agents/utils/tools/locals.py
 # Updated: 26 Jan 2026
 
 
