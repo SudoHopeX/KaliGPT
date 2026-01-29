@@ -30,9 +30,12 @@
         "api_key": "http://localhost:11434",
         "default_model": "llama3:latest",
         "models": [
-            "llama2",
             "llama3:latest",
-            "mistral"
+            "llama3.1:latest",
+            "gpt-oss:latest",
+            "gpt-oss:120b-cloud",
+            "qwen3:latest",
+            "qwen3:14b"
         ]
     },
     "openrouter": {
@@ -66,3 +69,4 @@
         ]
     }
 }
+
