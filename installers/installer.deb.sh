@@ -4,13 +4,15 @@ USER_NAME=$(logname 2>/dev/null)
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Debian-based Systems
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 28 Jan 2026
+# Last Modified: 29 Jan 2026
 
 
-# Check for root privileges
+# Ensure script runs as root, prompt for sudo if needed
 if [ "$EUID" -ne 0 ]; then
-  echo -e "\e[1;31mPlease run as root (switch to superuser 'root' - use 'sudo su' or 'su root'\e[0m"
-  exit 1
+    echo ""
+    echo -e "\e[1;31mError: This script requires root privileges.\e[0m" >&2
+    echo -e "\e[1;33mRequesting sudo privileges...\e[0m"
+    exec sudo bash "$0" "$@"
 fi
 
 
@@ -216,16 +218,21 @@ case "$MODE" in
                 ;;
 
        -u|--update)
-                # Check for updated
+                # Check for updates
                 echo -e "\e[1;33mChecking for updates...\e[0m"
                 git fetch origin hackerx
                 LOCAL=$(git rev-parse HEAD)
                 REMOTE=$(git rev-parse origin/hackerx)
-                if [ $LOCAL != $REMOTE ]; then
+
+                if [ "$LOCAL" != "$REMOTE" ]; then
                     echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
-                    git pull origin hackerx > /dev/null 2>&1
-                    sudo bash installers/installer.deb.sh > /dev/null 2>&1
-                    echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
+                    if git pull origin hackerx > /dev/null 2>&1; then
+                        bash installers/installer.deb.sh
+                        echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
+                    else
+                        echo -e "\e[1;31mUpdate failed! Could not pull the latest changes.\e[0m"
+                        exit 1
+                    fi
                 else
                     echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
                 fi
@@ -242,7 +249,7 @@ case "$MODE" in
         -v|--version)
                 # printing version info from git tags
                 # git describe --tags
-                echo "HackerX (KaliGPT v1.3)"
+                echo "HackerX (KaliGPT v1.3.0)"
                 ;;
 
         --setup-keys)
