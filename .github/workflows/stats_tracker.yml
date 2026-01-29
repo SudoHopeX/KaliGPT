@@ -88,14 +88,12 @@ jobs:
           # Fetch Views
           VIEWS_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/views")
-          VIEWS_COUNT=$(echo "$VIEWS_DATA" | jq -r '.count')
-          update_stat "$VIEWS_COUNT" "views_lifetime.json" "Total Views" "blue"
-
+          update_stat "$(echo "$VIEWS_DATA" | jq -r '.views')" "views_lifetime.json" "Total Views" "blue"
+          
           # Fetch Clones
           CLONES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/clones")
-          CLONES_COUNT=$(echo "$CLONES_DATA" | jq -r '.count')
-          update_stat "$CLONES_COUNT" "clones_lifetime.json" "Total Clones" "brightgreen"
+          update_stat "$(echo "$CLONES_DATA" | jq -r '.clones')" "clones_lifetime.json" "Total Clones" "brightgreen"
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
