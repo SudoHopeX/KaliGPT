@@ -4,7 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 28 Jan 2026
+# Last Modified: 29 Jan 2026
 
 
 # Global variables
@@ -177,19 +177,24 @@ case "\$MODE" in
 
         -u|--update)
             # Check for updates
-            echo -e "\e[1;33mChecking for updates...\e[0m"
-            git fetch origin hackerx
-            LOCAL=\$(git rev-parse HEAD)
-            REMOTE=\$(git rev-parse origin/hackerx)
-            if [ \$LOCAL != \$REMOTE ]; then
-                echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
-                git pull origin hackerx > /dev/null 2>&1
-                bash installers/installer.termux.sh
-                echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
-            else
-                echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
-            fi
-            ;;
+                echo -e "\e[1;33mChecking for updates...\e[0m"
+                git fetch origin hackerx
+                LOCAL=$(git rev-parse HEAD)
+                REMOTE=$(git rev-parse origin/hackerx)
+
+                if [ "$LOCAL" != "$REMOTE" ]; then
+                    echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
+                    if git pull origin hackerx > /dev/null 2>&1; then
+                        bash installers/installer.deb.sh
+                        echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
+                    else
+                        echo -e "\e[1;31mUpdate failed! Could not pull the latest changes.\e[0m"
+                        exit 1
+                    fi
+                else
+                    echo -e "\e[1;32mKaliGPT is already up-to-date.\e[0m"
+                fi
+                ;;
 
       -v|--version)
             # printing version info from git tags
