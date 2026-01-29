@@ -1,7 +1,7 @@
 # This GitHub Actions workflow tracks and updates lifetime statistics for the KaliGPT repository.
 # It fetches view and clone data from the GitHub API one's in a day for previous day and updates JSON files accordingly.
 # The workflow runs on the 'hackerx' branch and commits changes back to the same branch.
-# /KaliGPT/.github/workflows/stats_tracker.yml
+# /KaliGPT/hackerx/.github/workflows/stats_tracker.yml
 
 name: Lifetime Stats Tracker (HackerX)
 
@@ -52,11 +52,11 @@ jobs:
 
             # 2. Initialize file if it doesn't exist & get data if exist
             if [ ! -f "$FILE" ]; then
-              echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"upto\": \"\", \"from\": \"2026-01-15T00:00:00Z\"}" > "$FILE"
+              echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"metadata\": { \"from\": \"2026-01-15T00:00:00Z\", \"upto\": \"\"}}" > "$FILE"
             fi
 
             LIFETIME=$(jq -r '.message' "$FILE")
-            LAST_DAY_SAVED=$(jq -r '.upto' "$FILE")
+            LAST_DAY_SAVED=$(jq -r '.metadata.upto' "$FILE")
 
 
             # 3. Only update if the date from GitHub is newer than our last saved date
@@ -68,7 +68,7 @@ jobs:
               echo "No new daily data found or day already processed. Skipping math."
             fi
 
-            JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\", \"upto\": \"$DATA_TIMESTAMP\", \"from\": \"2026-01-15T00:00:00Z\"}"
+            JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\",\"metadata\": { \"from\": \"2026-01-15T00:00:00Z\", \"upto\": \"$DATA_TIMESTAMP\"}}"
             echo "$JSON_CONTENT" > "$FILE"
           }
           
