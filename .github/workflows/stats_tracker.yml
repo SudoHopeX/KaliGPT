@@ -50,9 +50,9 @@ jobs:
               echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"lifetime\": 0, \"last_day\": \"\", \"today_so_far\": 0}" > "$FILE"
             fi
 
-            LIFETIME=$(jq '.lifetime' "$FILE")
+            LIFETIME=$(jq -r '.lifetime' "$FILE")
             LAST_DAY=$(jq -r '.last_day' "$FILE")
-            SO_FAR=$(jq '.today_so_far' "$FILE")
+            SO_FAR=$(jq -r '.today_so_far' "$FILE")
 
             if [ "$TODAY" != "$LAST_DAY" ]; then
               NEW_LIFETIME=$((LIFETIME + TODAY_COUNT))
@@ -73,7 +73,7 @@ jobs:
           echo "Fetching stats for SudoHopeX/KaliGPT..."
  
           # Fetch Views
-          VIWES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
+          VIEWS_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/views")
           update_stat "$(echo "$VIEWS_DATA" | jq -r '.views')" "views_lifetime.json" "Total Views" "blue"
 
