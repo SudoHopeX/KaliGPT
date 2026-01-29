@@ -1,61 +1,94 @@
-name: Update Clone Count Badge
+# This GitHub Actions workflow tracks and updates lifetime statistics for the KaliGPT repository.
+# It fetches view and clone data from the GitHub API every hour and updates JSON files accordingly.
+# The workflow runs on the 'hackerx' branch and commits changes back to the same branch.
+# /KaliGPT/.github/workflows/stats_tracker.yml
+
+name: Lifetime Stats Tracker (HackerX)
 
 on:
-  # Run once a day
   schedule:
-    - cron: '0 0 * * *'
-  # Allow manual trigger
-  workflow_dispatch:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch:      # Allow manual trigger
+  push:
+      branches:
+        - hackerx         # Only triggers on this branch
 
 jobs:
-  update-badge:
+  update-stats:
     runs-on: ubuntu-latest
-    
-    # *** Grant explicit write permissions to the job's default GITHUB_TOKEN ***
     permissions:
-      contents: write 
-    
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # *** Use the default GITHUB_TOKEN that now has write access ***
-          token: ${{ secrets.GITHUB_TOKEN }} 
-
-      # *** STEP: Install jq ***
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: 'hackerx'  # Forces action to use the hackerx branch
+      # INSTALL jq
       - name: Setup jq
-        uses: dcarbone/install-jq-action@v2.1.0 # Use a reliable jq installer
+        uses: dcarbone/install-jq-action@v2.1.0  # uses a reliable jq installer
         with:
-          version: '1.6' # Specify a common version
+          version: '1.6'  # specify a common version
 
-      - name: Fetch Clone Count
-        id: fetch_clones
+      - name: Update Lifetime Stats
+        id: fetch_stats
         run: |
-          # Use your high-permission CLONE_TOKEN for authentication
+          TODAY=$(date +%Y-%m-%dT00:00:00Z)
+
+          update_stat() {
+            # store args data 
+            DATA=$1    # data 
+            FILE=$2    # file_name to store data
+            LABEL=$3   # Label for the data
+            COLOR=$4   # Color for showing data used
+
+            TODAY_COUNT=$(echo "$DATA" | jq --arg TODAY "$TODAY" '.[] | select(.timestamp == $TODAY) | .count' | tail -n 1)
+            TODAY_COUNT=${TODAY_COUNT:-0}
+
+            if [ ! -f "$FILE" ]; then
+              echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"lifetime\": 0, \"last_day\": \"\", \"today_so_far\": 0}" > "$FILE"
+            fi
+
+            LIFETIME=$(jq -r '.lifetime' "$FILE")
+            LAST_DAY=$(jq -r '.last_day' "$FILE")
+            SO_FAR=$(jq -r '.today_so_far' "$FILE")
+
+            if [ "$TODAY" != "$LAST_DAY" ]; then
+              NEW_LIFETIME=$((LIFETIME + TODAY_COUNT))
+            else
+              DIFF=$((TODAY_COUNT - SO_FAR))
+              if [ "$DIFF" -lt 0 ]; then 
+                  DIFF=0; 
+              fi
+              NEW_LIFETIME=$((LIFETIME + DIFF))
+            fi
+
+            LAST_UPDATED=$(date +"%Y-%m-%d %H:%M:%S")   
+
+            JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\", \"lifetime\": \"$NEW_LIFETIME\", \"last_day\": \"$TODAY\", \"today_so_far\": \"$TODAY_COUNT\", \"last_updated\": \"$LAST_UPDATED\"}"
+            echo "$JSON_CONTENT" > "$FILE"
+          }
+          
+          echo "Fetching stats for SudoHopeX/KaliGPT..."
+ 
+          # Fetch Views
+          VIEWS_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
+            "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/views")
+          VIEWS_COUNT=$(echo "$VIEWS_DATA" | jq -r '.count')
+          update_stat "$VIEWS_COUNT" "views_lifetime.json" "Total Views" "blue"
+
+          # Fetch Clones
           CLONES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/clones")
-          
-          # Check if data is null/empty and if the API returned an error message
-          if echo "$CLONES_DATA" | grep -q "message"; then
-              echo "Error fetching data from GitHub API:"
-              echo "$CLONES_DATA"
-              # Write 0 or a placeholder to avoid breaking the badge
-              COUNT="0" 
-          else
-              # Extract the 'count' field from the valid JSON response
-              COUNT=$(echo "$CLONES_DATA" | jq -r '.count')
-          fi
-
-          echo "Clone Count fetched: $COUNT"
-          # *** Write the count as valid JSON to a .json file ***
-          # Note: The 'label' and 'color' set here override the badge URL parameters
-          JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"Last 14 Dags Clones\", \"message\": \"$COUNT\", \"color\": \"2ea44f\"}"
-          echo "$JSON_CONTENT" > clones_count.json
+          CLONES_COUNT=$(echo "$CLONES_DATA" | jq -r '.count')
+          update_stat "$CLONES_COUNT" "clones_lifetime.json" "Total Clones" "brightgreen"
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: Update clone count badge data"
-          file_pattern: clones_count.json
+          commit_message: "stats: update hackerx lifetime stats"
+          branch: hackerx # Ensure it pushes back to hackerx
+          file_pattern: "views_lifetime.json clones_lifetime.json"
           commit_user_name: GitHub Actions Bot
           commit_user_email: actions@github.com
