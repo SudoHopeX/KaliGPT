@@ -1,5 +1,5 @@
 # This GitHub Actions workflow tracks and updates lifetime statistics for the KaliGPT repository.
-# It fetches view and clone data from the GitHub API every hour and updates JSON files accordingly.
+# It fetches view and clone data from the GitHub API one's in a day for previous day and updates JSON files accordingly.
 # The workflow runs on the 'hackerx' branch and commits changes back to the same branch.
 # /KaliGPT/.github/workflows/stats_tracker.yml
 
@@ -7,7 +7,7 @@ name: Lifetime Stats Tracker (HackerX)
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour
+    - cron: '30 19 * * *' # Runs at 1:00 AM IST (19:30 UTC)
   workflow_dispatch:      # Allow manual trigger
   push:
       branches:
@@ -34,7 +34,6 @@ jobs:
       - name: Update Lifetime Stats
         id: fetch_stats
         run: |
-          TODAY=$(date +%Y-%m-%dT00:00:00Z)
 
           update_stat() {
             # store args data 
@@ -43,30 +42,33 @@ jobs:
             LABEL=$3   # Label for the data
             COLOR=$4   # Color for showing data used
 
-            TODAY_COUNT=$(echo "$DATA" | jq --arg TODAY "$TODAY" '.[] | select(.timestamp == $TODAY) | .count' | tail -n 1)
-            TODAY_COUNT=${TODAY_COUNT:-0}
+            # 1. Get the most recent day provided by GitHub API
+            LATEST_ENTRY=$(echo "$DATA" | jq -c '.[-1]')
+            DATA_COUNT=$(echo "$LATEST_ENTRY" | jq -r '.count // 0')
+            DATA_TIMESTAMP=$(echo "$LATEST_ENTRY" | jq -r '.timestamp // ""')
 
+            echo "Processing $LABEL: Last available day in API is $DATA_TIMESTAMP with $DATA_COUNT hits."
+
+
+            # 2. Initialize file if it doesn't exist & get data if exist
             if [ ! -f "$FILE" ]; then
-              echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"lifetime\": 0, \"last_day\": \"\", \"today_so_far\": 0}" > "$FILE"
+              echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"upto\": \"\", \"from\": \"2026-01-15T00:00:00Z\"}" > "$FILE"
             fi
 
-            LIFETIME=$(jq -r '.lifetime' "$FILE")
-            LAST_DAY=$(jq -r '.last_day' "$FILE")
-            SO_FAR=$(jq -r '.today_so_far' "$FILE")
+            LIFETIME=$(jq -r '.message' "$FILE")
+            LAST_DAY_SAVED=$(jq -r '.upto' "$FILE")
 
-            if [ "$TODAY" != "$LAST_DAY" ]; then
-              NEW_LIFETIME=$((LIFETIME + TODAY_COUNT))
+
+            # 3. Only update if the date from GitHub is newer than our last saved date
+            if [ "$DATA_TIMESTAMP" != "$LAST_DAY_SAVED" ] && [ "$DATA_TIMESTAMP" != "" ]; then
+              NEW_LIFETIME=$((LIFETIME + DATA_COUNT))
+              echo "New data detected. Updating lifetime to $NEW_LIFETIME."
             else
-              DIFF=$((TODAY_COUNT - SO_FAR))
-              if [ "$DIFF" -lt 0 ]; then 
-                  DIFF=0; 
-              fi
-              NEW_LIFETIME=$((LIFETIME + DIFF))
+              NEW_LIFETIME=$LIFETIME
+              echo "No new daily data found or day already processed. Skipping math."
             fi
 
-            LAST_UPDATED=$(date +"%Y-%m-%d %H:%M:%S")   
-
-            JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\", \"lifetime\": \"$NEW_LIFETIME\", \"last_day\": \"$TODAY\", \"today_so_far\": \"$TODAY_COUNT\", \"last_updated\": \"$LAST_UPDATED\"}"
+            JSON_CONTENT="{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"$NEW_LIFETIME\", \"color\": \"$COLOR\", \"upto\": \"$DATA_TIMESTAMP\", \"from\": \"2026-01-15T00:00:00Z\"}"
             echo "$JSON_CONTENT" > "$FILE"
           }
           
@@ -76,7 +78,7 @@ jobs:
           VIEWS_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/views")
           update_stat "$(echo "$VIEWS_DATA" | jq -r '.views')" "views_lifetime.json" "Total Views" "blue"
-
+          
           # Fetch Clones
           CLONES_DATA=$(curl -s -H "Authorization: token ${{ secrets.CLONE_TOKEN }}" \
             "https://api.github.com/repos/SudoHopeX/KaliGPT/traffic/clones")
