@@ -35,6 +35,7 @@ jobs:
         id: fetch_stats
         run: |
           TODAY=$(date +%Y-%m-%dT00:00:00Z)
+          echo "Targeting timestamp: $TODAY"
 
           update_stat() {
             # store args data 
@@ -43,8 +44,18 @@ jobs:
             LABEL=$3   # Label for the data
             COLOR=$4   # Color for showing data used
 
+            # DEBUG: See what data is being processed (check your Action logs!)
+            echo "Processing $LABEL..."
+
+            # DEBUG: see what data it gets
+            echo "DATA: $DATA"
+
             TODAY_COUNT=$(echo "$DATA" | jq --arg TODAY "$TODAY" '.[] | select(.timestamp == $TODAY) | .count' | tail -n 1)
-            TODAY_COUNT=${TODAY_COUNT:-0}
+            
+            # If TODAY_COUNT is empty (no hits yet today), set to 0
+            if [ -z "$TODAY_COUNT" ]; then TODAY_COUNT=0; fi
+
+            echo "Today's count for $LABEL: $TODAY_COUNT"
 
             if [ ! -f "$FILE" ]; then
               echo "{\"schemaVersion\": 1, \"label\": \"$LABEL\", \"message\": \"0\", \"color\": \"$COLOR\", \"lifetime\": 0, \"last_day\": \"\", \"today_so_far\": 0}" > "$FILE"
@@ -55,8 +66,10 @@ jobs:
             SO_FAR=$(jq -r '.today_so_far' "$FILE")
 
             if [ "$TODAY" != "$LAST_DAY" ]; then
+              # New day: Add today's total hits to the lifetime
               NEW_LIFETIME=$((LIFETIME + TODAY_COUNT))
             else
+              # Same day: Only add the difference since the last run
               DIFF=$((TODAY_COUNT - SO_FAR))
               if [ "$DIFF" -lt 0 ]; then 
                   DIFF=0; 
