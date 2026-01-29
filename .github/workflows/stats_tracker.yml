@@ -7,7 +7,7 @@ name: Lifetime Stats Tracker (HackerX)
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs one's in 24 hour
+    - cron: '30 19 * * *' # Runs at 1:00 AM IST (19:30 UTC)
   workflow_dispatch:      # Allow manual trigger
   push:
       branches:
