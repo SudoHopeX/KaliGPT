@@ -1,31 +1,55 @@
-# HackerX ( KaliGPT v1.3 ) @ Under Development
+[//]: #  ( SudoHopeX - KaliGPT )
+[//]: #  ( Updated: 30 Jan 2026 )
+
+# HackerX ( KaliGPT v1.3 )
 
 <!-- ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png) -->
 
 **KaliGPT** : An AI Agent assistance in Linux CLI for Ethical Hacking & Cybersecurity to use AI with ease to learn and master CyberSecurity
 
-
-<!--
-[![GitHub Stars](https://img.shields.io/github/stars/SudoHopeX/KaliGPT?style=social)](https://github.com/SudoHopeX/KaliGPT/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/SudoHopeX/KaliGPT?style=social)](https://github.com/SudoHopeX/KaliGPT/network/members)
- [![Last 14 Days Clones](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SudoHopeX/KaliGPT/main/clones_count.json&label=Last%2014%20Days%20Clones&color=2ea44f&logo=git&style=flat)](https://github.com/SudoHopeX/KaliGPT/pulse) 
- -->
-
 **⭐ Star this repo if you found it helpful!**
 
 
-## Features
-[![Release](https://img.shields.io/github/v/tag/SudoHopeX/KaliGPT?label=Release&color=informational&logo=github)](https://github.com/SudoHopeX/KaliGPT/tags)
-<!--[![Release - v1.3 beta](https://img.shields.io/badge/Release-v1.3_beta-brightgreen.svg)](https://github.com/SudoHopeX/KaliGPT/tree/hackerx)-->
-![Automated Installation](https://img.shields.io/badge/-Automated_Installation-brightgreen?style=flat-square&color=blue&label=)
-![Flexible AI Backend Selection](https://img.shields.io/badge/-Flexible_AI_backend_selection-brightblue?style=flat-square&color=pink&label=)
-![CLI](https://img.shields.io/badge/-Command_Line_Interface-brightpink?style=flat-square&color=brightgreen&label=)
-![Tool Call](https://img.shields.io/badge/-Tool_Call-brightgreen?style=flat-square&color=blue&label=)
-![Online Search](https://img.shields.io/badge/-Online_Search-brightblue?style=flat-square&color=pink&label=)
-[![License](https://img.shields.io/badge/License-Open_Source-brightgreen.svg)](LICENSE)
-[![Contributions Welcomed (Open a issue to discuss ideas & bugs)](https://img.shields.io/badge/Contributions-Welcomed_%28Open_a_issue%29-violet.svg)](https://github.com/SudoHopeX/KaliGPT/issues/new)
-[![Termux Support](https://img.shields.io/badge/-Termux_Supported-brightblue?style=flat-square&color=pink&label=)](https://github.com/SudoHopeX/KaliGPT/tree/hackerx)
+## Badges
+<div align="center">
+ 
+<!-- Repository Statistics -->
+[![Release](https://img.shields.io/github/v/tag/SudoHopeX/KaliGPT?label=Release&color=0078D4&style=for-the-badge&logo=github)](https://github.com/SudoHopeX/KaliGPT/tags)
+[![Stars](https://img.shields.io/github/stars/SudoHopeX/KaliGPT?label=Stars&color=FFD700&style=for-the-badge&logo=reverbnation&logoColor=black)](https://github.com/SudoHopeX/KaliGPT/stargazers)
+[![Forks](https://img.shields.io/github/forks/SudoHopeX/KaliGPT?label=Forks&color=28a745&style=for-the-badge&logo=github)](https://github.com/SudoHopeX/KaliGPT/network/members)
+ 
+<!-- Traffic & Clones (Dynamic JSON) -->
+![Clones](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SudoHopeX/KaliGPT/hackerx/clones_lifetime.json&query=$.message&label=Clones&color=A52A2A&style=for-the-badge&logo=git&logoColor=white)
+![Views](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SudoHopeX/KaliGPT/hackerx/views_lifetime.json&query=$.message&label=Views&color=800080&style=for-the-badge&logo=github&logoColor=white)
 
+
+<!-- Project & Community Badges -->
+[![License](https://img.shields.io/badge/License-Open_Source-green?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Contributions Welcomed](https://img.shields.io/badge/Contributions-Welcomed-violet?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/SudoHopeX/KaliGPT/issues/new)
+</div>
+
+------
+<!-- Feature & Support Badges -->
+<div align="center">
+ 
+![Automated Installation](https://img.shields.io/badge/Automated_Installation-0078D4?style=for-the-badge&logo=powershell&logoColor=white)
+![Flexible AI](https://img.shields.io/badge/Flexible_AI_Backend-FF6F00?style=for-the-badge&logo=deepmind&logoColor=white)
+![CLI](https://img.shields.io/badge/CLI_Interface-4EAA25?style=for-the-badge&logo=gnumetadataterminal&logoColor=white)
+![Tool Call](https://img.shields.io/badge/Tool_Calling-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Online Search](https://img.shields.io/badge/Online_Search-4285F4?style=for-the-badge&logo=google&logoColor=white)
+[![Termux Support](https://img.shields.io/badge/Termux_Supported-EF3939?style=for-the-badge&logo=termux&logoColor=white)](https://github.com/SudoHopeX/KaliGPT/tree/hackerx)
+</div>
+
+------
+<!-- Available Backends-->
+<div align="center">
+
+![Gemini](https://img.shields.io/badge/Gemini-8E75FF?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-6566f1?style=for-the-badge&logo=openrouter&logoColor=white)
+![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
+<!-- ![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white) -->
+</div>
 
 ## Installation
 
@@ -44,7 +68,7 @@
 #### Debian (e.g. Kali, Ubuntu etc.)
 - Clone the GitHub repository's `hackerx` branch :
   ```
-  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
+  git clone https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
   ```
 
 - install KaliGPT for debian
@@ -60,7 +84,7 @@
 
 - Clone the GitHub repository's `hackerx` branch & install KaliGPT:
   ```
-  git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
+  git clone https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
   ```
 - install KaliGPT for Termux
   ```commandline
@@ -97,18 +121,11 @@ Examples:
      kaligpt -or "Help me find XXS on a target.com"
      kaligpt --web   (launches default AI model web Chat
 
-Read README.md or Documentation at https://hope.is-a.dev/?path=kaligpt for more info. 
 ```
-
-## Available AI Backends Vendors
-![Gemini](https://img.shields.io/badge/-Gemini-brightgreen?style=flat-square&color=blue&label=)
-![Ollama](https://img.shields.io/badge/-Ollama-brightgreen?style=flat-square&color=blue&label=)
-![OpenRouter](https://img.shields.io/badge/-OpenRouter-brightgreen?style=flat-square&color=blue&label=)
-![ChatGPT](https://img.shields.io/badge/-ChatGPT-brightgreen?style=flat-square&color=blue&label=)
-<!-- ![Claude](https://img.shields.io/badge/-Claude-brightgreen?style=flat-square&color=blue&label=) -->
+<!-- Read README.md or Documentation at https://hope.is-a.dev/?path=kaligpt for more info.  -->
 
 ## Requirements
-All Requirements can be found at [Requirements](/requirements/globals.md)
+Read all Requirements on [Requirements](/requirements/globals.md)
 
 ## Disclaimer
 - This script is provided with no warranty. Use at your own risk, especially when modifying system binaries or running third-party models.
