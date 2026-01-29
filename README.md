@@ -1,7 +1,4 @@
 # KaliGPT v1.1
-> [!NOTE]
-> Try [HackerX (KaliGPT v1.3)](https://github.com/SudoHopeX/KaliGPT/tree/hackerx)
-
 
 ![KaliGPT Logo](https://sudohopex.github.io/pages/project-docs/asset/KaliGPT-logo-transparent.png)
 
