@@ -11,7 +11,7 @@ USER_NAME=$(logname 2>/dev/null)
 if [ "$EUID" -ne 0 ]; then
     echo ""
     echo -e "\e[1;31mError: This script requires root privileges.\e[0m" >&2
-    echo -e "\e[1;33mRequesting sudo privileges...\e[0m"
+    echo -e "\e[1;33mRequesting sudo privileges... (if it get's sudo privileges automatically it may be due to sudo's credential caching mechanism)\e[0m"
     exec sudo bash "$0" "$@"
 fi
 
@@ -59,7 +59,7 @@ install_if_missing() {
 # ---- performing system update ----
 echo ""
 start_spinner "System Updating"
-sudo apt update > /dev/null 2>&1
+apt update > /dev/null 2>&1
 stop_spinner "System Update"
 
 
@@ -150,11 +150,13 @@ sudo tee "$LAUNCHER_BIN_PATH" > /dev/null <<'EOF'
 
 source /opt/KaliGPT/kaligpt_venv/bin/activate
 cd /opt/KaliGPT
+OPENSERP_PID=""  # Initialize for holding OpenSerp PID
 
 # start the openserp server in background
 start_openserp() {
     cd /opt/KaliGPT/openserp/
     nohup ./openserp serve > /dev/null 2>&1 &
+    OPENSERP_PID=$!
     cd /opt/KaliGPT
 }
 
@@ -241,8 +243,9 @@ case "$MODE" in
         -lr|--list-providers)
                 echo -e "\e[1;33mKaliGPT Provides:\e[0m
                 1) Google Gemini Models  ( Free/Paid, Online) [ Requires API Key ]
-                2) OpenRouter Models (Various, Free/Paid, Online) [ Requires API Key ]
-                3) Ollama            (Free, Offline) [ Local AI Models ]
+                2) OpenRouter Models     (Various, Free/Paid, Online) [ Requires API Key ]
+                3) Ollama                (Free, Offline) [ Local AI Models ]
+                4) OpenAI ChatGPT        (Paid, Online)  [Required API Key]
                 "
                 ;;
 
@@ -264,10 +267,16 @@ case "$MODE" in
 
 esac
 deactivate
+
+# Kill openserp via PID if running in backend at last
+if [ -n "$OPENSERP_PID" ] && kill -0 "$OPENSERP_PID" 2>/dev/null; then
+    kill "$OPENSERP_PID"
+fi
+
 EOF
 
 # Make launcher executable
-sudo chmod +x "$LAUNCHER_BIN_PATH"
+chmod +x "$LAUNCHER_BIN_PATH"
 stop_spinner "KaliGPT launcher creation"
 
 # Change ownership from root to the actual user who ran sudo
