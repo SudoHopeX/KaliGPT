@@ -2,32 +2,31 @@
 
 # /agents/utils/tools/openserp_search.py
 # SudoHopeX KaliGPT
-# Last updated: 28 Jan 2026
+# Last updated: 30 Jan 2026
 
 
 import requests
-from typing import Any
 from newspaper import Article, Config
 
 
 # Define a realistic user agent
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
 
-DEFAULT_BASE_URL = "http" + "://" + "127.0.0.1" + ":" + "7000"
+DEFAULT_BASE_URL = "http://127.0.0.1:7000"
 
 
-def check_search_connection():
+def check_search_connection(base_url: str = DEFAULT_BASE_URL, timeout: int = 10) -> bool:
     """
-    checks if the search backend is available. Backend used is "OpenSerp".
+    checks if the OpenSerp search backend is available.
     """
 
     # perform a get request to test availability
     try:
-        response = requests.get(f"{DEFAULT_BASE_URL}/duck/search?text=test", timeout=10)
+        response = requests.get(f"{base_url}/mega/search?text=test", timeout=timeout)
         return response.status_code == 200
 
     except requests.RequestException as re:
-        print(f"Search Connection error\nIs OpenSerp backend running?\nEndpoint used: {DEFAULT_BASE_URL}\nError details: {re}")
+        print(f"OpenSerp Search Connection error\nEndpoint used: {base_url}\nError details: {re}")
         return False    # any exception results as False
 
 
@@ -48,8 +47,8 @@ def parse_url_with_newspaper(url: str) -> str:
     # Configure the newspaper settings
     config = Config()
     config.browser_user_agent = USER_AGENT
-    # Increase the timeout from default 7 seconds to 15 or 20 seconds
-    config.request_timeout = 20
+    # Increase the timeout from default 7 seconds to 15 or 30 seconds
+    config.request_timeout = 30
 
     # 1. Instantiate the Article with the custom config
     article = Article(url, config=config)
@@ -78,7 +77,8 @@ def keyword_search(keyword: str,
                 engines: str = "duckduckgo,",
                 limit: int = 10,
                 top_n: int = 5,
-                base_url: str = DEFAULT_BASE_URL
+                base_url: str = DEFAULT_BASE_URL,
+                timeout: int = 20
     ) -> list:
     """
     Performs Live search (in DuckDuckGO) via OpenSerp API.
@@ -89,6 +89,7 @@ def keyword_search(keyword: str,
     :param limit: Number of results to fetch (optional, default=11)
     :param top_n: number of results from top to return to llm
     :param base_url: base url for api requests
+    :param timeout: timeout for the requests
 
     :return: a list of search results in the format of [(title, link), (title, link), ...]
         return [(None, None)] if no search results are found
@@ -105,7 +106,7 @@ def keyword_search(keyword: str,
     if engines: url += f"&engines={engines}"
 
     try:
-        response = safe_get_json(url, timeout=20)
+        response = safe_get_json(url, timeout=timeout)
 
     except Exception as e:
         print(f"Request failed: {e}")
@@ -179,4 +180,5 @@ def search_as_RAG(list_of_keywords: list[str]) -> list:
 
 # Testing tools
 if __name__ == "__main__":
+    print(check_search_connection())
     print(search_as_RAG(["SudoHopeX KaliGPT ai for Hackers"]))
