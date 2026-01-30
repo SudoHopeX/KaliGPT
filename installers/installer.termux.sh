@@ -4,7 +4,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Termux
 # by SudoHopeX ( SudoHopeX )
-# Last Modified: 29 Jan 2026
+# Last Modified: 30 Jan 2026
 
 
 # Global variables
@@ -65,7 +65,7 @@ mkdir -p "$INSTALL_DIR"
 # ----- KaliGPT v1.3 (HackerX) Source Cloning -----
 echo ""
 start_spinner "Cloning KaliGPT repository"
-git clone --branch hackerx --single-branch https://github.com/SudoHopeX/KaliGPT.git "$INSTALL_DIR/" > /dev/null 2>&1
+git clone https://github.com/SudoHopeX/KaliGPT.git "$INSTALL_DIR/" > /dev/null 2>&1
 stop_spinner "KaliGPT repository clone"
 
 
@@ -114,11 +114,13 @@ MODE="\$1"
 shift
 
 cd "\$INSTALL_DIR/"
+OPENSERP_PID=""  # Initialize for holding OpenSerp PID
 
 # start the openserp server in background
 start_openserp() {
     cd "\$INSTALL_DIR/openserp"
     nohup ./openserp serve > /dev/null 2>&1 &
+    OPENSERP_PID=$!
     cd "\$INSTALL_DIR/"
 }
 
@@ -129,11 +131,11 @@ case "\$MODE" in
                 python3 -m agents.gemini "\$@"
                 ;;
 
-        # -o|--ollama)
+        -o|--ollama)
                   # To use ollama on termux, user needs to provide ollama endpoint url but will be made available later
-                  # start_openserp
-                  # python3 -m agents.ollama "\$@"
-                  # ;;
+                  start_openserp
+                  python3 -m agents.ollama "\$@"
+                  ;;
 
         -or|--openrouter)
                   start_openserp
@@ -156,7 +158,7 @@ case "\$MODE" in
                 echo -e "\e[1;33mMODES: \e[0m"
                 echo ""
                 echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
-                echo "    -o  [--ollama]            =  use Ollama Models (Offline, text & code)"
+                echo "    -o  [--ollama]            =  use Ollama Cloud Models (Online, text & code)"
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
                 echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
                 echo "    --web                     =  AIs official Web-Chat Opener (Online)"
@@ -185,7 +187,7 @@ case "\$MODE" in
                 if [ "$LOCAL" != "$REMOTE" ]; then
                     echo -e "\e[1;32mNew version found! Updating KaliGPT...\e[0m"
                     if git pull origin hackerx > /dev/null 2>&1; then
-                        bash installers/installer.deb.sh
+                        bash installers/installer.termux.sh
                         echo -e "\e[1;32mKaliGPT has been updated to the latest version!\e[0m"
                     else
                         echo -e "\e[1;31mUpdate failed! Could not pull the latest changes.\e[0m"
@@ -206,6 +208,8 @@ case "\$MODE" in
             echo -e "\e[1;33mKaliGPT Provides:\e[0m
             1) Google Gemini Models  ( Free/Paid, Online) [ Requires API Key ]
             2) OpenRouter Models (Various, Free/Paid, Online) [ Requires API Key ]
+            3) OpenAI ChatGPT Models ( Free/Paid, Online) [ Requires API Key ]
+            4) Ollama Cloud Models (Various, Online) [ Requires Ollama Installation ]
             "
             ;;
 
@@ -218,6 +222,12 @@ case "\$MODE" in
             python3 -m agents "\$MODE" "\$@"
             ;;
 esac
+
+# Clean openserp via PID if running in backend at last
+if [ -n "$OPENSERP_PID" ] && kill -0 "$OPENSERP_PID" 2>/dev/null; then
+    kill "$OPENSERP_PID"
+fi
+
 EOF
 
 
