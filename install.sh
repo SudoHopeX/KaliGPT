@@ -52,7 +52,7 @@ if is_termux; then
         bash installers/installer.termux.sh
         ;;
       *)
-        if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/install.termux.sh > kaligptinstaller.sh; then
+        if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.termux.sh > kaligptinstaller.sh; then
             echo "✅ Download successful: kaligptinstaller.sh"
             echo "Install it by executing: bash kaligptinstaller.sh"
         else
@@ -74,7 +74,7 @@ else
                 sudo bash installers/installer.deb.sh
                 ;;
               *)
-                if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/install.deb.sh > kaligptinstaller.sh; then
+                if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.deb.sh > kaligptinstaller.sh; then
                     echo "✅ Download successful: kaligptinstaller.sh"
                     echo "Install it by executing: sudo bash kaligptinstaller.sh"
                 else
