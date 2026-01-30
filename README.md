@@ -53,43 +53,14 @@
 
 ## Installation
 
-### Automated Installation (Recommended) - detects env & installs KaliGPT
-1. switch to superuser (root) -  [ skip this step in Termux]
-    ```commandline
-    sudo su
+1. Download KaliGPT Installer
     ```
-    Enter the password &
-2. Use curl to install kaligpt
+    curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/install.sh | bash
     ```
-    bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/install.sh)
-    ```
-
-### Manual Installation (Required twice cloning of repo)
-#### Debian (e.g. Kali, Ubuntu etc.)
-- Clone the GitHub repository's `hackerx` branch :
-  ```
-  git clone https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
-  ```
-
-- install KaliGPT for debian
-  ```commandline
-  sudo bash install.sh -m
-  ```
-
-#### Termux
-- Install `git` and `bash` ( if not installed ):
-   ```commandline
-   pkg install git bash
+2. Install KaliGPT ( don't use sudo in Termux )
    ```
-
-- Clone the GitHub repository's `hackerx` branch & install KaliGPT:
-  ```
-  git clone https://github.com/SudoHopeX/KaliGPT.git && cd KaliGPT
-  ```
-- install KaliGPT for Termux
-  ```commandline
-  bash install.sh -m
-  ```
+   sudo bash kaligptinstaller.sh
+   ```
 
 ## KaliGPT Usages
 use command `kaligpt -h` to see below usages after installation
