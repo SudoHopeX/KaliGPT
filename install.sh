@@ -71,7 +71,7 @@ else
             echo "🐧 Debian-based system detected ($linux_distro). Downloading Debian installer..."
             case "$MODE" in
               -m)
-                sudo bash installers/installer.deb.sh
+                bash installers/installer.deb.sh
                 ;;
               *)
                 if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.deb.sh > kaligptinstaller.sh; then
