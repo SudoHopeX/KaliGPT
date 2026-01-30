@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # HackerX - Agent Management Module
 # file: agents/utils/agent_management.py
-# Updated: 27 January 2026
+# Updated: 30 January 2026
 
 from .agent_configs import get_default_model, get_available_ais, update_default_model, update_default_provider
 from .agent_configs import get_vendor_specific_all_models, update_ai_specific_default_model
@@ -18,7 +18,7 @@ import sys
 DEFAULT_AI_MODEL: str
 SELECTED_VENDOR: str
 SELECTED_MODEL: str
-ALL_AI_PROVIDERS = ["gemini", "chatgpt", "ollama"]  # FETCHED LATER FOR UPDATED LIST
+ALL_AI_PROVIDERS = ["gemini", "chatgpt", "ollama","openrouter"]  # FETCHED LATER FOR UPDATED LIST
 AI_MANAGEMENT_OPTIONS = ["/change model", "/reset to default model", "/set vendor default model", "/list tools", "/help", "/exit", "/quit", "/bye"]
 console = Console(width=get_console_width())
 
@@ -43,18 +43,17 @@ def set_vendor_name():
 
     # fetch all vendors
     ALL_AI_PROVIDERS = get_available_ais()
-    print(f"""\n    {Colors.BOLD}{Colors.CYAN} Select a Vendor Product:{Colors.RESET}
-            {Colors.YELLOW}1.{Colors.BOLD} Gemini (Google)
-            {Colors.YELLOW}2.{Colors.BOLD} ChatGPT (OpenAI)
-            {Colors.YELLOW}3.{Colors.BOLD} Ollama (Open Source)
-            {Colors.YELLOW}4.{Colors.BOLD} Claude (Anthropic){Colors.RESET}
-    """)
+
+    ais = ""
+    for ai in ALL_AI_PROVIDERS:
+        ais += f"{Colors.YELLOW}{ALL_AI_PROVIDERS.index(ai) + 1}.{Colors.BOLD} {ai}\n"
+    print(f"{Colors.BOLD}{Colors.CYAN}Available AI Vendors:{Colors.RESET}\n{ais}{Colors.RESET}")
 
     while True:
         try:
             # Check the bounds of the input
-            choice = int(input(f"   {Colors.CYAN}Enter Ur Choice{Colors.BOLD} ➤ {Colors.RESET} "))
-            if 1 <= choice <= len(ALL_AI_PROVIDERS):
+            selected = int(input(f"   {Colors.CYAN}Select AI Vendor by number{Colors.BOLD} ➤ {Colors.RESET} ")) - 1
+            if 0 <= selected <= len(ALL_AI_PROVIDERS):
                 break
             else:
                 print(f"\n  {Colors.RED}Invalid - Enter a number between 1 and {len(ALL_AI_PROVIDERS)}.{Colors.RESET}")
@@ -62,13 +61,12 @@ def set_vendor_name():
         except ValueError:
             print(f"\n  {Colors.RED}Invalid - Please enter a number.{Colors.RESET}")
 
-    # CRITICAL FIX: Use choice - 1 for 0-based indexing
-    SELECTED_VENDOR = ALL_AI_PROVIDERS[choice - 1]
+    SELECTED_VENDOR = ALL_AI_PROVIDERS[selected]
     print(f"\n  {Colors.GREEN}Vendor Selected: {Colors.BOLD}'{SELECTED_VENDOR}'{Colors.RESET}")
     return True
 
 # set default model from vendor selected
-def set_default_model(set_ai_specific_default=False):
+def set_default_model(set_ai_specific_default_only=False):
     global SELECTED_MODEL
     # functions to use: update_default_model, update_ai_specific_default_model
     print(f"\n  {Colors.CYAN}Enter a model from {Colors.BOLD}{SELECTED_VENDOR}: {Colors.RESET}")
@@ -91,10 +89,10 @@ def set_default_model(set_ai_specific_default=False):
             print(f"\n  {Colors.RED}Invalid - Enter a number from the listing (1 to {len(vendor_specific_all_models)}).{Colors.RESET}")
 
     # set the model to tool default
-    if set_ai_specific_default:
-        updated = update_ai_specific_default_model(SELECTED_VENDOR, SELECTED_MODEL)
+    if not set_ai_specific_default_only:
+        updated = update_ai_specific_default_model(SELECTED_VENDOR, SELECTED_MODEL) and update_default_model(SELECTED_MODEL) and update_default_provider(SELECTED_VENDOR)
     else:
-        updated = update_default_model(SELECTED_MODEL) and update_default_provider(SELECTED_VENDOR)
+        updated = update_ai_specific_default_model(SELECTED_VENDOR, SELECTED_MODEL)
 
     if updated:
         print(f"\n  {Colors.GREEN}Model changed to {Colors.BOLD}{SELECTED_VENDOR}/{SELECTED_MODEL}{Colors.RESET}")
@@ -174,7 +172,7 @@ def agent_management(task):
         # set vendor specific default model
         case "/set vendor default model":
             set_vendor_name()
-            set_default_model(set_ai_specific_default=True)
+            set_default_model(set_ai_specific_default_only=True)
 
         # list all available tools
         case "/list tools":
