@@ -25,7 +25,7 @@ def check_tool_support():
     try:
         client.chat(model=MODEL, messages=msg, tools=[addition])
         return True
-    except:
+    except Exception:
         return False
 
 
@@ -36,7 +36,7 @@ def check_think_support():
     try:
         client.chat(model=MODEL, messages=msg, think=True)
         return True
-    except:
+    except Exception:
         return False
 
 
