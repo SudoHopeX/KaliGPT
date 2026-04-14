@@ -76,7 +76,7 @@ def fetch_ollama_local_models():
 
         return [m["name"] for m in data.get("models", [])]
 
-    except:
+    except Exception:
         return []
 
 # get vendor name from number selected by user via mapping
@@ -183,6 +183,7 @@ def change_ai_model():
     if not updated and attempt >= 3:
         print("Model Change failed. Try Again ( 3 attempts consumed )...")
 
+
 def reset_ai_model_to_default():
     """Setting AI Model to default model - 'gemini-2.5-flash' """
 
@@ -241,6 +242,7 @@ def print_agent_management_options():
             padding=(1, 2),
             subtitle="[ Use these commands while in 'Interaction Mode' with agents! ]",
         ))
+
 
 def agent_management_options():
     print_agent_management_options()
