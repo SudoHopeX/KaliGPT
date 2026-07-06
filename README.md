@@ -52,6 +52,7 @@
 ![Gemini](https://img.shields.io/badge/Gemini-8E75FF?style=for-the-badge&logo=googlegemini&logoColor=white)
 ![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
 ![OpenRouter](https://img.shields.io/badge/OpenRouter-6566f1?style=for-the-badge&logo=openrouter&logoColor=white)
+![Requesty](https://img.shields.io/badge/Requesty-6D28D9?style=for-the-badge&logoColor=white)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 ![LiteLLM](https://img.shields.io/badge/🚅_LiteLLM-7C3AED?style=for-the-badge&logoColor=white)
 <!-- ![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white) -->
@@ -83,6 +84,7 @@ MODES:
     -g  [--gemini]            =  use Gemini models (Online)
     -o  [--ollama]            =  use local models via Ollama (Offline,cloud:online )
     -or [--openrouter]        =  use OpenRouter models (Online)
+    -rq [--requesty]          =  use Requesty models (Online)
     -c  [--chatgpt]           =  use OpenAI models (Online)
     -ll [--litellm]           =  use 100+ providers via LiteLLM (Online)
     --web                     =  AIs official Web-Chat Opener (Online)
