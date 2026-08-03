@@ -16,6 +16,11 @@
 
 ## Badges
 <div align="center">
+
+<!-- GitHub Trending -->
+<a href="https://trendshift.io/repositories/36967?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-36967" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/36967" alt="SudoHopeX%2FKaliGPT | Trendshift" width="250" height="55"/></a>
+<!-- SudoHopeX/KaliGPT has been featured on GitHub Trending, first reaching #10 on Jun 7, 2026 -->
+---
  
 <!-- Repository Statistics -->
 [![Release](https://img.shields.io/github/v/tag/SudoHopeX/KaliGPT?label=Release&color=0078D4&style=for-the-badge&logo=github)](https://github.com/SudoHopeX/KaliGPT/tags)
