@@ -133,6 +133,11 @@ case "\$MODE" in
                   python3 -m agents.openrouter "\$@"
                   ;;
 
+        -rq|--requesty)
+                  start_opensearchapi
+                  python3 -m agents.requesty "\$@"
+                  ;;
+
         -c|--chatgpt)
                 start_opensearchapi
                 python3 -m agents.chatgpt "$@"
@@ -151,6 +156,7 @@ case "\$MODE" in
                 echo "    -g  [--gemini]            =  use Gemini Models (Online, text & code)"
                 echo "    -o  [--ollama]            =  use Ollama Cloud Models (Online, text & code)"
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
+                echo "    -rq [--requesty]          =  use Requesty Models (Online, text & code)"
                 echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
                 echo "    --web                     =  AIs official Web-Chat Opener (Online)"
                 echo "    --setup-keys              =  setup API keys for online models"

@@ -23,7 +23,7 @@ import requests
 DEFAULT_AI_MODEL: str
 SELECTED_VENDOR: str
 SELECTED_MODEL: str
-ALL_AI_PROVIDERS = ["gemini", "chatgpt", "ollama", "openrouter", "litellm"]  # FETCHED LATER FOR UPDATED LIST
+ALL_AI_PROVIDERS = ["gemini", "chatgpt", "ollama", "openrouter", "requesty", "litellm"]  # FETCHED LATER FOR UPDATED LIST
 AI_MANAGEMENT_OPTIONS = ["/change model", "/reset to default model", "/list tools", "/help", "/exit", "/quit", "/bye"]
 console = Console(width=get_console_width())
 
