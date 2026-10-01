@@ -52,6 +52,7 @@ This document lists all the requirements/dependencies for KaliGPT, categorized b
 | Name                                                         | Description                                                               |
 |--------------------------------------------------------------|---------------------------------------------------------------------------|
 | `keyword_search`, `check_search_connection`, `search_as_RAG` | for online search & real-time info. connectivity                          |
+| `youcom_search`, `check_youcom_connection`                   | for online search via You.com (keyless, no local OpenSearchAPI needed)    |
 | `get_local_server_content`                                   | extracting content accessible via local server (e.g. localhost etc.)      |
 | `execute_generic_linux_command`                              | executing linux tools & commands                                          |
 
