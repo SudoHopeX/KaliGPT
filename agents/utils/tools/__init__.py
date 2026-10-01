@@ -4,6 +4,7 @@
 # Updated: 22 feb 2026
 
 from .opensearchapi import check_search_connection, search_as_RAG, keyword_search
+from .youcomapi import check_youcom_connection, youcom_search
 from .locals import get_local_server_content, execute_generic_linux_command
 from .web_request_framework import web_request_analysis, get_raw_response
 
@@ -19,6 +20,8 @@ def get_tools_info():
         check_search_connection,
         keyword_search,
         search_as_RAG,
+        check_youcom_connection,
+        youcom_search,
         get_local_server_content,
         execute_generic_linux_command,
         web_request_analysis,
