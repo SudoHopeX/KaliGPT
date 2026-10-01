@@ -15,7 +15,8 @@
             "chatgpt": "https://chatgpt.com/g/g-xouSQobsE-kaligpt/?prompt=",
             "gemini": "https://gemini.google.com/",
             "claude": "https://claude.ai/new?q=",
-            "openrouter": "https://openrouter.ai/chat?prompt="
+            "openrouter": "https://openrouter.ai/chat?prompt=",
+            "requesty": "https://app.requesty.ai/router?prompt="
         }
     }
 }
