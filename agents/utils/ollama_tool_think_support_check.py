@@ -6,7 +6,7 @@
 
 
 from ollama import Client
-from agent_configs import get_api_key
+from .agent_configs import get_api_key
 
 msg = [{"role": "user", "content": "Just say Hii"}]
 MODEL: str

@@ -1,8 +1,8 @@
 {
-    "default_model": "gemini-2.5-flash",
-    "default_provider": "gemini",
+    "default_model": "google/gemini-2.5-flash",
+    "default_provider": "openrouter",
     "gemini": {
-        "api_key": "YOUR_GEMINI_API_KEY",
+        "api_key": "YOUR_API_KEY",
         "default_model": "gemini-2.5-flash",
         "models": [
             "gemini-3-pro-preview",
@@ -40,7 +40,7 @@
     },
     "openrouter": {
         "api_key": "YOUR_OPENROUTER_API_KEY",
-        "default_model": "z-ai/glm-4.5-air:free",
+        "default_model": "google/gemini-2.5-flash",
         "models": [
             "z-ai/glm-4.5-air:free",
             "kwaipilot/kat-coder-pro",
@@ -69,5 +69,3 @@
         ]
     }
 }
-
-
