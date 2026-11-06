@@ -39,6 +39,16 @@ def _load_config() -> Dict[str, Any]:
             "models": [
                 "z-ai/glm-4.5-air:free"
             ]
+        },
+        "requesty": {
+            "api_key": "YOUR_REQUESTY_API_KEY",
+            "default_model": "openai/gpt-4o-mini",
+            "models": [
+                "openai/gpt-4o-mini",
+                "openai/gpt-4o",
+                "anthropic/claude-sonnet-4-5",
+                "google/gemini-2.5-flash"
+            ]
         }
     }
 

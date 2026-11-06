@@ -145,6 +145,7 @@ case "$MODE" in
   -g|--gemini)     st_opensearchapi; python3 -m agents.gemini "$@" ;;
   -o|--ollama)     st_opensearchapi; python3 -m agents.ollama "$@" ;;
   -or|--openrouter) st_opensearchapi; python3 -m agents.openrouter "$@" ;;
+  -rq|--requesty)  st_opensearchapi; python3 -m agents.requesty "$@" ;;
   -c|--chatgpt)    st_opensearchapi; python3 -m agents.chatgpt "$@" ;;
   --web)           python3 -m agents.web_launcher "$@" ;;
   --setup-keys)    python3 -m agents "$MODE" ;;
@@ -163,14 +164,16 @@ case "$MODE" in
     echo -e "\e[1;33mKaliGPT Provides:\e[0m
 1) Google Gemini Models   (Free/Paid, Online)  [ Requires API Key ]
 2) OpenRouter Models      (Free/Paid, Online)  [ Requires API Key ]
-3) Ollama                 (Free, Offline)      [ Local AI Models  ]
-4) OpenAI ChatGPT         (Paid, Online)       [ Requires API Key ]" ;;
+3) Requesty Models        (Paid, Online)       [ Requires API Key ]
+4) Ollama                 (Free, Offline)      [ Local AI Models  ]
+5) OpenAI ChatGPT         (Paid, Online)       [ Requires API Key ]" ;;
   -h|--help)
     echo -e "\e[1;32mKaliGPT v1.3 — by SudoHopeX\e[0m"
     echo -e "Usage: kaligpt [MODE] [Prompt]"
     echo -e "  -g  --gemini        Gemini models"
     echo -e "  -o  --ollama        Ollama (offline)"
     echo -e "  -or --openrouter    OpenRouter models"
+    echo -e "  -rq --requesty      Requesty models"
     echo -e "  -c  --chatgpt       OpenAI models"
     echo -e "  --web               Open AI web chat"
     echo -e "  --setup-keys        Configure API keys"
