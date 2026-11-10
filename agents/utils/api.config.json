@@ -1,29 +1,31 @@
 {
-    "default_model": "google/gemini-2.5-flash",
+    "default_model": "google/gemini-3.8-flash",
     "default_provider": "openrouter",
     "gemini": {
         "api_key": "YOUR_API_KEY",
-        "default_model": "gemini-2.5-flash",
+        "default_model": "gemini-3.8-flash",
         "models": [
-            "gemini-3-pro-preview",
+            "gemini-4-argon",
+            "gemini-3.8-flash",
+            "gemini-3.6-flash",
+            "gemini-3.5-flash-lite",
+            "gemini-3.1-flash-lite",
+            "gemini-3.1-pro-preview",
             "gemini-3-flash-preview",
-            "gemini-2.5-flash",
-            "gemini-2.5-pro",
-            "gemini-1.5-flash-latest"
         ]
     },
     "chatgpt": {
         "api_key": "YOUR_CHATGPT_API_KEY",
-        "default_model": "gpt-4o",
+        "default_model": "gpt-5.6-cyber",
         "models": [
-            "gpt-4o-mini",
-            "gpt-4o",
-            "gpt-4-turbo",
-            "gpt-3.5-turbo",
+            "gpt-6.1-sol",
+            "gpt-6.1-terra",
+            "gpt-6-luna",
+            "gpt-6-astra",
+            "gpt-5.6-cyber",
             "gpt-5.2-2025-12-11",
             "gpt-5.2-pro-2025-12-11",
             "gpt-5-mini-2025-08-07",
-            "gpt-oss-120b"
         ]
     },
     "ollama": {
@@ -42,30 +44,27 @@
         "api_key": "YOUR_OPENROUTER_API_KEY",
         "default_model": "google/gemini-2.5-flash",
         "models": [
-            "z-ai/glm-4.5-air:free",
-            "kwaipilot/kat-coder-pro",
-            "cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
             "meta-llama/llama-3.3-70b-instruct:free",
             "qwen/qwen3-coder:free",
             "openai/gpt-oss-120b:free",
             "meta-llama/llama-3.1-405b-instruct:free",
             "z-ai/glm-4.7-flash",
-            "openai/gpt-5.2-chat",
             "openai/gpt-5.2-pro",
             "openai/gpt-5.2",
-            "google/gemini-2.5-flash",
             "google/gemini-2.5-pro",
             "google/gemini-3-pro-preview",
+            "google/gemma-4-31b-it:free",
             "anthropic/claude-opus-4.5",
-            "anthropic/claude-haiku-4.5",
             "anthropic/claude-sonnet-4.5",
             "anthropic/claude-opus-4.1",
             "anthropic/claude-sonnet-4",
             "x-ai/grok-4.1-fast",
-            "x-ai/grok-4.1-fast",
             "x-ai/grok-4",
             "x-ai/grok-3-mini",
-            "x-ai/grok-3"
+            "x-ai/grok-3",
+            "dots-studio/dots-3-note-preview:free",
+            "nvidia/nemotron-3-ultra-550b-a55b:free",
+            "nvidia/nemotron-3.5-lightning:free"
         ]
     }
 }
