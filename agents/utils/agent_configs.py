@@ -17,27 +17,71 @@ def _load_config() -> Dict[str, Any]:
 
     default_data = {
         "default_model": "gemini-3.8-flash",
-        "default_provider": "google",
+        "default_provider": "gemini",
         "gemini": {
-            "api_key": "GEMINI_API_KEY",
+            "api_key": "YOUR_API_KEY",
             "default_model": "gemini-3.8-flash",
-            "models": ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-1.5-flash-latest"]
+            "models": [
+                "gemini-4-argon",
+                "gemini-3.8-flash",
+                "gemini-3.6-flash",
+                "gemini-3.5-flash-lite",
+                "gemini-3.1-flash-lite",
+                "gemini-3.1-pro-preview",
+                "gemini-3-flash-preview"
+            ]
         },
         "chatgpt": {
-            "api_key": "OPENAI_API_KEY",
-            "default_model": "gpt-4o",
-            "models": ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"]
+            "api_key": "YOUR_CHATGPT_API_KEY",
+            "default_model": "gpt-5.6-cyber",
+            "models": [
+                "gpt-6.1-sol",
+                "gpt-6.1-terra",
+                "gpt-6-luna",
+                "gpt-6-astra",
+                "gpt-5.6-cyber",
+                "gpt-5.2-2025-12-11",
+                "gpt-5.2-pro-2025-12-11",
+                "gpt-5-mini-2025-08-07"
+            ]
         },
         "ollama": {
-            "api_key": "http://localhost:11434",  # URL for Ollama
+            "api_key": "http://localhost:11434",
             "default_model": "llama3",
-            "models": ["llama3", "mistral", "qwen3:8b"]
+            "models": [
+                "llama3",
+                "llama3.1",
+                "gpt-oss",
+                "gpt-oss:120b-cloud",
+                "qwen3",
+                "qwen3:14b"
+            ]
         },
         "openrouter": {
-            "api_key": "OpenRouter_API_Key",
-            "default_model": "z-ai/glm-4.5-air:free",
+            "api_key": "YOUR_OPENROUTER_API_KEY",
+            "default_model": "openai/gpt-oss-120b:free",
             "models": [
-                "z-ai/glm-4.5-air:free"
+                "meta-llama/llama-3.3-70b-instruct:free",
+                "qwen/qwen3-coder:free",
+                "openai/gpt-oss-120b:free",
+                "meta-llama/llama-3.1-405b-instruct:free",
+                "z-ai/glm-4.7-flash",
+                "openai/gpt-5.2-pro",
+                "openai/gpt-5.2",
+                "google/gemini-2.5-pro",
+                "google/gemini-3-pro-preview",
+                "google/gemma-4-31b-it:free",
+                "anthropic/claude-opus-4.5",
+                "anthropic/claude-sonnet-4.5",
+                "anthropic/claude-opus-4.1",
+                "anthropic/claude-sonnet-4",
+                "x-ai/grok-4.1-fast",
+                "x-ai/grok-4",
+                "x-ai/grok-3-mini",
+                "x-ai/grok-3",
+                "dots-studio/dots-3-note-preview:free",
+                "nvidia/nemotron-3-ultra-550b-a55b:free",
+                "nvidia/nemotron-3.5-lightning:free"
             ]
         }
     }
