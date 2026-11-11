@@ -5,7 +5,7 @@ trap "kill $SPIN_PID 2>/dev/null" EXIT
 # /install.sh for selecting the distribution specific installer
 # Detect the OS/env type (e.g. debian based system, termux etc.)
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 22 June 2026
+# Last Modified: 11 November 2026
 
 
 # Function to detect if running in Termux  [ 0: True, 1: False ]
@@ -46,13 +46,19 @@ MODE="$1"
 
 
 if is_termux; then
-    echo "📱 Termux environment detected. Proceeding with Termux installer..."
+    echo "📱 Termux environment detected. Downloading Termux installer..."
     case "$MODE" in
       -m)
         bash installers/installer.termux.sh
         ;;
       *)
-        bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.termux.sh)
+        if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.termux.sh > kaligptinstaller.sh; then
+            echo "✅ Download successful: kaligptinstaller.sh"
+            echo "Install it by executing: bash kaligptinstaller.sh"
+        else
+            echo "❌ Download failed"
+            exit 1
+        fi
         ;;
     esac
     exit 0
@@ -62,26 +68,37 @@ else
 
     case "$linux_distro" in
         debian|kali|ubuntu|linuxmint)
-            echo "🐧 Debian-based system detected ($linux_distro). Proceeding with Debian installer..."
+            echo "🐧 Debian-based system detected ($linux_distro). Downloading Debian installer..."
             case "$MODE" in
               -m)
                 sudo bash installers/installer.deb.sh
                 ;;
               *)
-                bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.deb.sh)
+                if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.deb.sh > kaligptinstaller.sh; then
+                    echo "✅ Download successful: kaligptinstaller.sh"
+                    echo "Install it by executing: sudo bash kaligptinstaller.sh"
+                else
+                    echo "❌ Download failed"
+                    exit 1
+                fi
                 ;;
             esac
             exit 0
             ;;
         arch|garuda|manjaro)
-            echo "🐧 Arch-based system detected ($linux_distro). Proceeding with Arch installer..."
+            echo "🐧 Arch-based system detected ($linux_distro). Downloading Arch installer..."
             case "$MODE" in
               -m)
                 sudo bash installers/installer.arch.sh
                 ;;
               *)
-                bash <(curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.arch.sh)
-                ;;
+                if curl -sL https://raw.githubusercontent.com/SudoHopeX/KaliGPT/refs/heads/hackerx/installers/installer.arch.sh > kaligptinstaller.sh; then
+                    echo "✅ Download successful: kaligptinstaller.sh"
+                    echo "Install it by executing: sudo bash kaligptinstaller.sh"
+                else
+                    echo "❌ Download failed"
+                    exit 1
+                fi                ;;
             esac
             exit 0
             ;;
