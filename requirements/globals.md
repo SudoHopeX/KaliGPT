@@ -21,16 +21,17 @@ This document lists all the requirements/dependencies for KaliGPT, categorized b
 
 
 ## PyPI (python pip) Packages
-| Package                                                                        | Description                          |
-|--------------------------------------------------------------------------------|--------------------------------------|
-| `openai`                                                                       | accessing openai & OpenRouter models |
-| `google-genai`                                                                 | accessing google gemini models       |
-| `ollama`                                                                       | using ollama models                  |
-| `rich`                                                                         | for rich text output                 |
-| `requests`                                                                     | making HTTP requests                 |
-| `newspaper3k`,`lxml_html_clean`                                                | cleaning & parsing HTML              |
-| `beautifulsoup4`, `flask`, `ddgs`, `curl_cffi`, `nodriver`, `pyvirtualdisplay` | OpenSearchAPI dependency             |
-| `prompt_toolkit`                                                               | Interactive CLI Selector             | 
+| Package                                                                        | Description                           |
+|--------------------------------------------------------------------------------|---------------------------------------|
+| `openai`                                                                       | accessing openai & OpenRouter models  |
+| `google-genai`                                                                 | accessing google gemini models        |
+| `ollama`                                                                       | using ollama models                   |
+| `rich`                                                                         | for rich text output                  |
+| `requests`                                                                     | making HTTP requests                  |
+| `newspaper3k`,`lxml_html_clean`                                                | cleaning & parsing HTML               |
+| `beautifulsoup4`, `flask`, `ddgs`, `curl_cffi`, `nodriver`, `pyvirtualdisplay` | OpenSearchAPI dependency              |
+| `prompt_toolkit`                                                               | Interactive CLI Selector              | 
+| `litellm`                                                                      | Using litellm models for litellm agent|
 
 
 ## System Packages
