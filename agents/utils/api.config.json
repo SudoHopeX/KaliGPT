@@ -42,7 +42,7 @@
     },
     "openrouter": {
         "api_key": "YOUR_OPENROUTER_API_KEY",
-        "default_model": "google/gemini-2.5-flash",
+        "default_model": "openai/gpt-oss-120b:free",
         "models": [
             "meta-llama/llama-3.3-70b-instruct:free",
             "qwen/qwen3-coder:free",
