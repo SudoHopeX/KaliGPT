@@ -16,11 +16,11 @@ def _load_config() -> Dict[str, Any]:
     """Reads JSON config. Creates a new file with default data if missing or corrupted."""
 
     default_data = {
-        "default_model": "gemini-2.5-flash",
-        "default_provider": "ollama",
+        "default_model": "gemini-3.8-flash",
+        "default_provider": "google",
         "gemini": {
             "api_key": "GEMINI_API_KEY",
-            "default_model": "gemini-2.5-flash",
+            "default_model": "gemini-3.8-flash",
             "models": ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-1.5-flash-latest"]
         },
         "chatgpt": {
