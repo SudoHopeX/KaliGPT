@@ -1,6 +1,6 @@
 [//]: # ( /requirements/global.md )
 [//]: # ( SudoHopeX: https://hope.is-a.dev, github.com/SudoHopeX )
-[//]: # ( Updated: 21 March 2026 )
+[//]: # ( Updated: 11 November 2026 )
 
 # KaliGPT Requirements
 This document lists all the requirements/dependencies for KaliGPT, categorized by their source.
