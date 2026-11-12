@@ -4,7 +4,7 @@ USER_NAME=$(logname 2>/dev/null)
 
 # KaliGPT v1.3 Setup (check & install dependencies, create launcher) Script for Debian-based Systems
 # by SudoHopeX ( https://github.com/SudoHopeX )
-# Last Modified: 8 fEB 2026
+# Last Modified: 12 November 2026
 
 
 # Ensure script runs as root, prompt for sudo if needed
@@ -178,6 +178,11 @@ case "$MODE" in
                 python3 -m agents.chatgpt "$@"
                 ;;
 
+        -ll|--litellm)
+                st_opensearchapi
+                python3 -m agents.litellm "$@"
+                ;;
+
         --web)
                 python3 -m agents.web_launcher "$@"
                 ;;
@@ -196,6 +201,7 @@ case "$MODE" in
                 echo "    -o  [--ollama]            =  use Ollama Models (Offline, text & code)"
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
                 echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
+                echo "    -ll [--litellm]           =  use 100+ providers via LiteLLM (Online)"
                 echo "    --web                     =  AIs official Web-Chat Opener (Online)"
                 echo "    --setup-keys              =  setup API keys for online models"
                 echo "    -u [--update]             =  update KaliGPT to latest version"
@@ -245,6 +251,7 @@ case "$MODE" in
                 2) OpenRouter Models     (Various, Free/Paid, Online) [ Requires API Key ]
                 3) Ollama                (Free, Offline) [ Local AI Models ]
                 4) OpenAI ChatGPT        (Paid, Online)  [Required API Key]
+                5) Litellm               use 100+ providers via LiteLLM (Online)
                 "
                 ;;
 
@@ -313,4 +320,4 @@ echo -e "\e[1;33mYou can run KaliGPT using the command: \e[0m\e[1;32mkaligpt\e[0
 
 # ----- Test run KaliGPT with help flag -----
 echo ""
-kaligpt --help
+# kaligpt --help
