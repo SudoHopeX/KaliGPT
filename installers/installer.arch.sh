@@ -146,6 +146,7 @@ case "$MODE" in
   -o|--ollama)     st_opensearchapi; python3 -m agents.ollama "$@" ;;
   -or|--openrouter) st_opensearchapi; python3 -m agents.openrouter "$@" ;;
   -c|--chatgpt)    st_opensearchapi; python3 -m agents.chatgpt "$@" ;;
+  -ll|--litellm)   st_opensearchapi; python3 -m agents.litellm "$@" ;;
   --web)           python3 -m agents.web_launcher "$@" ;;
   --setup-keys)    python3 -m agents "$MODE" ;;
   -u|--update)
@@ -164,7 +165,8 @@ case "$MODE" in
 1) Google Gemini Models   (Free/Paid, Online)  [ Requires API Key ]
 2) OpenRouter Models      (Free/Paid, Online)  [ Requires API Key ]
 3) Ollama                 (Free, Offline)      [ Local AI Models  ]
-4) OpenAI ChatGPT         (Paid, Online)       [ Requires API Key ]" ;;
+4) OpenAI ChatGPT         (Paid, Online)       [ Requires API Key ]
+5) Litellm                use 100+ providers via LiteLLM (Online)" ;;
   -h|--help)
     echo -e "\e[1;32mKaliGPT v1.3 — by SudoHopeX\e[0m"
     echo -e "Usage: kaligpt [MODE] [Prompt]"
@@ -207,5 +209,7 @@ chmod 666 /opt/KaliGPT/agents/utils/api.config.json
 # ---- Done ----
 echo -e "\e[1;32mKaliGPT v1.3 (HackerX) installed successfully on Arch/Garuda!\e[0m"
 echo -e "\e[1;33mRun it with: \e[0m\e[1;32mkaligpt\e[0m"
+
+# ---- Test KaliGPT Command ----
 echo ""
 kaligpt --help
