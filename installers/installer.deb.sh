@@ -180,7 +180,7 @@ case "$MODE" in
 
         -ll|--litellm)
                 st_opensearchapi
-                python3 -m agents.litellm "$@"
+                python3 -m agents.litellm_provider "$@"
                 ;;
 
         --web)
