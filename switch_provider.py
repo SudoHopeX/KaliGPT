@@ -23,6 +23,6 @@ def switch_provider(provider_name):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python3 switch_provider.py <provider_name>")
-        print("Supported providers: gemini, chatgpt, ollama, openrouter")
+        print("Supported providers: gemini, chatgpt, ollama, openrouter, llmtr")
         sys.exit(1)
     switch_provider(sys.argv[1])

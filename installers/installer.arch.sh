@@ -147,6 +147,7 @@ case "$MODE" in
   -or|--openrouter) st_opensearchapi; python3 -m agents.openrouter "$@" ;;
   -c|--chatgpt)    st_opensearchapi; python3 -m agents.chatgpt "$@" ;;
   -ll|--litellm)   st_opensearchapi; python3 -m agents.litellm "$@" ;;
+  -lt|--llmtr)     st_opensearchapi; python3 -m agents.llmtr "$@" ;;
   --web)           python3 -m agents.web_launcher "$@" ;;
   --setup-keys)    python3 -m agents "$MODE" ;;
   -u|--update)
@@ -166,7 +167,8 @@ case "$MODE" in
 2) OpenRouter Models      (Free/Paid, Online)  [ Requires API Key ]
 3) Ollama                 (Free, Offline)      [ Local AI Models  ]
 4) OpenAI ChatGPT         (Paid, Online)       [ Requires API Key ]
-5) Litellm                use 100+ providers via LiteLLM (Online)" ;;
+5) Litellm                use 100+ providers via LiteLLM (Online)
+6) LLMTR                  (Prepaid, Online)  [ Requires API Key ]" ;;
   -h|--help)
     echo -e "\e[1;32mKaliGPT v1.3 — by SudoHopeX\e[0m"
     echo -e "Usage: kaligpt [MODE] [Prompt]"
@@ -174,6 +176,7 @@ case "$MODE" in
     echo -e "  -o  --ollama        Ollama (offline)"
     echo -e "  -or --openrouter    OpenRouter models"
     echo -e "  -c  --chatgpt       OpenAI models"
+    echo -e "  -lt --llmtr         LLMTR models"
     echo -e "  --web               Open AI web chat"
     echo -e "  --setup-keys        Configure API keys"
     echo -e "  -u  --update        Update KaliGPT"

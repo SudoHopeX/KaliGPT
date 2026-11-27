@@ -10,4 +10,5 @@ from .utils.tools import get_tools_info
 # After this change, run from the repo root:
 # python -m agents.gemini         ( For Gemini & Google Models )
 # python -m agents.openrouter     ( For OpenRouter hosted Models )
+# python -m agents.llmtr          ( For LLMTR hosted Models )
 # python -m agents.ollama         ( For Locally running Models via Ollama )

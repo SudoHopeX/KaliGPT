@@ -59,6 +59,7 @@
 ![OpenRouter](https://img.shields.io/badge/OpenRouter-6566f1?style=for-the-badge&logo=openrouter&logoColor=white)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 ![LiteLLM](https://img.shields.io/badge/🚅_LiteLLM-7C3AED?style=for-the-badge&logoColor=white)
+![LLMTR](https://img.shields.io/badge/LLMTR-111111?style=for-the-badge)
 <!-- ![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white) -->
 </div>
 
@@ -90,6 +91,7 @@ MODES:
     -or [--openrouter]        =  use OpenRouter models (Online)
     -c  [--chatgpt]           =  use OpenAI models (Online)
     -ll [--litellm]           =  use 100+ providers via LiteLLM (Online)
+    -lt [--llmtr]             =  use LLMTR models (Online)
     --web                     =  AIs official Web-Chat Opener (Online)
     --setup-keys              =  setup API keys for online models
     -u [--update]             =  update KaliGPT to latest version
@@ -107,6 +109,7 @@ Examples:
      kaligpt "Help me find XSS on target.com"
      kaligpt -g "How to Scan a website for subdomains using tools"
      kaligpt -or "Help me find XXS on a target.com"
+     kaligpt -lt "Help me find XSS on a target.com"
      kaligpt --web   (launches default AI model web Chat
 
 ```
