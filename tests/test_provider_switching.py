@@ -18,6 +18,7 @@ class TestAgentConfigsAndSwitching:
         assert "openrouter" in config
         assert "ollama" in config
         assert "chatgpt" in config
+        assert "llmtr" in config
 
     def test_update_default_provider(self):
         original_provider = _load_config().get("default_provider", "openrouter")

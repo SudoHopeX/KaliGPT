@@ -138,6 +138,11 @@ case "\$MODE" in
                 python3 -m agents.chatgpt "$@"
                 ;;
 
+        -lt|--llmtr)
+                start_opensearchapi
+                python3 -m agents.llmtr "\$@"
+                ;;
+
         -h|--help)
                 echo ""
                 echo -e "\e[1;32mKaliGPT v1.3 - Use AI in Linux via CLI easily\e[0m"
@@ -152,6 +157,7 @@ case "\$MODE" in
                 echo "    -o  [--ollama]            =  use Ollama Cloud Models (Online, text & code)"
                 echo "    -or [--openrouter]        =  use OpenRouter Models (Online, text & code)"
                 echo "    -c  [--chatgpt]           =  use OpenAI Models (Online, text & code)"
+                echo "    -lt [--llmtr]             =  use LLMTR Models (Online)"
                 echo "    --web                     =  AIs official Web-Chat Opener (Online)"
                 echo "    --setup-keys              =  setup API keys for online models"
                 echo "    -u [--update]             =  update KaliGPT to latest version"
@@ -207,6 +213,7 @@ case "\$MODE" in
             2) OpenRouter Models (Various, Free/Paid, Online) [ Requires API Key ]
             3) OpenAI ChatGPT Models ( Free/Paid, Online) [ Requires API Key ]
             4) Ollama Cloud Models (Various, Online) [ Requires Ollama Installation ]
+            5) LLMTR Models (Prepaid, Online) [ Requires API Key ]
             "
             ;;
 

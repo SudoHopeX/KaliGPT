@@ -66,5 +66,22 @@
             "nvidia/nemotron-3-ultra-550b-a55b:free",
             "nvidia/nemotron-3.5-lightning:free"
         ]
+    },
+    "llmtr": {
+        "api_key": "YOUR_LLMTR_API_KEY",
+        "default_model": "qwen/qwen3.8-flash",
+        "models": [
+            "qwen/qwen3.8-flash",
+            "qwen/qwen3.8-max",
+            "llmtr/qwen3-8-27b",
+            "llmtr/qwen3-6-35b",
+            "llmtr/gemma-4",
+            "deepseek/deepseek-flash",
+            "zai/glm-5.3-flash",
+            "google/gemini-3.8-flash",
+            "anthropic/claude-sonnet-4.5",
+            "anthropic/claude-haiku-4.5",
+            "mistral/mistral-small-latest"
+        ]
     }
 }

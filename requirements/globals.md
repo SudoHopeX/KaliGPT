@@ -23,7 +23,7 @@ This document lists all the requirements/dependencies for KaliGPT, categorized b
 ## PyPI (python pip) Packages
 | Package                                                                        | Description                           |
 |--------------------------------------------------------------------------------|---------------------------------------|
-| `openai`                                                                       | accessing openai & OpenRouter models  |
+| `openai`                                                                       | accessing openai, OpenRouter & LLMTR models |
 | `google-genai`                                                                 | accessing google gemini models        |
 | `ollama`                                                                       | using ollama models                   |
 | `rich`                                                                         | for rich text output                  |
